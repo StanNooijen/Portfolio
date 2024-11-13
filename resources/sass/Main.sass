@@ -1,0 +1,505 @@
+$black: #000000
+$white: #ffffff
+$lightGray: #A6A6A6
+$darkGray: #323232
+$grayText: #9E9E9E
+$middleGray: #4F4F4F
+$gray: #62626280
+
+body, html
+    margin: 0
+    padding: 0
+    scroll-behavior: smooth
+
+body::-webkit-scrollbar
+    width: 10px
+    background-color: $black
+    &-track
+        background: $middleGray
+    &-thumb
+        background: $darkGray
+        border-radius: 10px
+        &:hover
+            background: $middleGray
+    &-corner
+        background: $darkGray
+
+$font-weights: (thin: 100, extralight: 200 ,light: 300,regular: 400, medium: 500, semibold: 600, bold: 700, extrabold: 800, black: 900)
+
+@each $name, $weight in $font-weights
+    .poppins-#{$name}
+        font-family: "Poppins", sans-serif
+        font-weight: $weight
+        font-style: normal
+
+body
+    font-family: "Poppins" , sans-serif
+    font-size: 16px
+    font-weight: 400
+    margin: 0
+    padding: 0
+    background-color: $black
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
+
+.navigation
+    display: flex
+    flex-direction: column
+    align-items: end
+    color: $white
+    height: auto
+    width: min-content
+    position: fixed
+    top: 4%
+    right: 2%
+    z-index: 10
+
+.navigator
+    display: flex
+    flex-direction: row
+    width: 75px
+    height: 75px
+    background-color: $darkGray
+    align-items: center
+    justify-content: center
+
+
+.nav-links
+    z-index: -1
+    opacity: 0
+    transform: translateX(100%)
+    background-color: $darkGray
+    display: flex
+    gap: 20px
+    padding: 10% 0 0 0
+    flex-direction: column
+    position: fixed
+    top: 0
+    right: 0
+    width: 8%
+    height: 100vh
+    transition: transform 0.3s ease, opacity 0.2s
+    a
+        color: $white
+        text-decoration: none
+        font-size: 1.5em
+        text-align: center
+        &:hover
+            color: $lightGray
+
+.nav-links.active
+    transform: translateX(0)
+    opacity: 1
+    transition: transform 0.3s ease, opacity 0.2s
+
+
+.hamburger
+    cursor: pointer
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    width: 50%
+    height: 50%
+
+    span
+        background-color: $white
+        height: 3px
+        width: 100%
+        transition: all 0.3s ease
+
+    &.active
+        span:nth-child(1)
+            transform: rotate(45deg) translate(9px, 9px)
+        span:nth-child(2)
+            opacity: 0
+        span:nth-child(3)
+            transform: rotate(-45deg) translate(9px, -9px)
+
+
+.row
+    display: flex
+    flex-direction: row
+    width: 100%
+    align-items: center
+    justify-content: center
+.col
+    display: flex
+    flex-direction: column
+    width: fit-content
+    justify-content: space-between
+
+.container
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    width: 90%
+    gap: 20px
+    color: $white
+    height: 100vh
+h1
+    color: $white
+    font-size: 1.5em
+    margin: 0
+
+.shadow-bottom
+    position: absolute
+    left: 0
+    height: 100%
+    width: 50%
+    &::after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 50%
+        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))
+        pointer-events: none
+
+.intro
+    display: flex
+    flex-direction: column
+    color: $white
+    z-index: 2
+    width: 50%
+    justify-content: center
+    position: relative
+    left: 20%
+
+
+.title
+    font-size: 8em
+    line-height: 0.90em
+    color: $white
+    margin-bottom: 0.4em
+    width: 80%
+    margin-left: 8%
+
+.subtitle
+    font-size: 3.5em
+    position: relative
+
+
+.textBox
+    display: flex
+    flex-direction: column
+    background-color: $darkGray
+    padding: 3%
+    margin-bottom: 15%
+    p
+        font-size: 1.2em
+        margin: 0
+        color: $grayText
+
+.button
+    color: $white
+    background-color: $darkGray
+    width: 30%
+    padding: 1%
+    border: none
+    font-size: 1em
+    cursor: pointer
+
+.container + .container
+    margin-top: 10%
+
+.ball
+    position: relative
+    cursor: pointer
+    width: 90px
+    height: 90px
+    border-radius: 50%
+    background-color: $white
+    z-index: 1
+    background-position: center
+    background-size: cover
+    border: none
+    transition: all 1s
+
+
+    &::before
+        content: ''
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+        width: 2px
+        height: 0
+        border-radius: 50%
+        opacity: 0
+        background-color: $white
+        transition: all 1s
+    &.active::before
+        height: 15px
+        opacity: 1
+        transition: all 1s
+
+#ball1 .ball.active::before
+    top: 92.5px
+
+#ball2 .ball::before
+    top: 0
+
+#ball2 .ball.active::before
+    top: -17.5px
+
+
+.skills
+    width: 100%
+    height: 200px
+    position: relative
+    .skill
+        position: absolute
+        display: flex
+        opacity: 0
+        flex-direction: column
+        height: 100%
+        justify-content: center
+        padding: 0 3%
+        background-color: $darkGray
+        width: 100%
+        transition: all 1s
+        p
+            margin: 0
+            padding: 0
+    .active
+        transform: translateY(0) !important
+        display: flex
+        opacity: 1
+        transition: all 1s
+
+#skills1 .skill
+    transform: translateY(-100%)
+
+#skills2 .skill
+    transform: translateY(100%)
+
+#softSkill::before
+    content: ''
+    position: absolute
+    width: 2px
+    top: -120%
+    left: -1%
+    height: 200px
+    background-color: $white
+    transform: translateX(-50%)
+    z-index: -1
+
+#hardSkill::after
+    content: ''
+    position: absolute
+    width: 2px
+    top: -20%
+    right: -1%
+    height: 200px
+    background-color: $white
+    transform: translateX(-50%)
+    z-index: -1
+
+
+.projectTop
+    display: flex
+    flex-direction: column
+    background-color: $darkGray
+    color: $white
+    padding: 2%
+    .Text
+        display: flex
+        width: 95%
+        flex-direction: column
+        gap: 15px
+        .Languages
+            display: flex
+            gap: 10px
+            p
+                display: flex
+                background-color: $gray
+                padding: 0.5% 2% 0.5% 2%
+                border-radius: 15px
+                margin: 0
+                color: $white
+                font-size: 0.8em
+    h2
+        color: $white
+        font-size: 1.5em
+        margin: 0
+        font-weight: 600
+    button
+        border: 1px solid $white
+        width: 22%
+        padding: 0.5%
+        font-size: 0.9em
+        &:hover
+            border: 1px solid $white
+            background-color: $gray
+            color: $white
+
+.Opleiding
+    display: flex
+    flex-direction: column
+    background-color: $darkGray
+    color: $white
+    padding: 5%
+    gap: 20px
+    z-index: 2
+    //&::after
+    //    content: ''
+    //    position: absolute
+    //    top: 32%
+    //    right: 54%
+    //    width: 2px
+    //    height: 100px // Adjust the height as needed
+    //    background-color: $white
+    //    transform: rotate(45deg)
+    //    z-index: -1 // Ensure it is behind the content
+
+.Carriere
+    display: flex
+    flex-direction: column
+    background-color: $darkGray
+    color: $white
+    padding: 5%
+    gap: 20px
+    //&::after
+    //    content: ''
+    //    position: absolute
+    //    top: 32%
+    //    right: 46%
+    //    width: 2px
+    //    height: 100px // Adjust the height as needed
+    //    background-color: $white
+    //    transform: rotate(-45deg)
+    //    z-index: -1 // Ensure it is behind the content
+
+.subText
+    color: $grayText
+    margin-top: -1%
+
+.info
+    display: flex
+    justify-content: end
+    text-align: end
+
+
+
+
+//.verticalLine
+//    border: 0.5px solid $white
+//    height: 230px
+//    width: 1px
+//    top: -2%
+//    right: 50%
+//    margin-left: 5%
+//    margin-right: 5%
+//    z-index: -1
+//    &::before
+//        content: ''
+//        position: absolute
+//        right: 48.47%
+//        top: 28%
+//        width: 40px // Adjust the size as needed
+//        height: 40px // Adjust the size as needed
+//        border: 2px solid $white
+//        background-color: $black
+//        border-radius: 50% // This makes it a circle
+//        z-index: -2 // Ensure it is behind the content
+
+.space-between
+    display: flex
+    justify-content: space-between
+
+.justify-end
+    display: flex
+    justify-content: flex-end
+
+.justify-start
+    display: flex
+    justify-content: flex-start
+
+.justify-center
+    display: flex
+    justify-content: center
+
+.align-center
+    display: flex
+    align-items: center
+
+.align-end
+    display: flex
+    align-items: flex-end
+
+.align-start
+    display: flex
+    align-items: flex-start
+
+.text-center
+    text-align: center
+
+.text-end
+    text-align: end
+
+.text-start
+    text-align: start
+
+.meerOverMij
+    position: fixed
+    top: 7.5%
+    opacity: 0
+    background-color: $black
+    border: 4px solid $white
+    width: 90vw
+    height: 85vh
+    transition: all 0.5s
+    z-index: 99
+    transform: translateX(110%)
+    &.active
+        opacity: 1
+        transform: translateX(0)
+        transition: all 0.5s
+
+.kruis
+    position: absolute
+    top: 20px
+    right: 20px
+    width: 50px
+    height: 50px
+    cursor: pointer
+    &:before, &:after
+        content: ''
+        position: absolute
+        width: 100%
+        height: 3px
+        background-color: $white
+        top: 50%
+        left: 0
+        transform: translateY(-50%)
+    &:before
+        transform: rotate(45deg)
+    &:after
+        transform: rotate(-45deg)
+
+
+
+@for $i from 1 through 100
+    .w-#{$i}
+        width: calc(1% * $i)
+
+@for $i from 1 through 100
+    .h-#{$i}
+        height: calc(1% * $i)
+
+@for $i from 1 through 100
+    .gap-#{$i}
+        gap: calc(1% * $i)
+
+@for $i from 1 through 100
+    .p-#{$i}
+        padding: calc(1% * $i)
+
+@for $i from 1 through 100
+    .m-#{$i}
+        margin: calc(1% * $i)
+
+
