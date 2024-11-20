@@ -10,6 +10,7 @@ body, html
     margin: 0
     padding: 0
     scroll-behavior: smooth
+    color: $white
 
 body::-webkit-scrollbar
     width: 10px
@@ -71,23 +72,30 @@ body
     opacity: 0
     transform: translateX(100%)
     background-color: $darkGray
+    border-left: 1px solid $white
     display: flex
-    gap: 20px
+    justify-content: center
     padding: 10% 0 0 0
-    flex-direction: column
     position: fixed
     top: 0
     right: 0
     width: 8%
     height: 100vh
     transition: transform 0.3s ease, opacity 0.2s
-    a
-        color: $white
-        text-decoration: none
-        font-size: 1.5em
-        text-align: center
-        &:hover
-            color: $lightGray
+    .links
+        display: flex
+        flex-direction: column
+        gap: 30px
+        width: 80%
+        a
+            color: $white
+            text-decoration: none
+            font-size: 1.5em
+            text-align: end
+            border-bottom: 2px solid $black
+            &:hover
+                color: $white
+                border-bottom: 2px solid $white
 
 .nav-links.active
     transform: translateX(0)
@@ -128,12 +136,12 @@ body
     display: flex
     flex-direction: column
     width: fit-content
-    justify-content: space-between
 
 .container
     display: flex
     flex-direction: column
     align-items: center
+    position: relative
     justify-content: center
     width: 90%
     gap: 20px
@@ -141,14 +149,24 @@ body
     height: 100vh
 h1
     color: $white
+    font-size: 3em
+    margin: 0
+
+h2
+    color: $white
+    font-size: 2em
+    margin: 0
+
+h3
+    color: $white
     font-size: 1.5em
     margin: 0
 
 .shadow-bottom
     position: absolute
-    left: 0
+    left: -5%
     height: 100%
-    width: 50%
+    width: 100%
     &::after
         content: ''
         position: absolute
@@ -158,6 +176,27 @@ h1
         height: 50%
         background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))
         pointer-events: none
+
+.line-down
+    position: absolute
+    bottom: 0
+    left: 54.5%
+    width: 2px
+    height: 100%
+    background-color: $lightGray
+    transition: all 1s
+    z-index: 1
+    .circle
+        position: absolute
+        width: 40px
+        height: 40px
+        border-radius: 50%
+        background-color: $black
+        bottom: 0
+        left: 50%
+        transform: translateX(-50%)
+        border: 2px solid $lightGray
+        z-index: 2
 
 .intro
     display: flex
@@ -203,6 +242,17 @@ h1
     font-size: 1em
     cursor: pointer
 
+.meerOverMijButton
+    &::before
+        content: ''
+        position: absolute
+        width: 57%
+        height: 2px
+        background-color: $lightGray
+        z-index: -1
+        top: 96.5%
+        left: 11.5%
+
 .container + .container
     margin-top: 10%
 
@@ -218,6 +268,7 @@ h1
     background-size: cover
     border: none
     transition: all 1s
+    padding: 0
 
 
     &::before
@@ -235,6 +286,7 @@ h1
         height: 15px
         opacity: 1
         transition: all 1s
+        cursor: auto
 
 #ball1 .ball.active::before
     top: 92.5px
@@ -283,7 +335,7 @@ h1
     top: -120%
     left: -1%
     height: 200px
-    background-color: $white
+    background-color: $lightGray
     transform: translateX(-50%)
     z-index: -1
 
@@ -294,121 +346,183 @@ h1
     top: -20%
     right: -1%
     height: 200px
-    background-color: $white
+    background-color: $lightGray
     transform: translateX(-50%)
     z-index: -1
+    cursor: auto
 
+@keyframes blobBackgroundTransition
+    0%
+        background-color: $black
+    50%
+        background-color: $white
+    100%
+        background-color: $black
 
-.projectTop
+.projecten
     display: flex
     flex-direction: column
-    background-color: $darkGray
-    color: $white
-    padding: 2%
-    .Text
+    justify-content: center
+    gap: 10%
+    align-items: center
+    height: 100%
+    width: 100%
+    .projectenPositie
         display: flex
-        width: 95%
+        flex-direction: row
+        justify-content: center
+        width: 100%
+        height: 100%
+        align-items: center
+        gap: 3%
+        position: relative
+
+    .projectBallen
+        position: relative
+        display: flex
+        flex-direction: row
+        justify-content: center
+        width: 100%
+        gap: 3%
+        .blob
+            width: 50px
+            height: 50px
+            padding: 0
+            border-radius: 100px
+            border: 2px solid $white
+            background-color: black
+            cursor: pointer
+            z-index: 0
+            transition: all 1s
+        .blob-light
+            position: absolute
+            top: 50%
+            left: 0
+            width: 20px
+            height: 20px
+            border-radius: 100px
+            background-color: $white
+            transform: translate(-50%, -50%) scale(1)
+            transition: left 1s ease-in-out, transform 0.5s ease-in-out, opacity 0.5s
+            opacity: 0
+            z-index: 1
+            box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5)
+            &.visible
+                opacity: 1
+            &.grow
+                transform: translate(-50%, -50%) scale(2.5)
+        .blob-line
+            position: absolute
+            top: 50%
+            width: 75%
+            height: 2px
+            background-color: $white
+            z-index: -1
+            transition: all 1s
+
+.project
+    position: absolute
+    display: flex
+    width: 75%
+    opacity: 0
+    transition: all 1s
+    transform: translateX(-100%)
+    .projectTop
+        display: flex
         flex-direction: column
-        gap: 15px
-        .Languages
-            display: flex
-            gap: 10px
-            p
-                display: flex
-                background-color: $gray
-                padding: 0.5% 2% 0.5% 2%
-                border-radius: 15px
-                margin: 0
-                color: $white
-                font-size: 0.8em
-    h2
+        background-color: $darkGray
         color: $white
-        font-size: 1.5em
-        margin: 0
-        font-weight: 600
-    button
-        border: 1px solid $white
-        width: 22%
-        padding: 0.5%
-        font-size: 0.9em
-        &:hover
-            border: 1px solid $white
-            background-color: $gray
+        padding: 2%
+        width: 100%
+        .Text
+            display: flex
+            width: 95%
+            flex-direction: column
+            gap: 15px
+            .Languages
+                display: flex
+                gap: 10px
+                p
+                    display: flex
+                    background-color: $gray
+                    padding: 0.5% 2% 0.5% 2%
+                    border-radius: 15px
+                    margin: 0
+                    color: $white
+                    font-size: 0.8em
+        h2
             color: $white
+            font-size: 1.5em
+            margin: 0
+            font-weight: 600
+        button
+            border: none
+            width: 22%
+            padding: 1%
+            font-size: 0.9em
+            &:hover
+                border: none
+                background-color: $gray
+                color: $white
+.active
+    transform: translateX(0)
+    transition: all 1s
+    opacity: 1
 
 .Opleiding
+    position: relative
     display: flex
     flex-direction: column
     background-color: $darkGray
     color: $white
     padding: 5%
-    gap: 20px
     z-index: 2
-    //&::after
-    //    content: ''
-    //    position: absolute
-    //    top: 32%
-    //    right: 54%
-    //    width: 2px
-    //    height: 100px // Adjust the height as needed
-    //    background-color: $white
-    //    transform: rotate(45deg)
-    //    z-index: -1 // Ensure it is behind the content
+    &::before
+        content: ''
+        position: absolute
+        background-color: $lightGray
+        width: 2px
+        height: 38%
+        left: -4.5%
+        top: 0.5%
+        z-index: -20
+        transform: rotate(-45deg)
+
 
 .Carriere
+    position: relative
     display: flex
     flex-direction: column
     background-color: $darkGray
     color: $white
     padding: 5%
-    gap: 20px
-    //&::after
-    //    content: ''
-    //    position: absolute
-    //    top: 32%
-    //    right: 46%
-    //    width: 2px
-    //    height: 100px // Adjust the height as needed
-    //    background-color: $white
-    //    transform: rotate(-45deg)
-    //    z-index: -1 // Ensure it is behind the content
+    z-index: 2
+    &::before
+        content: ''
+        position: absolute
+        background-color: $lightGray
+        width: 2px
+        height: 38%
+        right: -4.5%
+        top: 0.5%
+        z-index: -20
+        transform: rotate(45deg)
 
 .subText
     color: $grayText
-    margin-top: -1%
 
 .info
     display: flex
     justify-content: end
     text-align: end
 
-
-
-
-//.verticalLine
-//    border: 0.5px solid $white
-//    height: 230px
-//    width: 1px
-//    top: -2%
-//    right: 50%
-//    margin-left: 5%
-//    margin-right: 5%
-//    z-index: -1
-//    &::before
-//        content: ''
-//        position: absolute
-//        right: 48.47%
-//        top: 28%
-//        width: 40px // Adjust the size as needed
-//        height: 40px // Adjust the size as needed
-//        border: 2px solid $white
-//        background-color: $black
-//        border-radius: 50% // This makes it a circle
-//        z-index: -2 // Ensure it is behind the content
-
 .space-between
     display: flex
     justify-content: space-between
+
+.space-evenly
+    display: flex
+    justify-content: space-evenly
 
 .justify-end
     display: flex
@@ -443,6 +557,20 @@ h1
 .text-start
     text-align: start
 
+.w-auto
+    width: auto
+
+.h-webkit-fill-available
+    height: -webkit-fill-available
+
+.flex-row
+    display: flex
+    flex-direction: row
+
+.flex-column
+    display: flex
+    flex-direction: column
+
 .meerOverMij
     position: fixed
     top: 7.5%
@@ -459,10 +587,17 @@ h1
         transform: translateX(0)
         transition: all 0.5s
 
+.list
+    color: $white
+    display: flex
+    width: 100%
+    margin: 0
+
+
 .kruis
-    position: absolute
-    top: 20px
-    right: 20px
+    position: relative
+    //top: 20px
+    //right: 20px
     width: 50px
     height: 50px
     cursor: pointer
@@ -480,26 +615,68 @@ h1
     &:after
         transform: rotate(-45deg)
 
+.details
+    border-top: 2px solid $darkGray
 
+.border-top
+    border-top: 2px solid $darkGray
 
-@for $i from 1 through 100
+.border-bottom
+    border-bottom: 2px solid $darkGray
+
+.gap-inherit
+    gap: inherit
+
+@for $i from 0 through 100
     .w-#{$i}
         width: calc(1% * $i)
 
-@for $i from 1 through 100
+@for $i from 0 through 100
     .h-#{$i}
         height: calc(1% * $i)
 
-@for $i from 1 through 100
+@for $i from 0 through 100
     .gap-#{$i}
         gap: calc(1% * $i)
 
-@for $i from 1 through 100
+@for $i from 0 through 100
     .p-#{$i}
         padding: calc(1% * $i)
 
-@for $i from 1 through 100
+@for $i from 0 through 100
     .m-#{$i}
         margin: calc(1% * $i)
+
+@for $i from 0 through 100
+    .p-t-#{$i}
+        padding-top: calc(1% * $i)
+
+@for $i from 0 through 100
+    .p-b-#{$i}
+        padding-bottom: calc(1% * $i)
+
+@for $i from 0 through 100
+    .p-l-#{$i}
+        padding-left: calc(1% * $i)
+
+@for $i from 0 through 100
+    .p-r-#{$i}
+        padding-right: calc(1% * $i)
+
+@for $i from 0 through 100
+    .m-t-#{$i}
+        margin-top: calc(1% * $i)
+
+@for $i from 0 through 100
+    .m-b-#{$i}
+        margin-bottom: calc(1% * $i)
+
+@for $i from 0 through 100
+    .m-l-#{$i}
+        margin-left: calc(1% * $i)
+
+@for $i from 0 through 100
+    .m-r-#{$i}
+        margin-right: calc(1% * $i)
 
 

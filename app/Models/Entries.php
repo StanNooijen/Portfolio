@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SoftSkill extends Model
+class Entries extends Model
 {
-    protected $table = 'softskills';
+    protected $table = 'entries_table';
 }

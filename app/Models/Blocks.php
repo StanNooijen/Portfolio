@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HardSkill extends Model
+class Blocks extends Model
 {
-    protected $table = 'hardskills';
+    protected $table = 'blocks';
 }
