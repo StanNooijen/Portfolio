@@ -16,6 +16,23 @@
     @endif
 
 </head>
+
+<div id="loading-screen" class="loading-screen">
+    <div class="container-placeholder" id="loading-screen">
+        <div class="image-placeholder"></div>
+        <div class="content-placeholder">
+            <div class="title-yes">
+                <div class="title-placeholder"></div>
+                <div class="title-placeholder"></div>
+            </div>
+            <div class="text-placeholder"></div>
+            <div class="buttons-placeholder">
+                <div class="button-placeholder"></div>
+                <div class="button-placeholder"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="navigation">
     <div class="navigator">
         <div class="hamburger" id="hamburger">
@@ -28,6 +45,7 @@
         <div class="links">
             <a href="#about">Over mij</a>
             <a href="#skills">Skills</a>
+            <a href="#ervaring">Ervaring</a>
             <a href="#projecten">Projecten</a>
             {{--            <a href="{{ route('lang.switch', ['locale' => 'en']) }}">English</a>--}}
             {{--            <a href="{{ route('lang.switch', ['locale' => 'nl']) }}">Dutch</a>--}}

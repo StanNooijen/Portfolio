@@ -33,7 +33,7 @@ class about_me_block
                     <div class="kruis"></div>
                 </div>
                 <div class="row gap-5 h-100">
-                    <div class="col h-100 w-50">
+                    <div class="col h-100 w-50 space-between">
                         '. $abouts .'
                     </div>
                     <div class="col w-50">

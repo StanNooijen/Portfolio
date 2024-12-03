@@ -30,7 +30,7 @@ class projects_block
         });
 
         return '
-            <div class="container">
+            <div class="container" id="projecten">
                 <div class="projecten justify-center">
                     <div class="projectenPositie" id="projectenRijEen">
                         ' . $projectenRijEen->map(function ($project, $index) {

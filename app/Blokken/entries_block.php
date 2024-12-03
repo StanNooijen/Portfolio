@@ -68,7 +68,7 @@ class entries_block
             $circles_html .= '<div class="circle" style="top: ' . $circle_position . 'px;"></div>';
         }
 
-        $html = '<div class="container align-end justify-start" style="height: ' . $container_height . 'px;">
+        $html = '<div class="container align-end justify-start" style="height: ' . $container_height . 'px;" id="ervaring">
                 <div class="row w-91 gap-10 h-100">
                     <div class="col h-100" style="gap: 50px">
                         '. $html_career .'
