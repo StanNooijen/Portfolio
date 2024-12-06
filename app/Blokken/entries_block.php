@@ -70,7 +70,7 @@ class entries_block
 
         $html = '<div class="container align-end justify-start" style="height: ' . $container_height . 'px;" id="ervaring">
                 <div class="row w-91 gap-10 h-100">
-                    <div class="col h-100" style="gap: 50px">
+                    <div class="col h-100">
                         '. $html_career .'
                     </div>
                     <div class="line-down">

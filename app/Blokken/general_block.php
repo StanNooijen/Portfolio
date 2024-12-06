@@ -30,18 +30,20 @@ class general_block
         $html = '
             <div class="container " id="about">
                     <div class="line-down">
-                        <div class="follow_ball"></div>
                     </div>
                     <div class="row">
                         <div class="shadow-bottom">
-                            <img src="' . $imageUrl . '" alt="" style="height: 100%">
+                            <img src="' . $imageUrl . '" alt="" style="width: 90dvh">
                         </div>
-                        <div class="intro w-40">
-                            <h1 class="title poppins-bold">'. $block_content->title .'</h1>
-                            <div class="textBox">
-                                '. $block_content->text .'
+                        <div class="intro col">
+                            <div>
+                                <h1 class="title">'. $block_content->title .'</h1>
+                                <p class="plaatsNaam">'. $block_content->place_name .'</p>
                             </div>
-                            <div class="row gap-5 justify-start m-l-15">
+                            <div class="textBox">
+                                <p>'. $block_content->text .'</p>
+                            </div>
+                            <div class="row">
                                 '. $socialButton .'
                             </div>
                             <div class="justify-end">

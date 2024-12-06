@@ -25,10 +25,6 @@
     </div>
 </div>
 <div class="container" id="skills">
-    {{--    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 200" width="1640" height="300">--}}
-    {{--        <path d="M 0 300 Q 0 150 100 150 L 460 150 Q 520 150 520 0 Q 520 150 580 150 L 700 150 Q 820 150 820 300 "--}}
-    {{--              fill="none" stroke="white" stroke-width="2"/>--}}
-    {{--    </svg>--}}
     <div class="col gap-5 w-100 align-center">
         <div class="col w-90" style="gap: 20px">
             <div class="row gap-3" id="ball1">

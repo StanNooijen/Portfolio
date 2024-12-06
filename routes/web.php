@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
-Route::get('/', [Controller::class, 'testdata'])->name('testdata');
-
-Route::get('/test', [Controller::class, 'getData'])->name('getData');
+Route::get('/', [Controller::class, 'getData'])->name('getData');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

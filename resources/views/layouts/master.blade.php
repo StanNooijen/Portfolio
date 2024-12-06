@@ -10,47 +10,12 @@
         rel="stylesheet">
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/js/app.js', 'resources/sass/Main.sass'])
+        @vite(['resources/js/app.js', 'resources/sass/Main.sass', 'resources/sass/About.sass', 'resources/sass/Skills.sass', 'resources/sass/Entries.sass', 'resources/sass/Projecten.sass'])
     @else
 
     @endif
 
 </head>
 
-<div id="loading-screen" class="loading-screen">
-    <div class="container-placeholder" id="loading-screen">
-        <div class="image-placeholder"></div>
-        <div class="content-placeholder">
-            <div class="title-yes">
-                <div class="title-placeholder"></div>
-                <div class="title-placeholder"></div>
-            </div>
-            <div class="text-placeholder"></div>
-            <div class="buttons-placeholder">
-                <div class="button-placeholder"></div>
-                <div class="button-placeholder"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="navigation">
-    <div class="navigator">
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-    <div class="nav-links">
-        <div class="links">
-            <a href="#about">Over mij</a>
-            <a href="#skills">Skills</a>
-            <a href="#ervaring">Ervaring</a>
-            <a href="#projecten">Projecten</a>
-            {{--            <a href="{{ route('lang.switch', ['locale' => 'en']) }}">English</a>--}}
-            {{--            <a href="{{ route('lang.switch', ['locale' => 'nl']) }}">Dutch</a>--}}
-        </div>
-    </div>
-</div>
     @yield('content')
 </html>

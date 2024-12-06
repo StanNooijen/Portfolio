@@ -1,36 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
+    //
+    // const loadingScreen = document.getElementById('loading-screen');
+    //
+    // function showLoadingScreen() {
+    //     document.body.classList.add('no-scroll');
+    // }
+    //
+    // function hideLoadingScreen() {
+    //     loadingScreen.classList.add('fade-out');
+    //     loadingScreen.addEventListener('animationend', function() {
+    //         loadingScreen.style.display = 'none';
+    //         loadingScreen.classList.remove('fade-out');
+    //         document.body.classList.remove('no-scroll');
+    //     }, { once: true });
+    // }
+    //
+    // async function fetchData() {
+    //     showLoadingScreen();
+    //     try {
+    //         // Simulate data fetching
+    //         await new Promise(resolve => setTimeout(resolve, 2000));
+    //         // Fetch your data here
+    //     } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //     } finally {
+    //         hideLoadingScreen();
+    //     }
+    // }
 
-    const loadingScreen = document.getElementById('loading-screen');
 
-    function showLoadingScreen() {
-        document.body.classList.add('no-scroll');
-    }
-
-    function hideLoadingScreen() {
-        loadingScreen.classList.add('fade-out');
-        loadingScreen.addEventListener('animationend', function() {
-            loadingScreen.style.display = 'none';
-            loadingScreen.classList.remove('fade-out');
-            document.body.classList.remove('no-scroll');
-        }, { once: true });
-    }
-
-    async function fetchData() {
-        showLoadingScreen();
-        try {
-            // Simulate data fetching
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            // Fetch your data here
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        } finally {
-            hideLoadingScreen();
-        }
-    }
-
-
-    fetchData().then(r => console.log('Data fetched'));
+    // fetchData().then(r => console.log('Data fetched'));
 
     document.querySelector('#hamburger').addEventListener('click', function() {
         this.classList.toggle('active');
@@ -55,13 +55,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.querySelector('.kruis').addEventListener('click', function() {
-        document.querySelector('.meerOverMij').classList.remove('active');
-    });
-
-    document.querySelector('.meerOverMijButton').addEventListener('click', function() {
-        document.querySelector('.meerOverMij').classList.add('active');
-    });
+    // document.querySelector('.kruis').addEventListener('click', function() {
+    //     document.querySelector('.meerOverMij').classList.remove('active');
+    // });
+    //
+    // document.querySelector('.meerOverMijButton').addEventListener('click', function() {
+    //     document.querySelector('.meerOverMij').classList.add('active');
+    // });
 
     window.changeSkill = function(index, skillsId, ballId) {
         const balls = document.querySelectorAll(`#${ballId} .ball`);

@@ -8,6 +8,7 @@ use App\Models\Blocks;
 use App\Models\Contact;
 use App\Models\Entries;
 use App\Models\Popups;
+use App\Models\Navbars;
 use App\Models\Projects;
 use App\Models\Skills;
 use App\Models\Popups_details;
@@ -17,12 +18,24 @@ class Controller
     public function getData()
     {
         $blocks = Blocks::orderBy('position', 'asc')->get();
+        $Navbar = Navbars::where('active', '1')->get();
 
         if ($blocks->isEmpty()) {
             return view('default');
         }
-
         $htmlArray = [];
+
+        $searchNavbar = new \App\Blokken\Navbar();
+        $ActiveNavbar = $Navbar->first();
+        if(class_exists('App\\Blokken\\Navbar')) {
+            $instance = new $searchNavbar();
+            if (method_exists($instance, $ActiveNavbar->position)) {
+                $htmlArray[] = $instance->{$ActiveNavbar->position}($ActiveNavbar->navbar_id);
+            } else {
+                echo 'Method '. $ActiveNavbar->position .' does not exist in class';
+            }
+        }
+
         foreach ($blocks as $block) {
             $block_Name = $block->type;
             $position = $block->position;

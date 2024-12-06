@@ -1,5 +1,5 @@
 :root
-    --black: #000000
+    --black: #0b0b0b
     --white: #ffffff
     --lightGray: #A6A6A6
     --darkGray: #323232
@@ -40,111 +40,22 @@ body
     flex-direction: column
     align-items: center
 
-.loading-screen
-    position: fixed
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
-    display: flex
-    background-color: var(--black)
-    justify-content: center
-    align-items: center
-    z-index: 9999
-
-.container-placeholder
-    display: flex
-    justify-content: space-between
-    align-items: center
-    height: 100vh
-    width: 100%
-    color: #fff
-
-
-.image-placeholder
-    position: absolute
-    left: 0
-    width: 40%
-    bottom: 0
-    flex: 1
-    background: #444
-    height: 90%
-    border-radius: 10px
-
-
-.content-placeholder
-    position: absolute
-    right: 0
-    width: 50%
-    flex: 1
-    display: flex
-    flex-direction: column
-    justify-content: center
-    gap: 5%
-    height: 80%
-
-.title-yes
-    width: 80%
-    display: flex
-    flex-direction: column
-    gap: 3%
-    height: 30%
-
-
-.title-placeholder
-    width: 60%
-    height: 100%
-    background: #888
-    border-radius: 5px
-
-
-.text-placeholder
-    width: 80%
-    height: 100px
-    background: #555
-    margin-bottom: 30px
-    border-radius: 5px
-
-
-.buttons-placeholder
-    display: flex
-    gap: 20px
-
-
-.button-placeholder
-    width: 40px
-    height: 40px
-    background: #777
-    border-radius: 5px
-
-
-.no-scroll
-    position: fixed
-    overflow-y: scroll
-
-@keyframes fadeOut
-    from
-        opacity: 1
-
-    to
-        opacity: 0
-
-.loading-screen.fade-out
-    animation: fadeOut 1s forwards
-
 .navigation
     display: flex
     flex-direction: column
     align-items: end
     color: var(--white)
-    height: auto
-    width: min-content
+    height: 100dvh
+    width: 10%
     position: fixed
-    top: 4%
-    right: 2%
-    z-index: 10
+    top: 0
+    right: 0
+    z-index: 98
 
 .navigator
+    position: absolute
+    top: 4%
+    right: 2%
     display: flex
     flex-direction: row
     width: 75px
@@ -152,6 +63,7 @@ body
     background-color: var(--darkGray)
     align-items: center
     justify-content: center
+    z-index: 99
 
 .nav-links
     z-index: -1
@@ -160,28 +72,35 @@ body
     background-color: var(--darkGray)
     border-left: 1px solid var(--white)
     display: flex
-    justify-content: center
+    flex-direction: column
+    align-content: center
     padding: 10% 0 0 0
     position: fixed
     top: 0
     right: 0
-    width: 8%
-    height: 100vh
+    width: 8.5%
+    height: 80dvh
     transition: transform 0.3s ease, opacity 0.2s
     .links
         display: flex
         flex-direction: column
-        gap: 30px
         width: 80%
         a
             color: var(--white)
             text-decoration: none
-            font-size: 1.5em
             text-align: end
-            border-bottom: 2px solid var(--black)
             &:hover
                 color: var(--white)
                 border-bottom: 2px solid var(--white)
+    .nav-socials
+        display: flex
+        gap: 10px
+        justify-content: center
+        align-items: center
+        width: 100%
+
+
+.nav-links.links a:hover
 
 .nav-links.active
     transform: translateX(0)
@@ -193,45 +112,48 @@ body
     display: flex
     flex-direction: column
     justify-content: space-around
-    width: 50%
-    height: 50%
+    width: 60%
+    height: 60%
 
     span
-        background-color: var(--white)
-        height: 3px
+        background-color: var(--grayText)
+        height: 7%
         width: 100%
         transition: all 0.3s ease
 
     &.active
         span:nth-child(1)
-            transform: rotate(45deg) translate(9px, 9px)
+            transform: rotate(45deg) translate(10px, 11px)
         span:nth-child(2)
             opacity: 0
         span:nth-child(3)
-            transform: rotate(-45deg) translate(9px, -9px)
+            transform: rotate(-45deg) translate(10px, -11px)
 
-.row
-    display: flex
-    flex-direction: row
-    width: 100%
-    align-items: center
-    justify-content: center
-
-.col
-    display: flex
-    flex-direction: column
-    width: fit-content
 
 .container
     display: flex
     flex-direction: column
-    align-items: center
-    position: relative
-    justify-content: center
-    width: 90%
-    gap: 20px
+    gap: 1rem
+    padding: 1rem
+    height: 100dvh
+    width: 85dvw
     color: var(--white)
-    height: 100vh
+    justify-content: center
+    position: relative
+
+
+.row
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: var(--gap)
+    z-index: 2
+
+.col
+    padding: 1rem
+    display: grid
+    gap: var(--gap)
+    grid-template-columns: 1fr
 
 h1
     color: var(--white)
@@ -248,11 +170,11 @@ h3
     font-size: 1.5em
     margin: 0
 
+p
+    margin: 0
+
 .shadow-bottom
-    position: absolute
-    left: -5%
-    height: 100%
-    width: 100%
+    position: relative
     &::after
         content: ''
         position: absolute
@@ -260,76 +182,58 @@ h3
         left: 0
         width: 100%
         height: 50%
-        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))
+        background: linear-gradient(to top, rgba(11, 11, 11, 1), rgba(11, 11, 11, 0))
         pointer-events: none
 
 .line-down
     position: absolute
     bottom: 0
-    left: 54.5%
+    left: 55.5%
     width: 2px
-    height: 100%
+    height: 105dvh
     background-color: var(--lightGray)
     transition: all 1s
-    z-index: 1
-    &::after
-        content: ''
-        position: absolute
-        width: 40px
-        height: 40px
-        border-radius: 50%
-        background-color: var(--black)
-        bottom: 0
-        left: 50%
-        transform: translateX(-50%)
-        border: 2px solid var(--lightGray)
-        z-index: 2
-
-    .circle
-        position: absolute
-        width: 40px
-        height: 40px
-        border-radius: 50%
-        background-color: var(--black)
-        bottom: 0
-        left: 50%
-        transform: translateX(-50%)
-        border: 2px solid var(--lightGray)
-        z-index: 2
-
-.intro
-    display: flex
-    flex-direction: column
-    color: var(--white)
-    z-index: 2
-    width: 50%
-    justify-content: center
-    position: relative
-    left: 20%
-
+    z-index: 0
+//
+//.intro
+//    display: flex
+//    flex-direction: column
+//    color: var(--white)
+//    z-index: 2
+//    width: 50%
+//    justify-content: center
+//    position: relative
+//    left: 20%
+//
 .title
     font-size: 8em
     line-height: 0.90em
     color: var(--white)
-    margin-bottom: 0.4em
     width: 80%
-    margin-left: 8%
+    margin-left: 3%
+    margin-bottom: 0
 
-.subtitle
-    font-size: 3.5em
-    position: relative
+.plaatsNaam
+    margin-left: 12.5%
+//
+//.subtitle
+//    font-size: 3.5em
+//    position: relative
 
 .textBox
     display: flex
     flex-direction: column
     background-color: var(--darkGray)
     padding: 3%
-    margin-bottom: 3%
+    border-radius: 10px
+    margin-right: 5.5%
+    margin-left: -5.5%
+    flex-wrap: wrap
+    align-content: center
+    z-index: 90
     p
-        font-size: 1.2em
+        width: 90%
         margin: 0
-        color: var(--grayText)
-
 .blokje
     background-position: center
     background-size: cover
@@ -340,6 +244,9 @@ h3
         width: 100%
         height: 100%
 
+.row .blokje:first-child
+    margin-left: 13%
+
 .button
     color: var(--white)
     background-color: var(--darkGray)
@@ -348,455 +255,150 @@ h3
     border: none
     font-size: 1em
     cursor: pointer
+    font-family: "Poppins", sans-serif
+    border-radius: 5px
 
 .meerOverMijButton
+    position: relative
+    z-index: -1
     &::before
         content: ''
         position: absolute
-        width: 57%
+        width: 205%
+        left: -212%
+        top: 50%
         height: 2px
         background-color: var(--lightGray)
         z-index: -1
-        top: 96.5%
-        left: 11.5%
-
-.container + .container
-    margin-top: 10%
-
-.ball
-    position: relative
-    cursor: pointer
-    width: 90px
-    height: 90px
-    border-radius: 50%
-    background-color: var(--white)
-    border: 2px solid var(--black)
-    z-index: 1
-    background-position: center
-    background-size: cover
-    transition: all 1s
-    padding: 0
-    &.active
-        transition: all 2s
-        background-color: var(--white)
-        box-shadow: 0 0 10px 5px rgba(255, 255, 255, 1)
-        z-index: 2
-
-    &::before
+    &::after
         content: ''
         position: absolute
-        left: 50%
-        transform: translateX(-50%)
-        width: 2px
-        height: 0
-        border-radius: 50%
-        opacity: 0
-        background-color: var(--white)
-        z-index: -2
-        transition: height 1s
-    &.active::before
-        z-index: -2
-        background-color: var(--white)
-        height: 15px
-        opacity: 1
-        transition: height 1s
-        cursor: auto
-
-#ball1 .ball.active::before
-    top: 90.5px
-
-#ball2 .ball::before
-    top: -20.5px
-
-#ball2 .ball.active::before
-    top: -20.5px
-
-@keyframes animation-in
-    0%
-        opacity: 0
-    100%
-        opacity: 1
-
-@keyframes animation-out
-    0%
-        opacity: 1
-    100%
-        opacity: 0
-
-.skills
-    width: 100%
-    height: 200px
-    position: relative
-    .skill
-        position: absolute
-        display: flex
-        opacity: 0
-        flex-direction: column
-        height: 100%
-        justify-content: center
-        padding: 0 3%
-        background-color: var(--darkGray)
-        width: 100%
-        transition: all 1s
-        p
-            margin: 0
-            padding: 0
-        &.animation-out
-            animation: animation-out 0.5s
-        &.animation-in
-            animation: animation-in 0.5s
-
-    .active
-        display: flex
-        transition: all 1s
-        opacity: 1
-
-#softSkill::before
-    content: ''
-    position: absolute
-    width: 2px
-    top: -120%
-    left: -1%
-    height: 200px
-    background-color: var(--lightGray)
-    z-index: -1
-
-#hardSkill::after
-    content: ''
-    position: absolute
-    width: 2px
-    top: -20%
-    right: -1%
-    height: 200px
-    background-color: var(--lightGray)
-    z-index: -1
-    cursor: auto
-
-@keyframes blobBackgroundTransition
-    0%
-        background-color: var(--black)
-    50%
-        background-color: var(--white)
-    100%
-        background-color: var(--black)
-
-.projecten
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
-    height: 100%
-    width: 100%
-    .projectenPositie
-        display: flex
-        flex-direction: row
-        justify-content: center
-        width: 100%
-        height: 100%
-        align-items: center
-        gap: 3%
-        position: relative
-
-    .projectBallen
-        position: relative
-        display: flex
-        flex-direction: row
-        justify-content: center
-        width: 100%
-        gap: 3%
-        .blob
-            width: 50px
-            height: 50px
-            padding: 0
-            border-radius: 100px
-            border: 2px solid var(--lightGray)
-            background-color: var(--black)
-            cursor: pointer
-            z-index: 0
-            transition: all 1s
-        .blob-light
-            position: absolute
-            top: 50%
-            left: 0
-            width: 20px
-            height: 20px
-            border-radius: 100px
-            background-color: var(--lightGray)
-            transform: translate(-50%, -50%) scale(1)
-            transition: left 1s ease-in-out, transform 0.5s ease-in-out, opacity 0.5s
-            opacity: 0
-            z-index: 1
-            box-shadow: 0 0 10px 5px rgba(166, 166, 166, 0.5)
-            &.visible
-                opacity: 1
-            &.grow
-                transform: translate(-50%, -50%) scale(2.5)
-        .blob-line
-            position: absolute
-            top: 50%
-            width: 75%
-            height: 2px
-            background-color: var(--lightGray)
-            z-index: -1
-            transition: all 1s
-
-.project
-    position: absolute
-    display: flex
-    width: 75%
-    opacity: 0
-    transition: all 1s
-    transform: translateX(-100%)
-    .projectTop
-        display: flex
-        flex-direction: column
-        background-color: var(--darkGray)
-        color: var(--white)
-        padding: 2%
-        width: 100%
-        .Text
-            display: flex
-            width: 95%
-            flex-direction: column
-            gap: 15px
-            .Languages
-                display: flex
-                gap: 10px
-                p
-                    display: flex
-                    background-color: var(--gray)
-                    padding: 0.5% 2% 0.5% 2%
-                    border-radius: 15px
-                    margin: 0
-                    color: var(--white)
-                    font-size: 0.8em
-        h2
-            color: var(--white)
-            font-size: 1.5em
-            margin: 0
-            font-weight: 600
-        button
-            border: none
-            width: 22%
-            padding: 1%
-            font-size: 0.9em
-            &:hover
-                border: none
-                background-color: var(--gray)
-                color: var(--white)
-.active
-    transform: translateX(0)
-    transition: all 1s
-    opacity: 1
-
-.Opleiding
-    position: relative
-    display: flex
-    flex-direction: column
-    background-color: var(--darkGray)
-    color: var(--white)
-    padding: 5%
-    z-index: 2
-    &::before
-        content: ''
-        position: absolute
+        width: 61.5%
+        right: -68.5%
+        top: 50%
+        height: 2px
         background-color: var(--lightGray)
-        width: 2px
-        height: 38%
-        left: -4.5%
-        top: 0.5%
-        z-index: -20
-        transform: rotate(-45deg)
-
-.Carriere
-    position: relative
-    display: flex
-    flex-direction: column
-    background-color: var(--darkGray)
-    color: var(--white)
-    padding: 5%
-    z-index: 2
-    &::before
-        content: ''
-        position: absolute
-        background-color: var(--lightGray)
-        width: 2px
-        height: 38%
-        right: -4.5%
-        top: 0.5%
-        z-index: -20
-        transform: rotate(45deg)
-
-.subText
-    color: var(--grayText)
-
-.info
-    display: flex
-    justify-content: end
-    text-align: end
-
+        z-index: -1
+//
+//.container + .container
+//    margin-top: 10%
+//
+//.active
+//    transform: translateX(0)
+//    transition: all 1s
+//    opacity: 1
+//
+//.subText
+//    color: var(--grayText)
+//
+//.info
+//    display: flex
+//    justify-content: end
+//    text-align: end
+//
 .space-between
     display: flex
     justify-content: space-between
-
-.space-evenly
-    display: flex
-    justify-content: space-evenly
-
+//
+//.space-evenly
+//    display: flex
+//    justify-content: space-evenly
+//
 .justify-end
     display: flex
-    justify-content: flex-end
+    justify-content: end
 
-.justify-start
-    display: flex
-    justify-content: flex-start
-
-.justify-center
-    display: flex
-    justify-content: center
-
-.align-center
-    display: flex
-    align-items: center
-
+//.justify-start
+//    display: flex
+//    justify-content: flex-start
+//
+//.justify-center
+//    display: flex
+//    justify-content: center
+//
+//.align-center
+//    display: flex
+//    align-items: center
+//
 .align-end
     display: flex
     align-items: flex-end
+//
+//.align-start
+//    display: flex
+//    align-items: flex-start
+//
+//.text-center
+//    text-align: center
+//
+//.text-end
+//    text-align: end
+//
+//.text-start
+//    text-align: start
+//
+//.w-auto
+//    width: auto
+//
+//.h-webkit-fill-available
+//    height: -webkit-fill-available
+//
+//.flex-row
+//    display: flex
+//    flex-direction: row
+//
+//.flex-column
+//    display: flex
+//    flex-direction: column
+//
+//.meerOverMij
+//    position: fixed
+//    top: 7.5%
+//    opacity: 0
+//    background-color: var(--black)
+//    border: 4px solid var(--white)
+//    width: 90vw
+//    height: 85vh
+//    transition: all 0.5s
+//    z-index: 99
+//    transform: translateX(110%)
+//    &.active
+//        opacity: 1
+//        transform: translateX(0)
+//        transition: all 0.5s
+//
+//.list
+//    color: var(--white)
+//    display: flex
+//    width: 100%
+//    margin: 0
+//
+//.kruis
+//    position: relative
+//    width: 50px
+//    height: 50px
+//    cursor: pointer
+//    &:before, &:after
+//        content: ''
+//        position: absolute
+//        width: 100%
+//        height: 3px
+//        background-color: var(--white)
+//        top: 50%
+//        left: 0
+//        transform: translateY(-50%)
+//    &:before
+//        transform: rotate(45deg)
+//    &:after
+//        transform: rotate(-45deg)
+//
+//.gap-inherit
+//    gap: inherit
+//
+//.gap
+//    gap: 1.2rem
 
-.align-start
-    display: flex
-    align-items: flex-start
-
-.text-center
-    text-align: center
-
-.text-end
-    text-align: end
-
-.text-start
-    text-align: start
-
-.w-auto
-    width: auto
-
-.h-webkit-fill-available
-    height: -webkit-fill-available
-
-.flex-row
-    display: flex
-    flex-direction: row
-
-.flex-column
-    display: flex
-    flex-direction: column
-
-.meerOverMij
-    position: fixed
-    top: 7.5%
-    opacity: 0
-    background-color: var(--black)
-    border: 4px solid var(--white)
-    width: 90vw
-    height: 85vh
-    transition: all 0.5s
-    z-index: 99
-    transform: translateX(110%)
-    &.active
-        opacity: 1
-        transform: translateX(0)
-        transition: all 0.5s
-
-.list
-    color: var(--white)
-    display: flex
+a
+    height: 100%
     width: 100%
-    margin: 0
-
-.kruis
-    position: relative
-    width: 50px
-    height: 50px
-    cursor: pointer
-    &:before, &:after
-        content: ''
-        position: absolute
-        width: 100%
-        height: 3px
-        background-color: var(--white)
-        top: 50%
-        left: 0
-        transform: translateY(-50%)
-    &:before
-        transform: rotate(45deg)
-    &:after
-        transform: rotate(-45deg)
-
-.details
-    border-top: 2px solid var(--darkGray)
-
-.border-top
-    border-top: 2px solid var(--darkGray)
-
-.border-bottom
-    border-bottom: 2px solid var(--darkGray)
-
-.gap-inherit
-    gap: inherit
-
-.gap
-    gap: 1.2rem
-
-
-@for $i from 0 through 100
-    .w-#{$i}
-        width: calc(1% * $i)
-
-@for $i from 0 through 100
-    .h-#{$i}
-        height: calc(1% * $i)
-
-@for $i from 0 through 100
-    .gap-#{$i}
-        gap: calc(1% * $i)
-
-@for $i from 0 through 100
-    .p-#{$i}
-        padding: calc(1% * $i)
-
-@for $i from 0 through 100
-    .m-#{$i}
-        margin: calc(1% * $i)
-
-@for $i from 0 through 100
-    .p-t-#{$i}
-        padding-top: calc(1% * $i)
-
-@for $i from 0 through 100
-    .p-b-#{$i}
-        padding-bottom: calc(1% * $i)
-
-@for $i from 0 through 100
-    .p-l-#{$i}
-        padding-left: calc(1% * $i)
-
-@for $i from 0 through 100
-    .p-r-#{$i}
-        padding-right: calc(1% * $i)
-
-@for $i from 0 through 100
-    .m-t-#{$i}
-        margin-top: calc(1% * $i)
-
-@for $i from 0 through 100
-    .m-b-#{$i}
-        margin-bottom: calc(1% * $i)
-
-@for $i from 0 through 100
-    .m-l-#{$i}
-        margin-left: calc(1% * $i)
-
-@for $i from 0 through 100
-    .m-r-#{$i}
-        margin-right: calc(1% * $i)
-
-
+    display: block
