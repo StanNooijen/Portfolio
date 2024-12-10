@@ -1,9 +1,18 @@
+.skills-container
+    height: 140dvh
+
+.skills-gap
+    gap: 25dvh
+
+.skills-blocken-gap
+    gap: 1.3rem
+    display: grid
 
 .ball
     position: relative
     cursor: pointer
-    width: 90px
-    height: 90px
+    width: clamp(45px, 10vw, 90px)
+    height: clamp(45px, 10vw, 90px)
     border-radius: 50%
     background-color: var(--white)
     border: 2px solid var(--black)
@@ -60,79 +69,72 @@
 
 .skills
     position: relative
-    height: 120px
-    padding: 1.5rem
+    height: clamp(50px, 20vh, 500px)
+    width: 100%
+    padding: 1rem 0
     .skill
         position: absolute
-        height: auto
-        gap: var(--gap)
+        height: 100%
         opacity: 0
-        padding: 1.5rem
+        border-radius: 10px
         flex-direction: column
         justify-content: center
         background-color: var(--darkGray)
         transition: all 1s
+        width: 100%
         p
             margin: 0
-            padding: 0
+            padding: 0.5rem 0
+            display: flex
+            align-items: center
         h2
-            padding: 0
+            display: flex
+            justify-content: center
+            align-items: center
+            padding: 0.5rem 1rem
             margin: 0
         &.animation-out
             animation: animation-out 0.5s
         &.animation-in
             animation: animation-in 0.5s
+        .text-row
+            height: 25%
+            width: auto
+            padding: 0.5rem 1rem
 
     .active
         display: flex
         transition: all 1s
         opacity: 1
     h1
-        max-height: 50px
         overflow: hidden
-        font-size: 2em
+        font-size: 2.5em
 
-#softSkill
+#Skill
     position: relative
+    h1
+        background-color: var(--black)!important
+        padding: 0 1rem 0 1rem
+        width: fit-content
     &::before
         content: ''
         position: absolute
-        width: 78dvw
+        width: 99.4dvw
+        left: -8dvw
         top: 50%
-        left: -9.7%
         height: 2px
         background-color: var(--lightGray)
         z-index: -1
     &::after
         content: ''
         position: absolute
-        width: 7dvw
-        top: 50%
-        right: -9.7%
-        height: 2px
-        background-color: var(--lightGray)
-        z-index: -1
-
-
-#hardSkill
-    position: relative
-    &::before
-        content: ''
-        position: absolute
-        width: 7dvw
-        top: 50%
-        left: -9.7%
-        height: 2px
-        background-color: var(--lightGray)
-        z-index: -1
-    &::after
-        content: ''
-        position: absolute
-        width: 76.5dvw
-        top: 50%
-        right: -9.7%
-        height: 2px
-        background-color: var(--lightGray)
+        width: 40px
+        left: 53.04%
+        top: 21%
+        background-color: var(--black)
+        height: 40px
+        border: 2px solid var(--lightGray)
+        border-radius: 50%
         z-index: -1
 
 @keyframes blobBackgroundTransition
@@ -147,4 +149,16 @@
     transform: translateX(0)
     transition: all 1s
     opacity: 1
+
+.skill-flex
+    display: flex
+    flex-direction: row
+    gap: 1.2rem
+    padding: 0.5rem 1rem
+
+
+.project-details
+    background-color: var(--middleGray)
+    border-radius: 10px
+    padding: 1rem
 

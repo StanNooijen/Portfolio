@@ -43,19 +43,25 @@ body
 .navigation
     display: flex
     flex-direction: column
-    align-items: end
+    justify-content: end
+    align-items: center
     color: var(--white)
+    border-left: 2px solid var(--lightGray)
+    background-color: var(--black)
+    transition: all 0.3s ease
     height: 100dvh
     width: 10%
     position: fixed
+    transform: translateX(100%)
+    opacity: 0
     top: 0
     right: 0
     z-index: 98
 
 .navigator
-    position: absolute
+    position: fixed
     top: 4%
-    right: 2%
+    right: 3%
     display: flex
     flex-direction: row
     width: 75px
@@ -66,43 +72,57 @@ body
     z-index: 99
 
 .nav-links
-    z-index: -1
-    opacity: 0
-    transform: translateX(100%)
-    background-color: var(--darkGray)
-    border-left: 1px solid var(--white)
     display: flex
     flex-direction: column
+    justify-content: space-evenly
     align-content: center
-    padding: 10% 0 0 0
-    position: fixed
+    position: relative
+    width: 100%
     top: 0
     right: 0
-    width: 8.5%
-    height: 80dvh
-    transition: transform 0.3s ease, opacity 0.2s
+    height: 90dvh
+    flex-wrap: wrap
+
     .links
         display: flex
         flex-direction: column
-        width: 80%
-        a
-            color: var(--white)
-            text-decoration: none
-            text-align: end
-            &:hover
-                color: var(--white)
-                border-bottom: 2px solid var(--white)
-    .nav-socials
-        display: flex
-        gap: 10px
+        gap: 10%
         justify-content: center
         align-items: center
+        width: 80%
+
+    .nav-socials
         width: 100%
+        a
+            display: flex
+            justify-content: end
+            gap: 1dvw
+            align-items: center
+            color: var(--white)
+            text-decoration: none
+            &:hover
+                color: var(--lightGray)
+                .blokje
+                    box-shadow: 0 0 10px 2.5px rgba(255, 255, 255, 1)
 
 
-.nav-links.links a:hover
+.nav-button
+    color: var(--white)
+    background-color: var(--darkGray)
+    width: 100%
+    text-decoration: none
+    cursor: pointer
+    font-family: "Poppins", sans-serif
+    padding: 0.5rem
+    display: flex
+    justify-content: center
+    gap: 1rem
+    align-items: center
+    img
+        width: 15%
+        height: 90%
 
-.nav-links.active
+.active
     transform: translateX(0)
     opacity: 1
     transition: transform 0.3s ease, opacity 0.2s
@@ -187,13 +207,13 @@ p
 
 .line-down
     position: absolute
-    bottom: 0
-    left: 55.5%
+    top: 0
+    left: 47dvw
     width: 2px
-    height: 105dvh
+    height: 105vh
     background-color: var(--lightGray)
     transition: all 1s
-    z-index: 0
+    z-index: -1
 //
 //.intro
 //    display: flex
@@ -210,11 +230,10 @@ p
     line-height: 0.90em
     color: var(--white)
     width: 80%
-    margin-left: 3%
     margin-bottom: 0
 
 .plaatsNaam
-    margin-left: 12.5%
+    margin-left: 5dvw
 //
 //.subtitle
 //    font-size: 3.5em
@@ -240,9 +259,13 @@ p
     width: 50px
     height: 50px
     border: 2px solid var(--lightGray)
+    transition: all 1s ease
     img
         width: 100%
         height: 100%
+    &:hover
+        box-shadow: 0 0 10px 2.5px rgba(255, 255, 255, 1)
+        transition: all 0.3s ease
 
 .row .blokje:first-child
     margin-left: 13%
@@ -258,24 +281,24 @@ p
     font-family: "Poppins", sans-serif
     border-radius: 5px
 
+.background-black
+    background-color: var(--black)
+    padding: 0 2% 0 2%
+    width: 30%
+    margin-right: 3dvw
+    height: 100%
+
 .meerOverMijButton
-    position: relative
+    cursor: pointer
     z-index: -1
+    width: 100%
+
     &::before
         content: ''
         position: absolute
-        width: 205%
-        left: -212%
-        top: 50%
-        height: 2px
-        background-color: var(--lightGray)
-        z-index: -1
-    &::after
-        content: ''
-        position: absolute
-        width: 61.5%
-        right: -68.5%
-        top: 50%
+        width: 45.99dvw
+        left: 47.1dvw
+        top: 74.4%
         height: 2px
         background-color: var(--lightGray)
         z-index: -1

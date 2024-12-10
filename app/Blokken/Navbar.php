@@ -18,7 +18,7 @@ class Navbar
 
         if ($navItems) {
             foreach ($navItems as $navItem) {
-                $navlinks .= '<a href="#'. $navItem->ref .'">'. $navItem->label .'</a>';
+                $navlinks .= '<a class="nav-button" href="'. $navItem->ref .'">'. $navItem->label .'</a>';
             }
         }
 
@@ -29,12 +29,11 @@ class Navbar
             for ($i = 0; $i < count($socials->social_media); $i++) {
                 $socialButton .= '
                 <div class="nav-socials">
-                    <p>'. $socials->social_media[$i] .'</p>
+                    <a href="' . $socials->social_media[$i] . '">' . $socials->social_media[$i] . '
                     <div class="blokje">
-                        <a href="'. $socials->social_links[$i] .'" target="_blank" class="social-icon">
-                            <img src="'. asset('images/socials/' . $socials->social_media[$i] . '.png') .'" alt="'. $socials->social_media[$i] .'">
-                        </a>
+                        <img src="' . asset('images/socials/' . $socials->social_media[$i] . '.png') . '" alt="' . $socials->social_media[$i] . '">
                     </div>
+                    </a>
                 </div>';
             }
         }
@@ -53,7 +52,13 @@ class Navbar
                         '.$navlinks.'
                     </div>
                     <div class="links">
+                        <h2>Socials</h2>
                         '.$socialButton.'
+                    </div>
+                    <div class="links">
+                        <h2>Talen</h2>
+                        <a class="nav-button" href="#">NLD<img src="'. asset('images/netherlands.png') .'" alt="NL"></a>
+                        <a class="nav-button" href="#">ENG<img src="'. asset('images/united-kingdom.png') .'" alt="UK"></a>
                     </div>
                 </div>
             </div>

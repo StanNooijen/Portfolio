@@ -34,25 +34,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('#hamburger').addEventListener('click', function() {
         this.classList.toggle('active');
-        document.querySelector('.nav-links').classList.toggle('active');
-        if (document.querySelector('.meerOverMij').classList.contains('active')) {
-            document.querySelector('.meerOverMij').classList.remove('active');
-        }
+        document.querySelector('.navigation').classList.toggle('active');
+        // if (document.querySelector('.meerOverMij').classList.contains('active')) {
+        //     document.querySelector('.meerOverMij').classList.remove('active');
+        // }
     });
 
     window.addEventListener('scroll', function() {
         const hamburger = document.querySelector('#hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        const navigation = document.querySelector('.navigation');
         const meerOverMij = document.querySelector('.meerOverMij');
 
         if (hamburger.classList.contains('active')) {
             hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
+            navigation.classList.remove('active');
         }
 
-        if (meerOverMij.classList.contains('active')) {
-            meerOverMij.classList.remove('active');
-        }
+        // if (meerOverMij.classList.contains('active')) {
+        //     meerOverMij.classList.remove('active');
+        // }
     });
 
     // document.querySelector('.kruis').addEventListener('click', function() {

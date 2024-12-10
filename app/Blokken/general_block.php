@@ -28,16 +28,19 @@ class general_block
         }
 
         $html = '
-            <div class="container " id="about">
-                    <div class="line-down">
-                    </div>
+
+            <div class="container " id="about_me">
+                <div class="line-down"></div>
                     <div class="row">
                         <div class="shadow-bottom">
                             <img src="' . $imageUrl . '" alt="" style="width: 90dvh">
                         </div>
                         <div class="intro col">
                             <div>
-                                <h1 class="title">'. $block_content->title .'</h1>
+
+                                <h1 class="title">'. $block_content->title .'
+
+                                </h1>
                                 <p class="plaatsNaam">'. $block_content->place_name .'</p>
                             </div>
                             <div class="textBox">
@@ -47,8 +50,10 @@ class general_block
                                 '. $socialButton .'
                             </div>
                             <div class="justify-end">
-                                <button id="meerOverMijButton" class="meerOverMijButton button poppins-regular">'. $block_content->button_text .'
-                                </button>
+                                <div class="background-black">
+                                    <button id="meerOverMijButton" class="meerOverMijButton button poppins-regular">'. $block_content->button_text .'
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

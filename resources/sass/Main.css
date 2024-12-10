@@ -51,20 +51,26 @@ body {
 .navigation {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  justify-content: end;
+  align-items: center;
   color: var(--white);
+  border-left: 2px solid var(--lightGray);
+  background-color: var(--black);
+  transition: all 0.3s ease;
   height: 100dvh;
   width: 10%;
   position: fixed;
+  transform: translateX(100%);
+  opacity: 0;
   top: 0;
   right: 0;
   z-index: 98;
 }
 
 .navigator {
-  position: absolute;
+  position: fixed;
   top: 4%;
-  right: 2%;
+  right: 3%;
   display: flex;
   flex-direction: row;
   width: 75px;
@@ -76,45 +82,62 @@ body {
 }
 
 .nav-links {
-  z-index: -1;
-  opacity: 0;
-  transform: translateX(100%);
-  background-color: var(--darkGray);
-  border-left: 1px solid var(--white);
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-content: center;
-  padding: 10% 0 0 0;
-  position: fixed;
+  position: relative;
+  width: 100%;
   top: 0;
   right: 0;
-  width: 8.5%;
-  height: 80dvh;
-  transition: transform 0.3s ease, opacity 0.2s;
+  height: 90dvh;
+  flex-wrap: wrap;
 }
 .nav-links .links {
   display: flex;
   flex-direction: column;
-  width: 80%;
-}
-.nav-links .links a {
-  color: var(--white);
-  text-decoration: none;
-  text-align: end;
-}
-.nav-links .links a:hover {
-  color: var(--white);
-  border-bottom: 2px solid var(--white);
-}
-.nav-links .nav-socials {
-  display: flex;
-  gap: 10px;
+  gap: 10%;
   justify-content: center;
   align-items: center;
+  width: 80%;
+}
+.nav-links .nav-socials {
   width: 100%;
 }
+.nav-links .nav-socials a {
+  display: flex;
+  justify-content: end;
+  gap: 1dvw;
+  align-items: center;
+  color: var(--white);
+  text-decoration: none;
+}
+.nav-links .nav-socials a:hover {
+  color: var(--lightGray);
+}
+.nav-links .nav-socials a:hover .blokje {
+  box-shadow: 0 0 10px 2.5px rgb(255, 255, 255);
+}
 
-.nav-links.active {
+.nav-button {
+  color: var(--white);
+  background-color: var(--darkGray);
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+.nav-button img {
+  width: 15%;
+  height: 90%;
+}
+
+.active {
   transform: translateX(0);
   opacity: 1;
   transition: transform 0.3s ease, opacity 0.2s;
@@ -209,13 +232,13 @@ p {
 
 .line-down {
   position: absolute;
-  bottom: 0;
-  left: 55.5%;
+  top: 0;
+  left: 47dvw;
   width: 2px;
-  height: 105dvh;
+  height: 105vh;
   background-color: var(--lightGray);
   transition: all 1s;
-  z-index: 0;
+  z-index: -1;
 }
 
 .title {
@@ -223,12 +246,11 @@ p {
   line-height: 0.9em;
   color: var(--white);
   width: 80%;
-  margin-left: 3%;
   margin-bottom: 0;
 }
 
 .plaatsNaam {
-  margin-left: 12.5%;
+  margin-left: 5dvw;
 }
 
 .textBox {
@@ -254,10 +276,15 @@ p {
   width: 50px;
   height: 50px;
   border: 2px solid var(--lightGray);
+  transition: all 1s ease;
 }
 .blokje img {
   width: 100%;
   height: 100%;
+}
+.blokje:hover {
+  box-shadow: 0 0 10px 2.5px rgb(255, 255, 255);
+  transition: all 0.3s ease;
 }
 
 .row .blokje:first-child {
@@ -276,26 +303,25 @@ p {
   border-radius: 5px;
 }
 
+.background-black {
+  background-color: var(--black);
+  padding: 0 2% 0 2%;
+  width: 30%;
+  margin-right: 3dvw;
+  height: 100%;
+}
+
 .meerOverMijButton {
-  position: relative;
+  cursor: pointer;
   z-index: -1;
+  width: 100%;
 }
 .meerOverMijButton::before {
   content: "";
   position: absolute;
-  width: 205%;
-  left: -212%;
-  top: 50%;
-  height: 2px;
-  background-color: var(--lightGray);
-  z-index: -1;
-}
-.meerOverMijButton::after {
-  content: "";
-  position: absolute;
-  width: 61.5%;
-  right: -68.5%;
-  top: 50%;
+  width: 45.99dvw;
+  left: 47.1dvw;
+  top: 74.4%;
   height: 2px;
   background-color: var(--lightGray);
   z-index: -1;

@@ -16,6 +16,5 @@
     @endif
 
 </head>
-
     @yield('content')
 </html>
