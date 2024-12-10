@@ -1,11 +1,12 @@
 <?php
 
+
+use App\Http\Controllers\Controller;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Controller::class, 'getData'])->name('getData');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -17,4 +18,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+//Route::get('/switch-language/{locale}', function ($locale) {
+//    if (in_array($locale, ['en', 'nl'])) { // List all supported languages
+//        Session::put('locale', $locale);
+//    }
+//    return redirect()->back();
+//})->name('lang.switch');
+
+require __DIR__ . '/auth.php';

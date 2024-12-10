@@ -1,0 +1,427 @@
+:root
+    --black: #0b0b0b
+    --white: #ffffff
+    --lightGray: #A6A6A6
+    --darkGray: #323232
+    --grayText: #9E9E9E
+    --middleGray: #4F4F4F
+    --gray: #62626280
+    --gap: 1.2rem
+
+body, html
+    font-size: 16px
+    margin: 0
+    padding: 0
+    scroll-behavior: smooth
+    color: var(--white)
+
+body::-webkit-scrollbar
+    width: 10px
+    background-color: var(--black)
+    &-track
+        background: var(--middleGray)
+    &-thumb
+        background: var(--darkGray)
+        border-radius: 10px
+        &:hover
+            background: var(--middleGray)
+    &-corner
+        background: var(--darkGray)
+
+body
+    font-family: "Poppins" , sans-serif
+    font-size: 16px
+    font-weight: 400
+    margin: 0
+    padding: 0
+    background-color: var(--black)
+    display: flex
+    justify-content: center
+    flex-direction: column
+    align-items: center
+
+.navigation
+    display: flex
+    flex-direction: column
+    justify-content: end
+    align-items: center
+    color: var(--white)
+    border-left: 2px solid var(--lightGray)
+    background-color: var(--black)
+    transition: all 0.3s ease
+    height: 100dvh
+    width: 10%
+    position: fixed
+    transform: translateX(100%)
+    opacity: 0
+    top: 0
+    right: 0
+    z-index: 98
+
+.navigator
+    position: fixed
+    top: 4%
+    right: 3%
+    display: flex
+    flex-direction: row
+    width: 75px
+    height: 75px
+    background-color: var(--darkGray)
+    align-items: center
+    justify-content: center
+    z-index: 99
+
+.nav-links
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+    align-content: center
+    position: relative
+    width: 100%
+    top: 0
+    right: 0
+    height: 90dvh
+    flex-wrap: wrap
+
+    .links
+        display: flex
+        flex-direction: column
+        gap: 10%
+        justify-content: center
+        align-items: center
+        width: 80%
+
+    .nav-socials
+        width: 100%
+        a
+            display: flex
+            justify-content: end
+            gap: 1dvw
+            align-items: center
+            color: var(--white)
+            text-decoration: none
+            &:hover
+                color: var(--lightGray)
+                .blokje
+                    box-shadow: 0 0 10px 2.5px rgba(255, 255, 255, 1)
+
+
+.nav-button
+    color: var(--white)
+    background-color: var(--darkGray)
+    width: 100%
+    text-decoration: none
+    cursor: pointer
+    font-family: "Poppins", sans-serif
+    padding: 0.5rem
+    display: flex
+    justify-content: center
+    gap: 1rem
+    align-items: center
+    img
+        width: 15%
+        height: 90%
+
+.active
+    transform: translateX(0)
+    opacity: 1
+    transition: transform 0.3s ease, opacity 0.2s
+
+.hamburger
+    cursor: pointer
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    width: 60%
+    height: 60%
+
+    span
+        background-color: var(--grayText)
+        height: 7%
+        width: 100%
+        transition: all 0.3s ease
+
+    &.active
+        span:nth-child(1)
+            transform: rotate(45deg) translate(10px, 11px)
+        span:nth-child(2)
+            opacity: 0
+        span:nth-child(3)
+            transform: rotate(-45deg) translate(10px, -11px)
+
+
+.container
+    display: flex
+    flex-direction: column
+    gap: 1rem
+    padding: 1rem
+    height: 100dvh
+    width: 85dvw
+    color: var(--white)
+    justify-content: center
+    position: relative
+
+
+.row
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: var(--gap)
+    z-index: 2
+
+.col
+    padding: 1rem
+    display: grid
+    gap: var(--gap)
+    grid-template-columns: 1fr
+
+h1
+    color: var(--white)
+    font-size: 3em
+    margin: 0
+
+h2
+    color: var(--white)
+    font-size: 2em
+    margin: 0
+
+h3
+    color: var(--white)
+    font-size: 1.5em
+    margin: 0
+
+p
+    margin: 0
+
+.shadow-bottom
+    position: relative
+    &::after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 50%
+        background: linear-gradient(to top, rgba(11, 11, 11, 1), rgba(11, 11, 11, 0))
+        pointer-events: none
+
+.line-down
+    position: absolute
+    top: 0
+    left: 47dvw
+    width: 2px
+    height: 105vh
+    background-color: var(--lightGray)
+    transition: all 1s
+    z-index: -1
+//
+//.intro
+//    display: flex
+//    flex-direction: column
+//    color: var(--white)
+//    z-index: 2
+//    width: 50%
+//    justify-content: center
+//    position: relative
+//    left: 20%
+//
+.title
+    font-size: 8em
+    line-height: 0.90em
+    color: var(--white)
+    width: 80%
+    margin-bottom: 0
+
+.plaatsNaam
+    margin-left: 5dvw
+//
+//.subtitle
+//    font-size: 3.5em
+//    position: relative
+
+.textBox
+    display: flex
+    flex-direction: column
+    background-color: var(--darkGray)
+    padding: 3%
+    border-radius: 10px
+    margin-right: 5.5%
+    margin-left: -5.5%
+    flex-wrap: wrap
+    align-content: center
+    z-index: 90
+    p
+        width: 90%
+        margin: 0
+.blokje
+    background-position: center
+    background-size: cover
+    width: 50px
+    height: 50px
+    border: 2px solid var(--lightGray)
+    transition: all 1s ease
+    img
+        width: 100%
+        height: 100%
+    &:hover
+        box-shadow: 0 0 10px 2.5px rgba(255, 255, 255, 1)
+        transition: all 0.3s ease
+
+.row .blokje:first-child
+    margin-left: 13%
+
+.button
+    color: var(--white)
+    background-color: var(--darkGray)
+    width: 30%
+    padding: 1%
+    border: none
+    font-size: 1em
+    cursor: pointer
+    font-family: "Poppins", sans-serif
+    border-radius: 5px
+
+.background-black
+    background-color: var(--black)
+    padding: 0 2% 0 2%
+    width: 30%
+    margin-right: 3dvw
+    height: 100%
+
+.meerOverMijButton
+    cursor: pointer
+    z-index: -1
+    width: 100%
+
+    &::before
+        content: ''
+        position: absolute
+        width: 45.99dvw
+        left: 47.1dvw
+        top: 74.4%
+        height: 2px
+        background-color: var(--lightGray)
+        z-index: -1
+//
+//.container + .container
+//    margin-top: 10%
+//
+//.active
+//    transform: translateX(0)
+//    transition: all 1s
+//    opacity: 1
+//
+//.subText
+//    color: var(--grayText)
+//
+//.info
+//    display: flex
+//    justify-content: end
+//    text-align: end
+//
+.space-between
+    display: flex
+    justify-content: space-between
+//
+//.space-evenly
+//    display: flex
+//    justify-content: space-evenly
+//
+.justify-end
+    display: flex
+    justify-content: end
+
+//.justify-start
+//    display: flex
+//    justify-content: flex-start
+//
+//.justify-center
+//    display: flex
+//    justify-content: center
+//
+//.align-center
+//    display: flex
+//    align-items: center
+//
+.align-end
+    display: flex
+    align-items: flex-end
+//
+//.align-start
+//    display: flex
+//    align-items: flex-start
+//
+//.text-center
+//    text-align: center
+//
+//.text-end
+//    text-align: end
+//
+//.text-start
+//    text-align: start
+//
+//.w-auto
+//    width: auto
+//
+//.h-webkit-fill-available
+//    height: -webkit-fill-available
+//
+//.flex-row
+//    display: flex
+//    flex-direction: row
+//
+//.flex-column
+//    display: flex
+//    flex-direction: column
+//
+//.meerOverMij
+//    position: fixed
+//    top: 7.5%
+//    opacity: 0
+//    background-color: var(--black)
+//    border: 4px solid var(--white)
+//    width: 90vw
+//    height: 85vh
+//    transition: all 0.5s
+//    z-index: 99
+//    transform: translateX(110%)
+//    &.active
+//        opacity: 1
+//        transform: translateX(0)
+//        transition: all 0.5s
+//
+//.list
+//    color: var(--white)
+//    display: flex
+//    width: 100%
+//    margin: 0
+//
+//.kruis
+//    position: relative
+//    width: 50px
+//    height: 50px
+//    cursor: pointer
+//    &:before, &:after
+//        content: ''
+//        position: absolute
+//        width: 100%
+//        height: 3px
+//        background-color: var(--white)
+//        top: 50%
+//        left: 0
+//        transform: translateY(-50%)
+//    &:before
+//        transform: rotate(45deg)
+//    &:after
+//        transform: rotate(-45deg)
+//
+//.gap-inherit
+//    gap: inherit
+//
+//.gap
+//    gap: 1.2rem
+
+a
+    height: 100%
+    width: 100%
+    display: block
