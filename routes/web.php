@@ -3,8 +3,6 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 
 Route::get('/', [Controller::class, 'getData'])->name('getData');
 
@@ -25,4 +23,4 @@ Route::middleware('auth')->group(function () {
 //    return redirect()->back();
 //})->name('lang.switch');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

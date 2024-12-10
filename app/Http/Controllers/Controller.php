@@ -3,15 +3,10 @@
 // app/Http/Controllers/Controller.php
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Blocks;
-use App\Models\Contact;
-use App\Models\Entries;
-use App\Models\Popups;
 use App\Models\Navbars;
 use App\Models\Projects;
 use App\Models\Skills;
-use App\Models\Popups_details;
 
 class Controller
 {

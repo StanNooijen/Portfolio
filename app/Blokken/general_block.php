@@ -2,8 +2,8 @@
 
 namespace App\Blokken;
 
-use App\models\blocks;
-use App\models\contact;
+use App\Models\blocks;
+use App\Models\contact;
 
 class general_block
 {

@@ -3,8 +3,7 @@
 namespace App\Blokken;
 
 
-use App\models\Entries;
-use Illuminate\Support\Facades\Request;
+use App\Models\Entries;
 
 
 class entries_block

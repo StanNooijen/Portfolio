@@ -2,8 +2,8 @@
 
 namespace App\Blokken;
 
-use App\models\Skills;
-use App\models\projects;
+use App\Models\projects;
+use App\Models\Skills;
 
 class skills_block
 {

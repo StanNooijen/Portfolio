@@ -2,8 +2,8 @@
 
 namespace App\Blokken;
 
-use App\models\Popups_details;
-use App\models\Popups;
+use App\Models\Popups;
+use App\Models\Popups_details;
 
 class about_me_block
 {
