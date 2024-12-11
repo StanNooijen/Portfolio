@@ -14,7 +14,7 @@
     @else
 
     @endif
-
 </head>
+
     @yield('content')
 </html>

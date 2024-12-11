@@ -73,23 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (activeSkill) {
             activeSkill.classList.remove('active');
-            activeSkill.classList.add('animation-out');
-
-            activeSkill.addEventListener('animationend', function onFadeOut() {
-                activeSkill.classList.remove('animation-out');
-                skills[index].classList.add('active', 'animation-in');
-                skills[index].addEventListener('animationend', function onFadeIn() {
-                    skills[index].classList.remove('animation-in');
-                    skills[index].removeEventListener('animationend', onFadeIn);
-                });
-                activeSkill.removeEventListener('animationend', onFadeOut);
-            });
+            skills[index].classList.add('active');
         } else {
-            skills[index].classList.add('active', 'animation-in');
-            skills[index].addEventListener('animationend', function onFadeIn() {
-                skills[index].classList.remove('animation-in');
-                skills[index].removeEventListener('animationend', onFadeIn);
-            });
+            skills[index].classList.add('active');
         }
     };
 
@@ -132,6 +118,5 @@ document.addEventListener('DOMContentLoaded', function() {
         light.style.left = `${initialBlob.offsetLeft + initialBlob.offsetWidth / 2}px`;
         light.classList.add('visible');
     }
-
 
 });

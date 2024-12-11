@@ -6,11 +6,36 @@
   gap: 25dvh;
 }
 
+.skills-tekst {
+  height: 25%;
+  width: 100%;
+}
+
 .skills-blocken-gap {
   gap: 1.3rem;
   display: grid;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    opacity: 1;
+    display: flex;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
 .ball {
   position: relative;
   cursor: pointer;
@@ -25,11 +50,19 @@
   transition: all 1s;
   padding: 0;
 }
+.ball:hover {
+  scale: 1.1;
+  transition: all 1s;
+}
 .ball.active {
   transition: all 2s;
   background-color: var(--white);
   box-shadow: 0 0 10px 5px rgb(255, 255, 255);
   z-index: 2;
+}
+.ball.active:hover {
+  scale: 1;
+  transition: all 1s;
 }
 .ball::before {
   content: "";
@@ -65,57 +98,34 @@
   top: -20.5px;
 }
 
-@keyframes animation-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes animation-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 .skills {
   position: relative;
-  height: clamp(50px, 20vh, 500px);
   width: 100%;
-  padding: 1rem 0;
+  padding: 0;
 }
 .skills .skill {
-  position: absolute;
-  height: 100%;
+  display: none;
+  height: fit-content;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
   opacity: 0;
   border-radius: 10px;
-  flex-direction: column;
-  justify-content: center;
   background-color: var(--darkGray);
   transition: all 1s;
-  width: 100%;
 }
 .skills .skill p {
   margin: 0;
-  padding: 0.5rem 0;
   display: flex;
   align-items: center;
 }
-.skills .skill h2 {
+.skills .skill h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
   margin: 0;
-}
-.skills .skill.animation-out {
-  animation: animation-out 0.5s;
-}
-.skills .skill.animation-in {
-  animation: animation-in 0.5s;
 }
 .skills .skill .text-row {
   height: 25%;
@@ -123,9 +133,9 @@
   padding: 0.5rem 1rem;
 }
 .skills .active {
-  display: flex;
   transition: all 1s;
   opacity: 1;
+  display: flex;
 }
 .skills h1 {
   overflow: hidden;
@@ -180,17 +190,68 @@
   opacity: 1;
 }
 
+.languages {
+  display: flex;
+  flex-direction: row;
+  height: 55%;
+  gap: var(--gap);
+}
+.languages .language {
+  display: flex;
+  padding: 0 1rem;
+  background-color: var(--darkGray);
+  border-radius: 5px;
+}
+
+.skill.show {
+  display: flex;
+  animation: fadeIn 1s forwards;
+}
+
+.skill.hide {
+  animation: fadeOut 1s forwards;
+  animation-fill-mode: forwards;
+  pointer-events: none;
+}
+
 .skill-flex {
   display: flex;
   flex-direction: row;
-  gap: 1.2rem;
-  padding: 0.5rem 1rem;
+  gap: var(--gap);
+  flex-wrap: wrap;
+  height: auto;
+  width: 100%;
 }
 
 .project-details {
+  height: 100%;
+  cursor: pointer;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  max-width: 35%;
+  min-width: 15%;
   background-color: var(--middleGray);
   border-radius: 10px;
   padding: 1rem;
+  transition: all 0.5s ease;
+}
+.project-details:hover {
+  transition: all 0.5s ease;
+  box-shadow: 0 0 10px 2.5px rgb(158, 158, 158);
+}
+.project-details:hover svg {
+  transition: all 0.5s ease;
+  color: var(--lightGray);
+  transform: translate(2px, -2px) scale(1.2);
+}
+.project-details .title-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+.project-details svg {
+  transition: all 0.5s ease;
 }
 
 /*# sourceMappingURL=Skills.css.map */
