@@ -241,6 +241,7 @@ p {
 }
 
 .title {
+  margin-left: 0.5rem;
   font-size: 8em;
   line-height: 0.9em;
   color: var(--white);
@@ -249,7 +250,7 @@ p {
 }
 
 .plaatsNaam {
-  margin-left: 5dvw;
+  margin-left: 5.5dvw;
 }
 
 .textBox {

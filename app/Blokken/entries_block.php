@@ -2,12 +2,14 @@
 
 namespace App\Blokken;
 
+use App\Models\Blocks;
 use App\Models\Entries;
 
 class entries_block
 {
     public function render_public_block($block_id, $block_name, $position)
     {
+        $block_content = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
         $careers = Entries::where('type', 'career')->get();
         $education = Entries::where('type', 'education')->get();
 

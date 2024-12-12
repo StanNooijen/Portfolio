@@ -56,7 +56,7 @@ class Controller
             foreach ($popups as $popup) {
                 $instance = new $SearchPopup();
                 if (method_exists($instance, 'render_public_popup')) {
-                    $htmlArray[] = $instance->render_public_popup($popup->popup_id, $popup->type, $popup->position);
+                    $htmlArray[] = $instance->render_public_popup($popup->popup_id, $popup->title, $popup->position);
                 } else {
                     echo 'Method render_public_popup does not exist in class';
                 }

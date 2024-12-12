@@ -2,6 +2,7 @@
 
 namespace App\Blokken;
 
+use App\Models\Blocks;
 use App\Models\projects;
 use App\Models\Skills;
 
@@ -9,6 +10,7 @@ class skills_block
 {
 
     public function render_public_block($block_id, $block_name, $position){
+        $block_content = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
         $hardskills = Skills::where('type', 'hard')->where('block_id', $block_id)->get();
         $softskills = Skills::where('type', 'soft')->where('block_id', $block_id)->get();
         $projects = projects::all();
@@ -40,7 +42,7 @@ class skills_block
                     ';
                 }
                 if (in_array($ball->title, $programming_languages)) {
-                    $projectDetails .= '<div class="project-details">
+                    $projectDetails .= '<div class="project-details" onclick="activateProjectPopup(\''.$project->title.'\')">
                                             <div class="title-flex">
                                                 <h2>' . $project->title . '</h2>
                                                 <svg height="15" width="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
