@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blocks;
 use App\Models\Navbars;
+use App\Models\Popups;
 use App\Models\Projects;
 use App\Models\Skills;
 
@@ -14,6 +15,7 @@ class Controller
     {
         $blocks = Blocks::orderBy('position', 'asc')->get();
         $Navbar = Navbars::where('active', '1')->get();
+        $popups = Popups::where('active', '1')->get();
 
         if ($blocks->isEmpty()) {
             return view('default');
@@ -47,6 +49,17 @@ class Controller
                 }
             } else {
                 dd('Class ' . $className . ' does not exist');
+            }
+        }
+        $SearchPopup = new \App\Blokken\popup_block();
+        if (class_exists('App\\Blokken\\popup_block')) {
+            foreach ($popups as $popup) {
+                $instance = new $SearchPopup();
+                if (method_exists($instance, 'render_public_popup')) {
+                    $htmlArray[] = $instance->render_public_popup($popup->popup_id, $popup->type, $popup->position);
+                } else {
+                    echo 'Method render_public_popup does not exist in class';
+                }
             }
         }
 

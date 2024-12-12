@@ -74,7 +74,7 @@ class skills_block
                                                         <div class="space-between skills-tekst">
                                                             <h1>' . $ball->title . '</h1>
                                                         </div>
-                                                        <p class="w-85">
+                                                        <p>
                                                             ' . $ball->text . '
                                                         </p>
                                                     </div>';
@@ -89,6 +89,7 @@ class skills_block
         }
         $html .= '
                 </div>
+            </div>
         </div>
     </div>';
         return $html;

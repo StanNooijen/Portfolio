@@ -35,33 +35,33 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#hamburger').addEventListener('click', function() {
         this.classList.toggle('active');
         document.querySelector('.navigation').classList.toggle('active');
-        // if (document.querySelector('.meerOverMij').classList.contains('active')) {
-        //     document.querySelector('.meerOverMij').classList.remove('active');
-        // }
+        if (document.querySelector('#about_me_popup').classList.contains('active')) {
+            document.querySelector('#about_me_popup').classList.remove('active');
+        }
     });
 
     window.addEventListener('scroll', function() {
         const hamburger = document.querySelector('#hamburger');
         const navigation = document.querySelector('.navigation');
-        const meerOverMij = document.querySelector('.meerOverMij');
+        const about_me = document.querySelector('#about_me_popup');
 
         if (hamburger.classList.contains('active')) {
             hamburger.classList.remove('active');
             navigation.classList.remove('active');
         }
 
-        // if (meerOverMij.classList.contains('active')) {
-        //     meerOverMij.classList.remove('active');
-        // }
+        if (about_me.classList.contains('active')) {
+            about_me.classList.remove('active');
+        }
     });
 
-    // document.querySelector('.kruis').addEventListener('click', function() {
-    //     document.querySelector('.meerOverMij').classList.remove('active');
-    // });
-    //
-    // document.querySelector('.meerOverMijButton').addEventListener('click', function() {
-    //     document.querySelector('.meerOverMij').classList.add('active');
-    // });
+    document.querySelector('.kruis').addEventListener('click', function() {
+        document.querySelector('#about_me_popup').classList.remove('active');
+    });
+
+    document.querySelector('.meerOverMijButton').addEventListener('click', function() {
+        document.querySelector('#about_me_popup').classList.add('active');
+    });
 
     window.changeSkill = function(index, skillsId, ballId) {
         const balls = document.querySelectorAll(`#${ballId} .ball`);
@@ -79,36 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    window.changeProjecten = function(index, projectsIdOne, projectsIdTwo, blobId) {
-        const blobs = document.querySelectorAll(`#${blobId} .blob`);
-        if (index < 0 || index >= blobs.length) {
-            console.error('Invalid index:', index);
-            return;
-        }
-
-        const projectsOne = document.querySelectorAll(`#${projectsIdOne} .project`);
-        if (projectsOne[index]) {
-            projectsOne.forEach(project => project.classList.remove('active'));
-            projectsOne[index].classList.add('active');
-        }
-
-        const projectsTwo = document.querySelectorAll(`#${projectsIdTwo} .project`);
-        if (projectsTwo[index]) {
-            projectsTwo.forEach(project => project.classList.remove('active'));
-            projectsTwo[index].classList.add('active');
-        }
-
-        const light = document.querySelector(`#${blobId} .blob-light`);
-        const targetBlob = blobs[index];
-        light.classList.remove('grow');
-        light.style.left = `${targetBlob.offsetLeft + targetBlob.offsetWidth / 2}px`;
-        light.classList.add('visible');
-
-        light.addEventListener('transitionend', function onTransitionEnd() {
-            light.classList.add('grow');
-            light.removeEventListener('transitionend', onTransitionEnd);
-        });
-    };
+    window.activateProjectPopup = function(projectId) {
+        const projectPopup = document.querySelector(`#${projectId}`);
+        projectPopup.classList.add('active');
+    }
 
     // Set initial position of the light element
     const initialBlob = document.querySelector(`#blobs .blob`);

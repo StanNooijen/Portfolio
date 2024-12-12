@@ -1,5 +1,5 @@
 .skills-container {
-  height: 140dvh;
+  padding: 8rem 1rem;
 }
 
 .skills-gap {
@@ -195,6 +195,7 @@
   flex-direction: row;
   height: 55%;
   gap: var(--gap);
+  flex-wrap: wrap;
 }
 .languages .language {
   display: flex;
@@ -242,7 +243,7 @@
 .project-details:hover svg {
   transition: all 0.5s ease;
   color: var(--lightGray);
-  transform: translate(2px, -2px) scale(1.2);
+  transform: translate(2px, -2px) scale(1.1);
 }
 .project-details .title-flex {
   display: flex;
