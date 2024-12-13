@@ -3,23 +3,32 @@
 namespace App\Blokken;
 
 use App\Models\Blocks;
-use App\Models\projects;
+use App\Models\Projects;
 use App\Models\Skills;
 
 class skills_block
 {
+    public function render_public_block($block_id, $block_name, $position)
+    {
+        $block_content = Blocks::where('block_id', $block_id)
+            ->where('position', $position)
+            ->where('type', $block_name)
+            ->first();
 
-    public function render_public_block($block_id, $block_name, $position){
-        $block_content = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
-        $hardskills = Skills::where('type', 'hard')->where('block_id', $block_id)->get();
-        $softskills = Skills::where('type', 'soft')->where('block_id', $block_id)->get();
-        $projects = projects::all();
+        $skills = Skills::where('block_id', $block_id)
+            ->whereIn('type', ['hard', 'soft'])
+            ->get()
+            ->groupBy('type');
+
+        $hardskills = $skills->get('hard', collect());
+        $softskills = $skills->get('soft', collect());
+        $projects = Projects::all();
 
         $html = '
     <div class="container skills-container" id="skills">
         <div class="line-down"></div>
         <div class="col skills-gap">
-            <div class="skills-blocken-gap" >
+            <div class="skills-blocken-gap">
                 <div class="row space-between" id="ball1">';
         foreach ($hardskills as $index => $ball) {
             $html .= '<button class="ball ' . ($index === 0 ? 'active' : '') . '"
@@ -61,14 +70,13 @@ class skills_block
                                         <div class="skill-flex">
                                             ' . $projectDetails . '
                                         </div>
-
                                     </div>';
         }
         $html .= '
             </div>
             <div id="Skill"><h1>Hard skills</h1></div>
         </div>
-        <div class="skills-blocken-gap" >
+        <div class="skills-blocken-gap">
             <div id="Skill" class="justify-end"><h1>Soft skills</h1></div>
                 <div class="col skills" id="skills2">';
         foreach ($softskills as $index => $ball) {

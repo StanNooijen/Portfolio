@@ -7,11 +7,11 @@ use App\Models\Popups_details;
 
 class popup_block
 {
-    public function render_public_popup($popup_id, $popup_name, $position){
-        $popups = Popups::where('title', $popup_name)->first();
-        $popup_details = Popups_details::where('popup_id', $popup_id)->get();
+    public function render_public_popup($popup_id, $popup_name, $position)
+    {
+        $popups = Popups::with('details')->where('title', $popup_name)->first();
+        $popup_details = $popups->details;
         $html = '';
-
         if ($popup_id == '1') {
             $abouts = '';
             foreach ($popup_details as $popup_detail) {
@@ -56,7 +56,7 @@ class popup_block
                 </div>
             </div>
         ';
-        }else{
+        } else {
             $info = '';
             $images = '';
             foreach ($popup_details as $popup_detail) {
@@ -77,13 +77,13 @@ class popup_block
                 <div class="list gap-1 flex-column">
                     <h3>' . $popup_detail->label . '</h3>
                     <ol class="list w-75 gap-1">';
-                    foreach ($values as $value) {
-                        $number = $int . '. ';
+                foreach ($values as $value) {
+                    $number = $int . '. ';
 
-                        $info .= '<ul>' . $number . $value . '</ul>';
-                        $int++;
-                    }
-                    $info .= '</ol>
+                    $info .= '<ul>' . $number . $value . '</ul>';
+                    $int++;
+                }
+                $info .= '</ol>
                 </div>';
             }
             $html ='

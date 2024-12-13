@@ -1,73 +1,96 @@
 <?php
 
-// app/Http/Controllers/Controller.php
 namespace App\Http\Controllers;
 
 use App\Models\Blocks;
 use App\Models\Navbars;
 use App\Models\Popups;
-use App\Models\Projects;
-use App\Models\Skills;
+use Illuminate\Support\Facades\Cache;
 
 class Controller
 {
     public function getData()
     {
-        $blocks = Blocks::orderBy('position', 'asc')->get();
-        $Navbar = Navbars::where('active', '1')->get();
-        $popups = Popups::where('active', '1')->get();
+        $data = Cache::remember('starting_page_data', 60, function () {
+            return [
+                'blocks' => Blocks::select('type', 'position', 'block_id')->orderBy('position', 'asc')->get(),
+                'navbar' => Navbars::select('navbar_id', 'position')->where('active', '1')->first(),
+                'popups' => Popups::select('popup_id', 'title')->where('active', '1')->get(),
+            ];
+        });
 
-        if ($blocks->isEmpty()) {
+        if ($data['blocks']->isEmpty()) {
             return view('default');
         }
-        $htmlArray = [];
 
-        $searchNavbar = new \App\Blokken\Navbar();
-        $ActiveNavbar = $Navbar->first();
-        if(class_exists('App\\Blokken\\Navbar')) {
-            $instance = new $searchNavbar();
-            if (method_exists($instance, $ActiveNavbar->position)) {
-                $htmlArray[] = $instance->{$ActiveNavbar->position}($ActiveNavbar->navbar_id);
-            } else {
-                echo 'Method '. $ActiveNavbar->position .' does not exist in class';
-            }
-        }
+        $htmlArray = Cache::remember('starting_page_html', 60, function () use ($data) {
+            $htmlArray = [];
 
-        foreach ($blocks as $block) {
-            $block_Name = $block->type;
-            $position = $block->position;
-            $block_Name_sub = $block_Name . '_block';
-
-            $className = 'App\\Blokken\\' . $block_Name_sub;
-
-            if (class_exists($className)) {
-                $instance = new $className();
-                if (method_exists($instance, 'render_public_block')) {
-                    $htmlArray[] = $instance->render_public_block($block->block_id, $block_Name,$position);
+            // Process navbar
+            $searchNavbar = new \App\Blokken\Navbar();
+            $activeNavbar = $data['navbar'];
+            if (class_exists('App\\Blokken\\Navbar')) {
+                $instance = new $searchNavbar();
+                if (method_exists($instance, $activeNavbar->position)) {
+                    $htmlArray[] = $instance->{$activeNavbar->position}($activeNavbar->navbar_id);
                 } else {
-                    echo 'Method render_public_block does not exist in class ' . $className;
-                }
-            } else {
-                dd('Class ' . $className . ' does not exist');
-            }
-        }
-        $SearchPopup = new \App\Blokken\popup_block();
-        if (class_exists('App\\Blokken\\popup_block')) {
-            foreach ($popups as $popup) {
-                $instance = new $SearchPopup();
-                if (method_exists($instance, 'render_public_popup')) {
-                    $htmlArray[] = $instance->render_public_popup($popup->popup_id, $popup->title, $popup->position);
-                } else {
-                    echo 'Method render_public_popup does not exist in class';
+                    echo 'Method '. $activeNavbar->position .' does not exist in class';
                 }
             }
-        }
 
-        if (!empty($blocks)) {
-            $blocks = $blocks[0];
+            // Process blocks
+            foreach ($data['blocks'] as $block) {
+                $blockName = $block->type;
+                $position = $block->position;
+                $blockNameSub = $blockName . '_block';
+
+                $className = 'App\\Blokken\\' . $blockNameSub;
+
+                if (class_exists($className)) {
+                    $instance = new $className();
+                    if (method_exists($instance, 'render_public_block')) {
+                        $htmlArray[] = $instance->render_public_block($block->block_id, $blockName, $position);
+                    } else {
+                        echo 'Method render_public_block does not exist in class ' . $className;
+                    }
+                } else {
+                    dd('Class ' . $className . ' does not exist');
+                }
+            }
+
+            // Process popups
+            $searchPopup = new \App\Blokken\popup_block();
+            if (class_exists('App\\Blokken\\popup_block')) {
+                foreach ($data['popups'] as $popup) {
+                    $instance = new $searchPopup();
+                    if (method_exists($instance, 'render_public_popup')) {
+                        $htmlArray[] = $instance->render_public_popup($popup->popup_id, $popup->title, $popup->position);
+                    } else {
+                        echo 'Method render_public_popup does not exist in class';
+                    }
+                }
+            }
+
+            return $htmlArray;
+        });
+
+        if (!empty($data['blocks'])) {
+            $blocks = $data['blocks'][0];
             return view('test', ['blocks' => $blocks, 'htmlArray' => $htmlArray]);
-        }else{
+        } else {
             abort(404);
         }
+    }
+
+    public function getDataAdmin() {
+        $blocks = Blocks::orderBy('position', 'asc')->get();
+        $Navbar = Navbars::all();
+        return view('dashboard', ['blocks' => $blocks, 'Navbar' => $Navbar]);
+    }
+
+    public function block($block_id) {
+        $block = Blocks::where('block_id',$block_id)->get();
+        $popups = Popups::where('block_id',$block_id)->get();
+        return view('block', ['block' => $block, 'popups' => $popups]);
     }
 }

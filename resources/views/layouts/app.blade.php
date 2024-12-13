@@ -19,8 +19,6 @@
                 {{ $header }}
             </header>
         @endisset
-        <main>
-            {{ $slot }}
-        </main>
+        {{ $slot }}
     </body>
 </html>

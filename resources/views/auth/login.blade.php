@@ -55,7 +55,7 @@
                 @endif
             </div>
 
-            <div class="">
+            <div class="w-100 justify-center">
                 <x-primary-button>
                     {{ __('Log in') }}
                 </x-primary-button>
