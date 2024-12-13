@@ -70,32 +70,4 @@ class Controller
             abort(404);
         }
     }
-
-    public function testdata()  {
-        $hardskills = Skills::where('type', 'hard')->get();
-        $softskills = Skills::where('type', 'soft')->get();
-
-        $projecten = Projects::all();
-
-        $projectenRijEen = $projecten->filter(function ($project, $index) {
-            return $index % 2 == 0;
-        });
-
-        $projectenRijTwee = $projecten->filter(function ($project, $index) {
-            return $index % 2 != 0;
-        });
-
-        // Convert Talen to array
-        $projectenRijEen->each(function ($project) {
-            $project->Programming_languages = explode(',', $project->Programming_languages);
-        });
-
-        $projectenRijTwee->each(function ($project) {
-            $project->Programming_languages = explode(',', $project->Programming_languages);
-        });
-
-
-
-        return view('default', ['hardskills' => $hardskills, 'softskills' => $softskills , 'projectenRijEen' => $projectenRijEen, 'projectenRijTwee' => $projectenRijTwee]);
-    }
 }

@@ -1,0 +1,1819 @@
+:root {
+  --black: #0b0b0b;
+  --white: #ffffff;
+  --lightGray: #A6A6A6;
+  --darkGray: #323232;
+  --grayText: #9E9E9E;
+  --middleGray: #4F4F4F;
+  --gray: #62626280;
+  --gap: 1.2rem;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: var(--black);
+}
+body::-webkit-scrollbar-track {
+  background: var(--middleGray);
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--darkGray);
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--middleGray);
+}
+body::-webkit-scrollbar-corner {
+  background: var(--darkGray);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  background-color: var(--black);
+  scroll-behavior: smooth;
+  color: var(--white);
+}
+
+.lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  margin: auto;
+  width: 100%;
+}
+
+.line:nth-child(1) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((1 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(1)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 2s;
+}
+
+.line:nth-child(2) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((2 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(2)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 2.4s;
+}
+
+.line:nth-child(3) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((3 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(3)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 1s;
+}
+
+.line:nth-child(4) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((4 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(4)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 2.3s;
+}
+
+.line:nth-child(5) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((5 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(5)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 4.4s;
+}
+
+.line:nth-child(6) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((6 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(6)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 2.4s;
+}
+
+.line:nth-child(7) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((7 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(7)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 1s;
+}
+
+.line:nth-child(8) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((8 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(8)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 4.3s;
+}
+
+.line:nth-child(9) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((9 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(9)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 5.5s;
+}
+
+.line:nth-child(10) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((10 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(10)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 2.4s;
+}
+
+.line:nth-child(11) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((11 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(11)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 3.4s;
+}
+
+.line:nth-child(12) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((12 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(12)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 4.5s;
+}
+
+.line:nth-child(13) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((13 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(13)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 4.3s;
+}
+
+.line:nth-child(14) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((14 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(14)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 3.3s;
+}
+
+.line:nth-child(15) {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc((15 - 1) * 6.6666666667%);
+  overflow: hidden;
+}
+.line:nth-child(15)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+  animation: drop 7s 0s infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  animation-delay: 0.4s;
+}
+
+@keyframes drop {
+  0% {
+    top: -50%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  gap: 1rem;
+  height: 100dvh;
+  color: var(--white);
+}
+
+.login-block {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 35%;
+  gap: var(--gap);
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkGray);
+}
+.login-block a {
+  color: var(--white);
+  text-decoration: none;
+}
+.login-block a:hover {
+  text-decoration: underline;
+}
+.login-block input {
+  height: 1.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.nav {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  border-bottom: 1px solid var(--middleGray);
+  background-color: var(--darkGray);
+}
+.nav form {
+  display: contents;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: start;
+  width: 70%;
+  border: none;
+  border-radius: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  height: 100%;
+  width: 85dvw;
+  color: var(--white);
+  justify-content: center;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap);
+  z-index: 2;
+}
+
+.rounded {
+  border-radius: 5px;
+}
+
+.rounded-sm {
+  border-radius: 2px;
+}
+
+.rounded-lg {
+  border-radius: 8px;
+}
+
+.border-none {
+  border: none;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.col {
+  padding: 1rem;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+}
+
+h1 {
+  color: var(--white);
+  font-size: 3em;
+  margin: 0;
+}
+
+h2 {
+  color: var(--white);
+  font-size: 2em;
+  margin: 0;
+}
+
+h3 {
+  color: var(--white);
+  font-size: 1.5em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.button {
+  color: var(--white);
+  background-color: var(--darkGray);
+  padding: 0.5% 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  border-radius: 5px;
+  border: 2px solid var(--darkGray);
+}
+.button:hover {
+  background-color: var(--middleGray);
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: end;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.align-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+.align-start {
+  display: flex;
+  align-items: flex-start;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.text-start {
+  text-align: start;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.w-1 {
+  width: calc(1 * 1%);
+}
+
+.w-2 {
+  width: calc(2 * 1%);
+}
+
+.w-3 {
+  width: calc(3 * 1%);
+}
+
+.w-4 {
+  width: calc(4 * 1%);
+}
+
+.w-5 {
+  width: calc(5 * 1%);
+}
+
+.w-6 {
+  width: calc(6 * 1%);
+}
+
+.w-7 {
+  width: calc(7 * 1%);
+}
+
+.w-8 {
+  width: calc(8 * 1%);
+}
+
+.w-9 {
+  width: calc(9 * 1%);
+}
+
+.w-10 {
+  width: calc(10 * 1%);
+}
+
+.w-11 {
+  width: calc(11 * 1%);
+}
+
+.w-12 {
+  width: calc(12 * 1%);
+}
+
+.w-13 {
+  width: calc(13 * 1%);
+}
+
+.w-14 {
+  width: calc(14 * 1%);
+}
+
+.w-15 {
+  width: calc(15 * 1%);
+}
+
+.w-16 {
+  width: calc(16 * 1%);
+}
+
+.w-17 {
+  width: calc(17 * 1%);
+}
+
+.w-18 {
+  width: calc(18 * 1%);
+}
+
+.w-19 {
+  width: calc(19 * 1%);
+}
+
+.w-20 {
+  width: calc(20 * 1%);
+}
+
+.w-21 {
+  width: calc(21 * 1%);
+}
+
+.w-22 {
+  width: calc(22 * 1%);
+}
+
+.w-23 {
+  width: calc(23 * 1%);
+}
+
+.w-24 {
+  width: calc(24 * 1%);
+}
+
+.w-25 {
+  width: calc(25 * 1%);
+}
+
+.w-26 {
+  width: calc(26 * 1%);
+}
+
+.w-27 {
+  width: calc(27 * 1%);
+}
+
+.w-28 {
+  width: calc(28 * 1%);
+}
+
+.w-29 {
+  width: calc(29 * 1%);
+}
+
+.w-30 {
+  width: calc(30 * 1%);
+}
+
+.w-31 {
+  width: calc(31 * 1%);
+}
+
+.w-32 {
+  width: calc(32 * 1%);
+}
+
+.w-33 {
+  width: calc(33 * 1%);
+}
+
+.w-34 {
+  width: calc(34 * 1%);
+}
+
+.w-35 {
+  width: calc(35 * 1%);
+}
+
+.w-36 {
+  width: calc(36 * 1%);
+}
+
+.w-37 {
+  width: calc(37 * 1%);
+}
+
+.w-38 {
+  width: calc(38 * 1%);
+}
+
+.w-39 {
+  width: calc(39 * 1%);
+}
+
+.w-40 {
+  width: calc(40 * 1%);
+}
+
+.w-41 {
+  width: calc(41 * 1%);
+}
+
+.w-42 {
+  width: calc(42 * 1%);
+}
+
+.w-43 {
+  width: calc(43 * 1%);
+}
+
+.w-44 {
+  width: calc(44 * 1%);
+}
+
+.w-45 {
+  width: calc(45 * 1%);
+}
+
+.w-46 {
+  width: calc(46 * 1%);
+}
+
+.w-47 {
+  width: calc(47 * 1%);
+}
+
+.w-48 {
+  width: calc(48 * 1%);
+}
+
+.w-49 {
+  width: calc(49 * 1%);
+}
+
+.w-50 {
+  width: calc(50 * 1%);
+}
+
+.w-51 {
+  width: calc(51 * 1%);
+}
+
+.w-52 {
+  width: calc(52 * 1%);
+}
+
+.w-53 {
+  width: calc(53 * 1%);
+}
+
+.w-54 {
+  width: calc(54 * 1%);
+}
+
+.w-55 {
+  width: calc(55 * 1%);
+}
+
+.w-56 {
+  width: calc(56 * 1%);
+}
+
+.w-57 {
+  width: calc(57 * 1%);
+}
+
+.w-58 {
+  width: calc(58 * 1%);
+}
+
+.w-59 {
+  width: calc(59 * 1%);
+}
+
+.w-60 {
+  width: calc(60 * 1%);
+}
+
+.w-61 {
+  width: calc(61 * 1%);
+}
+
+.w-62 {
+  width: calc(62 * 1%);
+}
+
+.w-63 {
+  width: calc(63 * 1%);
+}
+
+.w-64 {
+  width: calc(64 * 1%);
+}
+
+.w-65 {
+  width: calc(65 * 1%);
+}
+
+.w-66 {
+  width: calc(66 * 1%);
+}
+
+.w-67 {
+  width: calc(67 * 1%);
+}
+
+.w-68 {
+  width: calc(68 * 1%);
+}
+
+.w-69 {
+  width: calc(69 * 1%);
+}
+
+.w-70 {
+  width: calc(70 * 1%);
+}
+
+.w-71 {
+  width: calc(71 * 1%);
+}
+
+.w-72 {
+  width: calc(72 * 1%);
+}
+
+.w-73 {
+  width: calc(73 * 1%);
+}
+
+.w-74 {
+  width: calc(74 * 1%);
+}
+
+.w-75 {
+  width: calc(75 * 1%);
+}
+
+.w-76 {
+  width: calc(76 * 1%);
+}
+
+.w-77 {
+  width: calc(77 * 1%);
+}
+
+.w-78 {
+  width: calc(78 * 1%);
+}
+
+.w-79 {
+  width: calc(79 * 1%);
+}
+
+.w-80 {
+  width: calc(80 * 1%);
+}
+
+.w-81 {
+  width: calc(81 * 1%);
+}
+
+.w-82 {
+  width: calc(82 * 1%);
+}
+
+.w-83 {
+  width: calc(83 * 1%);
+}
+
+.w-84 {
+  width: calc(84 * 1%);
+}
+
+.w-85 {
+  width: calc(85 * 1%);
+}
+
+.w-86 {
+  width: calc(86 * 1%);
+}
+
+.w-87 {
+  width: calc(87 * 1%);
+}
+
+.w-88 {
+  width: calc(88 * 1%);
+}
+
+.w-89 {
+  width: calc(89 * 1%);
+}
+
+.w-90 {
+  width: calc(90 * 1%);
+}
+
+.w-91 {
+  width: calc(91 * 1%);
+}
+
+.w-92 {
+  width: calc(92 * 1%);
+}
+
+.w-93 {
+  width: calc(93 * 1%);
+}
+
+.w-94 {
+  width: calc(94 * 1%);
+}
+
+.w-95 {
+  width: calc(95 * 1%);
+}
+
+.w-96 {
+  width: calc(96 * 1%);
+}
+
+.w-97 {
+  width: calc(97 * 1%);
+}
+
+.w-98 {
+  width: calc(98 * 1%);
+}
+
+.w-99 {
+  width: calc(99 * 1%);
+}
+
+.w-100 {
+  width: calc(100 * 1%);
+}
+
+.h-1 {
+  height: calc(1 * 1%);
+}
+
+.h-2 {
+  height: calc(2 * 1%);
+}
+
+.h-3 {
+  height: calc(3 * 1%);
+}
+
+.h-4 {
+  height: calc(4 * 1%);
+}
+
+.h-5 {
+  height: calc(5 * 1%);
+}
+
+.h-6 {
+  height: calc(6 * 1%);
+}
+
+.h-7 {
+  height: calc(7 * 1%);
+}
+
+.h-8 {
+  height: calc(8 * 1%);
+}
+
+.h-9 {
+  height: calc(9 * 1%);
+}
+
+.h-10 {
+  height: calc(10 * 1%);
+}
+
+.h-11 {
+  height: calc(11 * 1%);
+}
+
+.h-12 {
+  height: calc(12 * 1%);
+}
+
+.h-13 {
+  height: calc(13 * 1%);
+}
+
+.h-14 {
+  height: calc(14 * 1%);
+}
+
+.h-15 {
+  height: calc(15 * 1%);
+}
+
+.h-16 {
+  height: calc(16 * 1%);
+}
+
+.h-17 {
+  height: calc(17 * 1%);
+}
+
+.h-18 {
+  height: calc(18 * 1%);
+}
+
+.h-19 {
+  height: calc(19 * 1%);
+}
+
+.h-20 {
+  height: calc(20 * 1%);
+}
+
+.h-21 {
+  height: calc(21 * 1%);
+}
+
+.h-22 {
+  height: calc(22 * 1%);
+}
+
+.h-23 {
+  height: calc(23 * 1%);
+}
+
+.h-24 {
+  height: calc(24 * 1%);
+}
+
+.h-25 {
+  height: calc(25 * 1%);
+}
+
+.h-26 {
+  height: calc(26 * 1%);
+}
+
+.h-27 {
+  height: calc(27 * 1%);
+}
+
+.h-28 {
+  height: calc(28 * 1%);
+}
+
+.h-29 {
+  height: calc(29 * 1%);
+}
+
+.h-30 {
+  height: calc(30 * 1%);
+}
+
+.h-31 {
+  height: calc(31 * 1%);
+}
+
+.h-32 {
+  height: calc(32 * 1%);
+}
+
+.h-33 {
+  height: calc(33 * 1%);
+}
+
+.h-34 {
+  height: calc(34 * 1%);
+}
+
+.h-35 {
+  height: calc(35 * 1%);
+}
+
+.h-36 {
+  height: calc(36 * 1%);
+}
+
+.h-37 {
+  height: calc(37 * 1%);
+}
+
+.h-38 {
+  height: calc(38 * 1%);
+}
+
+.h-39 {
+  height: calc(39 * 1%);
+}
+
+.h-40 {
+  height: calc(40 * 1%);
+}
+
+.h-41 {
+  height: calc(41 * 1%);
+}
+
+.h-42 {
+  height: calc(42 * 1%);
+}
+
+.h-43 {
+  height: calc(43 * 1%);
+}
+
+.h-44 {
+  height: calc(44 * 1%);
+}
+
+.h-45 {
+  height: calc(45 * 1%);
+}
+
+.h-46 {
+  height: calc(46 * 1%);
+}
+
+.h-47 {
+  height: calc(47 * 1%);
+}
+
+.h-48 {
+  height: calc(48 * 1%);
+}
+
+.h-49 {
+  height: calc(49 * 1%);
+}
+
+.h-50 {
+  height: calc(50 * 1%);
+}
+
+.h-51 {
+  height: calc(51 * 1%);
+}
+
+.h-52 {
+  height: calc(52 * 1%);
+}
+
+.h-53 {
+  height: calc(53 * 1%);
+}
+
+.h-54 {
+  height: calc(54 * 1%);
+}
+
+.h-55 {
+  height: calc(55 * 1%);
+}
+
+.h-56 {
+  height: calc(56 * 1%);
+}
+
+.h-57 {
+  height: calc(57 * 1%);
+}
+
+.h-58 {
+  height: calc(58 * 1%);
+}
+
+.h-59 {
+  height: calc(59 * 1%);
+}
+
+.h-60 {
+  height: calc(60 * 1%);
+}
+
+.h-61 {
+  height: calc(61 * 1%);
+}
+
+.h-62 {
+  height: calc(62 * 1%);
+}
+
+.h-63 {
+  height: calc(63 * 1%);
+}
+
+.h-64 {
+  height: calc(64 * 1%);
+}
+
+.h-65 {
+  height: calc(65 * 1%);
+}
+
+.h-66 {
+  height: calc(66 * 1%);
+}
+
+.h-67 {
+  height: calc(67 * 1%);
+}
+
+.h-68 {
+  height: calc(68 * 1%);
+}
+
+.h-69 {
+  height: calc(69 * 1%);
+}
+
+.h-70 {
+  height: calc(70 * 1%);
+}
+
+.h-71 {
+  height: calc(71 * 1%);
+}
+
+.h-72 {
+  height: calc(72 * 1%);
+}
+
+.h-73 {
+  height: calc(73 * 1%);
+}
+
+.h-74 {
+  height: calc(74 * 1%);
+}
+
+.h-75 {
+  height: calc(75 * 1%);
+}
+
+.h-76 {
+  height: calc(76 * 1%);
+}
+
+.h-77 {
+  height: calc(77 * 1%);
+}
+
+.h-78 {
+  height: calc(78 * 1%);
+}
+
+.h-79 {
+  height: calc(79 * 1%);
+}
+
+.h-80 {
+  height: calc(80 * 1%);
+}
+
+.h-81 {
+  height: calc(81 * 1%);
+}
+
+.h-82 {
+  height: calc(82 * 1%);
+}
+
+.h-83 {
+  height: calc(83 * 1%);
+}
+
+.h-84 {
+  height: calc(84 * 1%);
+}
+
+.h-85 {
+  height: calc(85 * 1%);
+}
+
+.h-86 {
+  height: calc(86 * 1%);
+}
+
+.h-87 {
+  height: calc(87 * 1%);
+}
+
+.h-88 {
+  height: calc(88 * 1%);
+}
+
+.h-89 {
+  height: calc(89 * 1%);
+}
+
+.h-90 {
+  height: calc(90 * 1%);
+}
+
+.h-91 {
+  height: calc(91 * 1%);
+}
+
+.h-92 {
+  height: calc(92 * 1%);
+}
+
+.h-93 {
+  height: calc(93 * 1%);
+}
+
+.h-94 {
+  height: calc(94 * 1%);
+}
+
+.h-95 {
+  height: calc(95 * 1%);
+}
+
+.h-96 {
+  height: calc(96 * 1%);
+}
+
+.h-97 {
+  height: calc(97 * 1%);
+}
+
+.h-98 {
+  height: calc(98 * 1%);
+}
+
+.h-99 {
+  height: calc(99 * 1%);
+}
+
+.h-100 {
+  height: calc(100 * 1%);
+}
+
+.gap-1 {
+  gap: calc(1 * var(--gap));
+}
+
+.gap-2 {
+  gap: calc(2 * var(--gap));
+}
+
+.gap-3 {
+  gap: calc(3 * var(--gap));
+}
+
+.gap-4 {
+  gap: calc(4 * var(--gap));
+}
+
+.gap-5 {
+  gap: calc(5 * var(--gap));
+}
+
+.p-1 {
+  padding: calc(1 * 1%);
+}
+
+.p-2 {
+  padding: calc(2 * 1%);
+}
+
+.p-3 {
+  padding: calc(3 * 1%);
+}
+
+.p-4 {
+  padding: calc(4 * 1%);
+}
+
+.p-5 {
+  padding: calc(5 * 1%);
+}
+
+.p-6 {
+  padding: calc(6 * 1%);
+}
+
+.p-7 {
+  padding: calc(7 * 1%);
+}
+
+.p-8 {
+  padding: calc(8 * 1%);
+}
+
+.p-9 {
+  padding: calc(9 * 1%);
+}
+
+.p-10 {
+  padding: calc(10 * 1%);
+}
+
+.p-11 {
+  padding: calc(11 * 1%);
+}
+
+.p-12 {
+  padding: calc(12 * 1%);
+}
+
+.p-13 {
+  padding: calc(13 * 1%);
+}
+
+.p-14 {
+  padding: calc(14 * 1%);
+}
+
+.p-15 {
+  padding: calc(15 * 1%);
+}
+
+.p-16 {
+  padding: calc(16 * 1%);
+}
+
+.p-17 {
+  padding: calc(17 * 1%);
+}
+
+.p-18 {
+  padding: calc(18 * 1%);
+}
+
+.p-19 {
+  padding: calc(19 * 1%);
+}
+
+.p-20 {
+  padding: calc(20 * 1%);
+}
+
+.p-21 {
+  padding: calc(21 * 1%);
+}
+
+.p-22 {
+  padding: calc(22 * 1%);
+}
+
+.p-23 {
+  padding: calc(23 * 1%);
+}
+
+.p-24 {
+  padding: calc(24 * 1%);
+}
+
+.p-25 {
+  padding: calc(25 * 1%);
+}
+
+.p-26 {
+  padding: calc(26 * 1%);
+}
+
+.p-27 {
+  padding: calc(27 * 1%);
+}
+
+.p-28 {
+  padding: calc(28 * 1%);
+}
+
+.p-29 {
+  padding: calc(29 * 1%);
+}
+
+.p-30 {
+  padding: calc(30 * 1%);
+}
+
+.p-31 {
+  padding: calc(31 * 1%);
+}
+
+.p-32 {
+  padding: calc(32 * 1%);
+}
+
+.p-33 {
+  padding: calc(33 * 1%);
+}
+
+.p-34 {
+  padding: calc(34 * 1%);
+}
+
+.p-35 {
+  padding: calc(35 * 1%);
+}
+
+.p-36 {
+  padding: calc(36 * 1%);
+}
+
+.p-37 {
+  padding: calc(37 * 1%);
+}
+
+.p-38 {
+  padding: calc(38 * 1%);
+}
+
+.p-39 {
+  padding: calc(39 * 1%);
+}
+
+.p-40 {
+  padding: calc(40 * 1%);
+}
+
+.p-41 {
+  padding: calc(41 * 1%);
+}
+
+.p-42 {
+  padding: calc(42 * 1%);
+}
+
+.p-43 {
+  padding: calc(43 * 1%);
+}
+
+.p-44 {
+  padding: calc(44 * 1%);
+}
+
+.p-45 {
+  padding: calc(45 * 1%);
+}
+
+.p-46 {
+  padding: calc(46 * 1%);
+}
+
+.p-47 {
+  padding: calc(47 * 1%);
+}
+
+.p-48 {
+  padding: calc(48 * 1%);
+}
+
+.p-49 {
+  padding: calc(49 * 1%);
+}
+
+.p-50 {
+  padding: calc(50 * 1%);
+}
+
+.p-51 {
+  padding: calc(51 * 1%);
+}
+
+.p-52 {
+  padding: calc(52 * 1%);
+}
+
+.p-53 {
+  padding: calc(53 * 1%);
+}
+
+.p-54 {
+  padding: calc(54 * 1%);
+}
+
+.p-55 {
+  padding: calc(55 * 1%);
+}
+
+.p-56 {
+  padding: calc(56 * 1%);
+}
+
+.p-57 {
+  padding: calc(57 * 1%);
+}
+
+.p-58 {
+  padding: calc(58 * 1%);
+}
+
+.p-59 {
+  padding: calc(59 * 1%);
+}
+
+.p-60 {
+  padding: calc(60 * 1%);
+}
+
+.p-61 {
+  padding: calc(61 * 1%);
+}
+
+.p-62 {
+  padding: calc(62 * 1%);
+}
+
+.p-63 {
+  padding: calc(63 * 1%);
+}
+
+.p-64 {
+  padding: calc(64 * 1%);
+}
+
+.p-65 {
+  padding: calc(65 * 1%);
+}
+
+.p-66 {
+  padding: calc(66 * 1%);
+}
+
+.p-67 {
+  padding: calc(67 * 1%);
+}
+
+.p-68 {
+  padding: calc(68 * 1%);
+}
+
+.p-69 {
+  padding: calc(69 * 1%);
+}
+
+.p-70 {
+  padding: calc(70 * 1%);
+}
+
+.p-71 {
+  padding: calc(71 * 1%);
+}
+
+.p-72 {
+  padding: calc(72 * 1%);
+}
+
+.p-73 {
+  padding: calc(73 * 1%);
+}
+
+.p-74 {
+  padding: calc(74 * 1%);
+}
+
+.p-75 {
+  padding: calc(75 * 1%);
+}
+
+.p-76 {
+  padding: calc(76 * 1%);
+}
+
+.p-77 {
+  padding: calc(77 * 1%);
+}
+
+.p-78 {
+  padding: calc(78 * 1%);
+}
+
+.p-79 {
+  padding: calc(79 * 1%);
+}
+
+.p-80 {
+  padding: calc(80 * 1%);
+}
+
+.p-81 {
+  padding: calc(81 * 1%);
+}
+
+.p-82 {
+  padding: calc(82 * 1%);
+}
+
+.p-83 {
+  padding: calc(83 * 1%);
+}
+
+.p-84 {
+  padding: calc(84 * 1%);
+}
+
+.p-85 {
+  padding: calc(85 * 1%);
+}
+
+.p-86 {
+  padding: calc(86 * 1%);
+}
+
+.p-87 {
+  padding: calc(87 * 1%);
+}
+
+.p-88 {
+  padding: calc(88 * 1%);
+}
+
+.p-89 {
+  padding: calc(89 * 1%);
+}
+
+.p-90 {
+  padding: calc(90 * 1%);
+}
+
+.p-91 {
+  padding: calc(91 * 1%);
+}
+
+.p-92 {
+  padding: calc(92 * 1%);
+}
+
+.p-93 {
+  padding: calc(93 * 1%);
+}
+
+.p-94 {
+  padding: calc(94 * 1%);
+}
+
+.p-95 {
+  padding: calc(95 * 1%);
+}
+
+.p-96 {
+  padding: calc(96 * 1%);
+}
+
+.p-97 {
+  padding: calc(97 * 1%);
+}
+
+.p-98 {
+  padding: calc(98 * 1%);
+}
+
+.p-99 {
+  padding: calc(99 * 1%);
+}
+
+.p-100 {
+  padding: calc(100 * 1%);
+}
+
+/*# sourceMappingURL=Main.css.map */

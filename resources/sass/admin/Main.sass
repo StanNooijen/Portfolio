@@ -1,0 +1,303 @@
+:root
+    --black: #0b0b0b
+    --white: #ffffff
+    --lightGray: #A6A6A6
+    --darkGray: #323232
+    --grayText: #9E9E9E
+    --middleGray: #4F4F4F
+    --gray: #62626280
+    --gap: 1.2rem
+
+
+body::-webkit-scrollbar
+    width: 10px
+    background-color: var(--black)
+    &-track
+        background: var(--middleGray)
+    &-thumb
+        background: var(--darkGray)
+        border-radius: 10px
+        &:hover
+            background: var(--middleGray)
+    &-corner
+        background: var(--darkGray)
+
+body
+    display: flex
+    flex-direction: column
+    font-family: "Poppins" , sans-serif
+    font-size: 16px
+    font-weight: 400
+    margin: 0
+    padding: 0
+    background-color: var(--black)
+    scroll-behavior: smooth
+    color: var(--white)
+
+.lines
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    height: 100%
+    margin: auto
+    width: 100%
+
+@function random-delay($min, $max)
+    $random: random($max - $min + 1) + $min - 1
+    $random-small: random($max - $min + 1) + $min - 1
+    @return $random * 1s + $random-small * 0.1s
+
+@for $i from 1 through 15 // Adjust the upper limit as needed
+    .line:nth-child(#{$i})
+        position: absolute
+        width: 1px
+        height: 100%
+        top: 0
+        left: calc((#{$i} - 1) * (100% / 15)) // Adjust spacing based on the number of lines
+        overflow: hidden
+
+        &::after
+            content: ''
+            display: block
+            position: absolute
+            height: 15vh
+            width: 100%
+            top: -50%
+            left: 0
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%)
+            animation: drop 7s 0s infinite
+            animation-fill-mode: forwards
+            animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97)
+            animation-delay: random-delay(0, 5) // Random delay between 0 and 5 seconds
+
+@keyframes drop
+    0%
+        top: -50%
+    100%
+        top: 110%
+
+.login
+    display: flex
+    flex-direction: column
+    position: absolute
+    z-index: 1
+    width: 100%
+    gap: 1rem
+    height: 100dvh
+    color: var(--white)
+
+.login-block
+    display: flex
+    flex-direction: column
+    height: 50%
+    width: 35%
+    gap: var(--gap)
+    border-radius: 5px
+    justify-content: center
+    align-items: center
+    background-color: var(--darkGray)
+    a
+        color: var(--white)
+        text-decoration: none
+        &:hover
+            text-decoration: underline
+    input
+        height: 1.5rem
+        font-family: "Poppins", sans-serif
+
+.nav
+    display: flex
+    justify-content: end
+    width: 100%
+    border-bottom: 1px solid var(--middleGray)
+    background-color: var(--darkGray)
+    form
+        display: contents
+
+.input
+    display: flex
+    flex-direction: column
+    justify-content: center
+    text-align: start
+    width: 70%
+    border: none
+    border-radius: 5px
+
+.container
+    display: flex
+    flex-direction: column
+    gap: 1rem
+    padding: 1rem
+    height: 100%
+    width: 85dvw
+    color: var(--white)
+    justify-content: center
+    position: relative
+
+
+.row
+    display: flex
+    flex-direction: row
+    align-items: center
+    gap: var(--gap)
+    z-index: 2
+
+.rounded
+    border-radius: 5px
+
+.rounded-sm
+    border-radius: 2px
+
+.rounded-lg
+    border-radius: 8px
+
+.border-none
+    border: none
+
+.bold
+    font-weight: 800
+
+.col
+    padding: 1rem
+    display: grid
+    gap: var(--gap)
+    grid-template-columns: 1fr
+
+h1
+    color: var(--white)
+    font-size: 3em
+    margin: 0
+
+h2
+    color: var(--white)
+    font-size: 2em
+    margin: 0
+
+h3
+    color: var(--white)
+    font-size: 1.5em
+    margin: 0
+
+p
+    margin: 0
+
+
+//.line-down
+//    position: absolute
+//    top: 0
+//    left: 47dvw
+//    width: 2px
+//    height: 100%
+//    background-color: var(--lightGray)
+//    z-index: -1
+
+//.title
+//    margin-left: 0.5rem
+//    font-size: 8em
+//    line-height: 0.90em
+//    color: var(--white)
+//    width: 80%
+//    margin-bottom: 0
+
+//
+//.subtitle
+//    font-size: 3.5em
+//    position: relative
+
+.button
+    color: var(--white)
+    background-color: var(--darkGray)
+    padding: 0.5% 1%
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 1em
+    cursor: pointer
+    font-family: "Poppins", sans-serif
+    border-radius: 5px
+    border: 2px solid var(--darkGray)
+    &:hover
+        background-color: var(--middleGray)
+
+
+
+//.subText
+//    color: var(--grayText)
+//
+//.info
+//    display: flex
+//    justify-content: end
+//    text-align: end
+//
+.space-between
+    display: flex
+    justify-content: space-between
+//
+//.space-evenly
+//    display: flex
+//    justify-content: space-evenly
+//
+.justify-end
+    display: flex
+    justify-content: end
+
+//.justify-start
+//    display: flex
+//    justify-content: flex-start
+
+.justify-center
+    display: flex
+    justify-content: center
+
+.align-center
+    display: flex
+    align-items: center
+
+.align-end
+    display: flex
+    align-items: flex-end
+
+.align-start
+    display: flex
+    align-items: flex-start
+
+.text-center
+    text-align: center
+
+.text-end
+    text-align: end
+
+.text-start
+    text-align: start
+//
+//.w-auto
+//    width: auto
+//
+//.h-webkit-fill-available
+//    height: -webkit-fill-available
+//
+.flex-row
+    display: flex
+    flex-direction: row
+
+.flex-column
+    display: flex
+    flex-direction: column
+
+@for $i from 1 through 100
+    .w-#{$i}
+        width: calc(#{$i} * 1%)
+
+@for $i from 1 through 100
+    .h-#{$i}
+        height: calc(#{$i} * 1%)
+
+@for $i from 1 through 5
+    .gap-#{$i}
+        gap: calc(#{$i} * var(--gap))
+
+@for $i from 1 through 100
+    .p-#{$i}
+        padding: calc(#{$i} * 1%)
+

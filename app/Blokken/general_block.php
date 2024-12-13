@@ -32,7 +32,7 @@ class general_block
             <div class="container " id="about_me">
                 <div class="line-down"></div>
                     <div class="row">
-                        <div class="shadow-bottom">
+                        <div>
                             <img src="' . $imageUrl . '" alt="" style="width: 90dvh">
                         </div>
                         <div class="intro col">

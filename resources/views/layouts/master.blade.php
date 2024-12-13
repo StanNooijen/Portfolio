@@ -10,11 +10,10 @@
         rel="stylesheet">
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/js/app.js', 'resources/sass/Main.sass', 'resources/sass/About.sass', 'resources/sass/Skills.sass', 'resources/sass/Entries.sass', 'resources/sass/Projecten.sass'])
+        @vite(['resources/js/app.js', 'resources/sass/public/Main.sass', 'resources/sass/public/About.sass', 'resources/sass/public/Skills.sass', 'resources/sass/public/Entries.sass'])
     @else
 
     @endif
 </head>
-
     @yield('content')
 </html>
