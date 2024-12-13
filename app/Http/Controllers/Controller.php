@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blocks;
 use App\Models\Navbars;
+use App\Models\Popups;
 use App\Models\Projects;
 use App\Models\Skills;
 
@@ -14,6 +15,7 @@ class Controller
     {
         $blocks = Blocks::orderBy('position', 'asc')->get();
         $Navbar = Navbars::where('active', '1')->get();
+        $popups = Popups::where('active', '1')->get();
 
         if ($blocks->isEmpty()) {
             return view('default');
@@ -49,6 +51,17 @@ class Controller
                 dd('Class ' . $className . ' does not exist');
             }
         }
+        $SearchPopup = new \App\Blokken\popup_block();
+        if (class_exists('App\\Blokken\\popup_block')) {
+            foreach ($popups as $popup) {
+                $instance = new $SearchPopup();
+                if (method_exists($instance, 'render_public_popup')) {
+                    $htmlArray[] = $instance->render_public_popup($popup->popup_id, $popup->title, $popup->position);
+                } else {
+                    echo 'Method render_public_popup does not exist in class';
+                }
+            }
+        }
 
         if (!empty($blocks)) {
             $blocks = $blocks[0];
@@ -56,33 +69,5 @@ class Controller
         }else{
             abort(404);
         }
-    }
-
-    public function testdata()  {
-        $hardskills = Skills::where('type', 'hard')->get();
-        $softskills = Skills::where('type', 'soft')->get();
-
-        $projecten = Projects::all();
-
-        $projectenRijEen = $projecten->filter(function ($project, $index) {
-            return $index % 2 == 0;
-        });
-
-        $projectenRijTwee = $projecten->filter(function ($project, $index) {
-            return $index % 2 != 0;
-        });
-
-        // Convert Talen to array
-        $projectenRijEen->each(function ($project) {
-            $project->Programming_languages = explode(',', $project->Programming_languages);
-        });
-
-        $projectenRijTwee->each(function ($project) {
-            $project->Programming_languages = explode(',', $project->Programming_languages);
-        });
-
-
-
-        return view('default', ['hardskills' => $hardskills, 'softskills' => $softskills , 'projectenRijEen' => $projectenRijEen, 'projectenRijTwee' => $projectenRijTwee]);
     }
 }

@@ -2,64 +2,84 @@
 
 namespace App\Blokken;
 
-
+use App\Models\Blocks;
 use App\Models\Entries;
-
 
 class entries_block
 {
     public function render_public_block($block_id, $block_name, $position)
     {
+        $block_content = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
         $careers = Entries::where('type', 'career')->get();
         $education = Entries::where('type', 'education')->get();
 
+        $html = '';
         $html_career = '';
         foreach ($careers as $career) {
+            $logo = null;
+            if($career->logo == null) {
+                $logo = asset('images/Rectangle.png');
+            }else {
+                $logo = $career->logo;
+            }
             if ($career->date == null) {
                 $career->date = 'Heden';
             }
-            $html_career .= '<div class="col">
-                    <div class="Carriere">
-                        <div class="space-between">
-                            <h3>' . $career->date . '</h3>
-                            <h2>' . $career->title . '</h2>
+            $html_career .= '
+                    <div class="col card">
+                        <div class="flex-row gap-1">
+                            <img src="' . $logo . '" alt="'. $career->title .'">
+                            <div class="w-100">
+                                <div class="space-between">
+                                    <h2>' . $career->title . '</h2>
+                                    <h3>' . $career->date . '</h3>
+                                </div>
+                                <p class="place">' . $career->place . '</p>
+                            </div>
+
                         </div>
-                        <p class="flex justify-end m-0 subText">' . $career->place . '</p>
                         <div class="info">
-                            <p class="flex justify-end">
+                            <p class="">
                                 ' . $career->text . '
                             </p>
                         </div>
-                    </div>
-                </div>';
+                    </div>';
         }
 
         $html_education = '';
         foreach ($education as $edu) {
+            $logo = null;
+            if($edu->logo == null) {
+                $logo = asset('images/Rectangle.png');
+            }else {
+                $logo = $edu->logo;
+            }
             if ($edu->date == null) {
                 $edu->date = 'Heden';
             }
-            $html_education .= '<div class="col">
-                    <div class="Opleiding">
-                        <div class="space-between">
-                            <h2>' . $edu->title . '</h2>
-                            <h3>' . $edu->date . '</h3>
+            $html_education .= '
+                    <div class="col card">
+                        <div class="flex-row gap-1">
+                            <img src="' . $logo . '" alt="'. $edu->title .'">
+                            <div class="w-100">
+                                <div class="space-between">
+                                    <h2>' . $edu->title . '</h2>
+                                    <h3>' . $edu->date . '</h3>
+                                </div>
+                                <p class="place">' . $edu->place . '</p>
+                            </div>
                         </div>
-                        <p class="flex m-0 subText">' . $edu->place . '</p>
                         <div class="">
-                            <p class="flex width-80 ">
+                            <p class="">
                                 ' . $edu->text . '
                             </p>
                         </div>
-                    </div>
-                </div>';
+                    </div>';
         }
 
         $career_count = $careers->count();
         $education_count = $education->count();
         $max_count = max($career_count, $education_count);
-
-        $container_height = ($max_count * 275) + 50; // Adjust the multiplier and offset as needed
 
         $circles_html = '';
         for ($i = 0; $i < $max_count; $i++) {
@@ -67,15 +87,20 @@ class entries_block
             $circles_html .= '<div class="circle" style="top: ' . $circle_position . 'px;"></div>';
         }
 
-        $html = '<div class="container align-end justify-start" style="height: ' . $container_height . 'px;" id="ervaring">
-                <div class="row w-91 gap-10 h-100">
-                    <div class="col h-100">
+        $html .= '
+            <div class="container" id="carriere">
+
+                <div class="row align-start">
+                    <div class="vertical-line"></div>
+                    <div class="col align-center career">
+                        <h1>Carrière</h1>
                         '. $html_career .'
                     </div>
                     <div class="line-down">
                         '. $circles_html .'
                     </div>
-                    <div class="col h-100" style="gap: 50px">
+                    <div class="col align-center education">
+                        <h1>Opleiding</h1>
                         '. $html_education .'
                     </div>
                 </div>

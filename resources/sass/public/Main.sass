@@ -155,7 +155,7 @@ body
     flex-direction: column
     gap: 1rem
     padding: 1rem
-    height: 100dvh
+    height: 100%
     width: 85dvw
     color: var(--white)
     justify-content: center
@@ -210,11 +210,10 @@ p
     top: 0
     left: 47dvw
     width: 2px
-    height: 105vh
+    height: 100%
     background-color: var(--lightGray)
-    transition: all 1s
     z-index: -1
-//
+
 //.intro
 //    display: flex
 //    flex-direction: column
@@ -224,8 +223,9 @@ p
 //    justify-content: center
 //    position: relative
 //    left: 20%
-//
+
 .title
+    margin-left: 0.5rem
     font-size: 8em
     line-height: 0.90em
     color: var(--white)
@@ -233,7 +233,7 @@ p
     margin-bottom: 0
 
 .plaatsNaam
-    margin-left: 5dvw
+    margin-left: 5.5dvw
 //
 //.subtitle
 //    font-size: 3.5em
@@ -292,7 +292,6 @@ p
     cursor: pointer
     z-index: -1
     width: 100%
-
     &::before
         content: ''
         position: absolute
@@ -339,26 +338,26 @@ p
 //    display: flex
 //    justify-content: center
 //
-//.align-center
-//    display: flex
-//    align-items: center
-//
+.align-center
+    display: flex
+    align-items: center
+
 .align-end
     display: flex
     align-items: flex-end
-//
-//.align-start
-//    display: flex
-//    align-items: flex-start
-//
-//.text-center
-//    text-align: center
-//
-//.text-end
-//    text-align: end
-//
-//.text-start
-//    text-align: start
+
+.align-start
+    display: flex
+    align-items: flex-start
+
+.text-center
+    text-align: center
+
+.text-end
+    text-align: end
+
+.text-start
+    text-align: start
 //
 //.w-auto
 //    width: auto
@@ -366,60 +365,84 @@ p
 //.h-webkit-fill-available
 //    height: -webkit-fill-available
 //
-//.flex-row
-//    display: flex
-//    flex-direction: row
-//
-//.flex-column
-//    display: flex
-//    flex-direction: column
-//
-//.meerOverMij
-//    position: fixed
-//    top: 7.5%
-//    opacity: 0
-//    background-color: var(--black)
-//    border: 4px solid var(--white)
-//    width: 90vw
-//    height: 85vh
-//    transition: all 0.5s
-//    z-index: 99
-//    transform: translateX(110%)
-//    &.active
-//        opacity: 1
-//        transform: translateX(0)
-//        transition: all 0.5s
-//
-//.list
-//    color: var(--white)
-//    display: flex
-//    width: 100%
-//    margin: 0
-//
-//.kruis
-//    position: relative
-//    width: 50px
-//    height: 50px
-//    cursor: pointer
-//    &:before, &:after
-//        content: ''
-//        position: absolute
-//        width: 100%
-//        height: 3px
-//        background-color: var(--white)
-//        top: 50%
-//        left: 0
-//        transform: translateY(-50%)
-//    &:before
-//        transform: rotate(45deg)
-//    &:after
-//        transform: rotate(-45deg)
-//
-//.gap-inherit
-//    gap: inherit
-//
-//.gap
-//    gap: 1.2rem
+.flex-row
+    display: flex
+    flex-direction: row
+
+.flex-column
+    display: flex
+    flex-direction: column
+
+.popup
+    position: fixed
+    top: 0
+    opacity: 0
+    background-color: var(--black)
+    width: 100vw
+    height: 100vh
+    transition: all 0.5s
+    z-index: 99
+    transform: translateX(110dvw)
+    display: flex
+    align-items: center
+    justify-content: center
+    &.active
+        opacity: 1
+        transform: translateX(0)
+        transition: all 0.5s
+    .list
+        color: var(--white)
+        display: flex
+        width: 100%
+        margin: 0
+        padding: 0
+        ul
+            padding: 0
+        h3
+            position: relative
+            &:after
+                content: ''
+                left: 0
+                position: absolute
+                width: 100%
+                bottom: -25%
+                height: 2px
+                background-color: var(--gray)
+                z-index: -1
+    .kruis
+        position: relative
+        width: 50px
+        height: 50px
+        cursor: pointer
+        &:before, &:after
+            content: ''
+            position: absolute
+            width: 100%
+            height: 3px
+            background-color: var(--white)
+            top: 50%
+            left: 0
+            transform: translateY(-50%)
+        &:before
+            transform: rotate(45deg)
+        &:after
+            transform: rotate(-45deg)
+
+.contact-about
+    border-top: 2px solid var(--lightGray)
+    padding-top: 1rem
+
+@for $i from 1 through 100
+    .w-#{$i}
+        width: calc(#{$i} * 1%)
+
+@for $i from 1 through 100
+    .h-#{$i}
+        height: calc(#{$i} * 1%)
+
+@for $i from 1 through 5
+    .gap-#{$i}
+        gap: calc(#{$i} * var(--gap))
 
 a
     height: 100%
