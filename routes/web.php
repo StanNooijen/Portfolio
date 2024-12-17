@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/block/{block}', [Controller::class, 'block'])->name('block');
+    Route::post('/updatenBlok', [ApiController::class, 'updatenBlok']);
 });
 
 //Route::get('/switch-language/{locale}', function ($locale) {

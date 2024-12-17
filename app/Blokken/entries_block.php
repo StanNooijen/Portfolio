@@ -101,4 +101,27 @@ class entries_block
 
         return $html;
     }
+
+    public function render_cms_block($block_id, $block_name, $position){
+        $data = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
+
+
+        $html = '
+        <div class="container">
+            <div class="row">
+                <form class="w-100" action="/updatenBlok" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="block_id" value="' . $block_id . '">
+                    ' . csrf_field() . '
+                    <div class="col">
+
+                        <div>
+                            <button class="button" type="submit">opslaan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        ';
+        return $html;
+    }
 }

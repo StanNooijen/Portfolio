@@ -104,4 +104,57 @@ class skills_block
     </div>';
         return $html;
     }
+
+    public function render_cms_block($block_id, $block_name, $position){
+        $data = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
+        $skills = Skills::where('block_id', $block_id)->get();
+        $softskills = (clone $skills)->where('type', 'soft');
+        $hardskills = (clone $skills)->where('type', 'hard');
+
+
+        $soft = '';
+        $hard = '';
+
+        foreach ($softskills as $softskill) {
+            $soft .= '
+                <form class="w-100" action="/updatenBlok" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="block_id" value="' . $block_id . '">
+                    ' . csrf_field() . '
+                    <div class="col justify-center">
+                        <div>'. $softskill->title .'</div>
+                        <div class="skill-block">
+                            <button class="button" type="submit">opslaan</button>
+                        </div>
+                    </div>
+                </form>
+            ';
+        }
+
+        foreach ($hardskills as $hardskill) {
+            $hard .= '
+                <form class="w-100" action="/updatenBlok" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="block_id" value="' . $block_id . '">
+                    ' . csrf_field() . '
+                    <div class="col">
+                        <div class="skill-block">
+                            <button class="button" type="submit">opslaan</button>
+                        </div>
+                    </div>
+                </form>
+            ';
+        }
+
+
+        $html = '
+            <div class="col">
+                <div class="row">
+                    '. $hard .'
+                </div>
+                <div class="row">
+                    '. $soft .'
+                </div>
+            </div>
+        ';
+        return $html;
+    }
 }

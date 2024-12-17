@@ -27,9 +27,9 @@ body
     flex-direction: row
     flex-wrap: wrap
     justify-content: center
-    font-family: "Poppins" , sans-serif
-    font-size: 16px
-    font-weight: 400
+    font-family: "Poppins" , sans-serif !important
+    font-size: 16px !important
+    font-weight: 400 !important
     margin: 0
     padding: 0
     background-color: var(--black)
@@ -174,25 +174,105 @@ body
     gap: var(--gap)
     grid-template-columns: 1fr
 
+button
+    font-family: "Poppins", sans-serif
+    font-size: 1em
+    cursor: pointer
+
+.note-editable
+    color: var(--black)
+
 h1
-    color: var(--white)
     font-size: 3em
     margin: 0
 
 h2
-    color: var(--white)
     font-size: 2em
     margin: 0
 
 h3
-    color: var(--white)
     font-size: 1.5em
     margin: 0
 
 p
     margin: 0
 
+h1,h2,h3,h4,h5,h6,p
+    color: var(--white)
+    font-weight: revert
+    line-height: normal
 
+.collapsible
+    background-color: var(--darkGray)
+    color: var(--white)
+    cursor: pointer
+    padding: 18px
+    width: 100%
+    border: none
+    text-align: left
+    outline: none
+
+.content
+    display: none
+    overflow: hidden
+    max-height: 0
+    transition: max-height 0.2s ease-out
+    gap: var(--gap)
+    flex-direction: column
+
+.note-dropdown-menu
+    h1,h2,h3,h4,h5,h6,p
+        color: var(--black)
+        font-family: "Poppins", sans-serif !important
+        font-size: 1em
+
+
+input[type="file"]
+    display: none
+
+label[for="image"]:last-of-type
+    pointer-events: none
+
+
+.CustomInput
+    text-align: center
+    width: 100%
+    border: 1px solid
+    display: inline-block
+    padding: 6px 12px
+    cursor: pointer
+    background-color: var(--darkGray)
+    margin: 0
+    font-size: 16px
+
+.form-control
+    background-color: var(--darkGray)
+    color: var(--white)
+    border: 2px solid var(--lightGray)
+    display: flex
+    align-items: center
+    border-radius: 5px
+    padding: 0.5rem
+    font-family: "Poppins", sans-serif
+    font-size: 1em
+    &:focus
+        outline: none
+        border: 1px solid var(--white)
+
+.note-editor
+    border: 2px solid var(--white)
+
+.panel-heading
+    background-color: var(--darkGray)!important
+
+.note-status-output
+    display: none!important
+
+.note-editable
+    color: var(--white)
+    background-color: var(--darkGray)
+
+.panel-body
 
 .button
     color: var(--white)
@@ -209,6 +289,7 @@ p
     text-decoration: underline
     &:hover
         background-color: var(--middleGray)
+        color: var(--white)
 
 .danger
     border-color: #ff0000
@@ -278,7 +359,7 @@ p
     .h-#{$i}
         height: calc(#{$i} * 1%)
 
-@for $i from 1 through 5
+@for $i from 0 through 5
     .gap-#{$i}
         gap: calc(#{$i} * var(--gap))
 

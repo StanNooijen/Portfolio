@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Controller
 {
+
     public function getData()
     {
         $data = Cache::remember('starting_page_data', 60, function () {
@@ -91,6 +92,26 @@ class Controller
     public function block($block_id) {
         $block = Blocks::where('block_id',$block_id)->get();
         $popups = Popups::where('block_id',$block_id)->get();
-        return view('block', ['block' => $block, 'popups' => $popups]);
+
+        $html = '';
+        foreach($block as $blocks) {
+            $blockName = $blocks->type;
+            $position = $blocks->position;
+            $blockNameSub = $blockName . '_block';
+
+            $className = 'App\\Blokken\\' . $blockNameSub;
+
+            if (class_exists($className)) {
+                $instance = new $className();
+                if (method_exists($instance, 'render_cms_block')) {
+                    $html = $instance->render_cms_block($blocks->block_id, $blockName, $position);
+                } else {
+                    echo 'Method render_cms_block does not exist in class ' . $className;
+                }
+            } else {
+                dd('Class ' . $className . ' does not exist');
+            }
+        }
+        return view('block', ['block' => $block, 'popups' => $popups, 'html' => $html]);
     }
 }

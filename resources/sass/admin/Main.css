@@ -32,9 +32,9 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
   margin: 0;
   padding: 0;
   background-color: var(--black);
@@ -72,7 +72,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 1.1s;
+  animation-delay: 4s;
 }
 
 .line:nth-child(2) {
@@ -95,7 +95,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 2s;
+  animation-delay: 5s;
 }
 
 .line:nth-child(3) {
@@ -118,7 +118,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3.1s;
+  animation-delay: 0.5s;
 }
 
 .line:nth-child(4) {
@@ -141,7 +141,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 5.4s;
+  animation-delay: 1.4s;
 }
 
 .line:nth-child(5) {
@@ -164,7 +164,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 5.4s;
+  animation-delay: 0.1s;
 }
 
 .line:nth-child(6) {
@@ -187,7 +187,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 4.5s;
+  animation-delay: 2.4s;
 }
 
 .line:nth-child(7) {
@@ -210,7 +210,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 1.3s;
+  animation-delay: 5.5s;
 }
 
 .line:nth-child(8) {
@@ -233,7 +233,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 1s;
+  animation-delay: 0.3s;
 }
 
 .line:nth-child(9) {
@@ -256,7 +256,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 1.2s;
+  animation-delay: 2s;
 }
 
 .line:nth-child(10) {
@@ -279,7 +279,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 0.2s;
+  animation-delay: 1.1s;
 }
 
 .line:nth-child(11) {
@@ -302,7 +302,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 2.4s;
+  animation-delay: 4.4s;
 }
 
 .line:nth-child(12) {
@@ -325,7 +325,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 0.4s;
+  animation-delay: 2.4s;
 }
 
 .line:nth-child(13) {
@@ -348,7 +348,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3.4s;
+  animation-delay: 3.2s;
 }
 
 .line:nth-child(14) {
@@ -371,7 +371,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3.2s;
+  animation-delay: 4s;
 }
 
 .line:nth-child(15) {
@@ -394,7 +394,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3.5s;
+  animation-delay: 4.1s;
 }
 
 @keyframes drop {
@@ -516,26 +516,118 @@ body {
   grid-template-columns: 1fr;
 }
 
+button {
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.note-editable {
+  color: var(--black);
+}
+
 h1 {
-  color: var(--white);
   font-size: 3em;
   margin: 0;
 }
 
 h2 {
-  color: var(--white);
   font-size: 2em;
   margin: 0;
 }
 
 h3 {
-  color: var(--white);
   font-size: 1.5em;
   margin: 0;
 }
 
 p {
   margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  color: var(--white);
+  font-weight: revert;
+  line-height: normal;
+}
+
+.collapsible {
+  background-color: var(--darkGray);
+  color: var(--white);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.content {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+  gap: var(--gap);
+  flex-direction: column;
+}
+
+.note-dropdown-menu h1, .note-dropdown-menu h2, .note-dropdown-menu h3, .note-dropdown-menu h4, .note-dropdown-menu h5, .note-dropdown-menu h6, .note-dropdown-menu p {
+  color: var(--black);
+  font-family: "Poppins", sans-serif !important;
+  font-size: 1em;
+}
+
+input[type=file] {
+  display: none;
+}
+
+label[for=image]:last-of-type {
+  pointer-events: none;
+}
+
+.CustomInput {
+  text-align: center;
+  width: 100%;
+  border: 1px solid;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: var(--darkGray);
+  margin: 0;
+  font-size: 16px;
+}
+
+.form-control {
+  background-color: var(--darkGray);
+  color: var(--white);
+  border: 2px solid var(--lightGray);
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
+}
+.form-control:focus {
+  outline: none;
+  border: 1px solid var(--white);
+}
+
+.note-editor {
+  border: 2px solid var(--white);
+}
+
+.panel-heading {
+  background-color: var(--darkGray) !important;
+}
+
+.note-status-output {
+  display: none !important;
+}
+
+.note-editable {
+  color: var(--white);
+  background-color: var(--darkGray);
 }
 
 .button {
@@ -554,6 +646,7 @@ p {
 }
 .button:hover {
   background-color: var(--middleGray);
+  color: var(--white);
 }
 
 .danger {
@@ -1413,6 +1506,10 @@ p {
 
 .h-100 {
   height: calc(100 * 1%);
+}
+
+.gap-0 {
+  gap: calc(0 * var(--gap));
 }
 
 .gap-1 {
