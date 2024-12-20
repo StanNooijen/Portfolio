@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/block/{block}', [Controller::class, 'block'])->name('block');
     Route::post('/updatenBlok', [ApiController::class, 'updatenBlok']);
+    Route::get('/skill/{skill_id}', [Controller::class, 'skill'])->name('skill');
 });
 
 //Route::get('/switch-language/{locale}', function ($locale) {

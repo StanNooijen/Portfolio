@@ -8,13 +8,16 @@ for (let i = 0; i < coll.length; i++) {
             content.style.maxHeight = null;
         } else {
             content.style.display = "flex";
+            // Temporarily set display to get the correct scrollHeight
+            content.style.maxHeight = "none";
+            const scrollHeight = content.scrollHeight + "px";
+            content.style.maxHeight = "0";
             // Force reflow
-            const scrollHeight = content.scrollHeight;
-            content.style.maxHeight = scrollHeight + "px";
+            content.offsetHeight;
+            content.style.maxHeight = scrollHeight;
         }
     });
 }
-
 $(document).ready(function() {
     $('#summernote').summernote({
         fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','Poppins sans-serif', 'Times New Roman', 'Verdana'],

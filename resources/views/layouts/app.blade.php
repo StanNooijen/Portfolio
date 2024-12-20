@@ -22,27 +22,19 @@
                 {{ $header }}
             </header>
         @endisset
-        {{ $slot }}
+        <div class="container">
+            <div class="flex-row h-100 gap-1">
+                <div class="flex-column gap-1 w-100">
+                    {{ $slot }}
+                    @include('partials.below-slot-block', ['data' => $entries])
+                </div>
+                <div>
+                    @include('partials.side-block', ['data' => $popups])
+                </div>
+            </div>
+        </div>
 
     </body>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            @if(session('success'))
-            $('#success .modal-body').text('{{ session('success') }}');
-            $('#success').modal('show');
-            setTimeout(function() {
-                $('#success').modal('hide');
-            }, 1500);
-            @elseif(session('error'))
-            $('#error .modal-body').text('{{ session('error') }}');
-            $('#error').modal('show');
-            setTimeout(function() {
-                $('#error').modal('hide');
-            }, 2500);
-            @endif
-        });
-    </script>
 </html>

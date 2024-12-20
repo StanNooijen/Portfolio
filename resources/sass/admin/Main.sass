@@ -1,13 +1,38 @@
 :root
     --black: #0b0b0b
+    --light-black: #1a1a1a
     --white: #ffffff
     --lightGray: #A6A6A6
+    --content-bg: #383838
     --darkGray: #323232
     --grayText: #9E9E9E
     --middleGray: #4F4F4F
     --gray: #62626280
     --gap: 1.2rem
 
+.bg-black
+    background-color: var(--black)
+    color: var(--white)
+
+.bg-light-black
+    background-color: var(--light-black)
+    color: var(--white)
+
+.bg-white
+    background-color: var(--white)
+    color: var(--black)
+
+.bg-content
+    background-color: var(--content-bg)
+    color: var(--white)
+
+.bg-lightGray
+    background-color: var(--lightGray)
+    color: var(--black)
+
+.bg-darkGray
+    background-color: var(--darkGray)
+    color: var(--white)
 
 body::-webkit-scrollbar
     width: 10px
@@ -56,7 +81,7 @@ body
         width: 1px
         height: 100%
         top: 0
-        left: calc((#{$i} - 1) * (100% / 15)) // Adjust spacing based on the number of lines
+        left: calc((#{$i}) * (100% / 15)) // Adjust spacing based on the number of lines
         overflow: hidden
 
         &::after
@@ -112,8 +137,7 @@ body
     display: flex
     justify-content: end
     width: 100%
-    border-bottom: 1px solid var(--middleGray)
-    background-color: var(--darkGray)
+    background-color: var(--light-black)
     form
         display: contents
 
@@ -131,8 +155,8 @@ body
     flex-direction: column
     gap: 1rem
     padding: 1rem
-    height: 100%
-    width: 85%
+    height: 85dvh
+    width: 90%
     color: var(--white)
     justify-content: center
     position: relative
@@ -206,11 +230,16 @@ h1,h2,h3,h4,h5,h6,p
     background-color: var(--darkGray)
     color: var(--white)
     cursor: pointer
-    padding: 18px
     width: 100%
     border: none
     text-align: left
     outline: none
+
+.collapsible svg
+    transition: transform 0.3s ease
+
+.collapsible.active svg
+    transform: rotate(180deg)
 
 .content
     display: none
@@ -230,7 +259,7 @@ h1,h2,h3,h4,h5,h6,p
 input[type="file"]
     display: none
 
-label[for="image"]:last-of-type
+label[for="image"]:first-of-type
     pointer-events: none
 
 
@@ -248,7 +277,7 @@ label[for="image"]:last-of-type
 .form-control
     background-color: var(--darkGray)
     color: var(--white)
-    border: 2px solid var(--lightGray)
+    border: none
     display: flex
     align-items: center
     border-radius: 5px
@@ -258,6 +287,25 @@ label[for="image"]:last-of-type
     &:focus
         outline: none
         border: 1px solid var(--white)
+
+.side-block
+    height: 100%
+    display: flex
+    flex-direction: column
+    gap: var(--gap)
+    padding: 1.5rem
+    width: clamp(10dvw, 15dvw, 20dvw)
+    background-color: var(--light-black)
+    border-radius: 5px
+
+.below-slot-block
+    display: flex
+    flex-direction: row
+    gap: var(--gap)
+    padding: 1.5rem
+    width: clamp(10dvw, 15dvw, 20dvw)
+    background-color: var(--light-black)
+    border-radius: 5px
 
 .note-editor
     border: 2px solid var(--white)
@@ -272,12 +320,21 @@ label[for="image"]:last-of-type
     color: var(--white)
     background-color: var(--darkGray)
 
-.panel-body
+.ball
+    width: clamp(45px, 10vw, 90px)
+    height: clamp(45px, 10vw, 90px)
+    border-radius: 50%
+    background-color: var(--white)
+    border: 2px solid var(--black)
+    z-index: 1
+    transition: all 1s
+    padding: 0
 
 .button
     color: var(--white)
     background-color: var(--darkGray)
-    padding: 0.5rem 2rem
+    border: 2px solid var(--white)
+    padding: 1rem 3rem
     display: flex
     justify-content: center
     align-items: center
@@ -285,14 +342,35 @@ label[for="image"]:last-of-type
     cursor: pointer
     font-family: "Poppins", sans-serif
     border-radius: 5px
-    border: 2px solid var(--lightGray)
-    text-decoration: underline
+    &:hover
+        background-color: var(--middleGray)
+        color: var(--white)
+
+.AddButton
+    color: var(--white)
+    background-color: var(--darkGray)
+    font-size: 1em
+    cursor: pointer
+    font-family: "Poppins", sans-serif
+    border-radius: 5px
+    border: none
+    width: clamp(20px, 30px, 40px)
+    height: clamp(20px, 30px, 40px)
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    &::before
+        content: "+"
+        font-size: 1em
+        color: var(--white)
+        padding-top: 4px
     &:hover
         background-color: var(--middleGray)
         color: var(--white)
 
 .danger
-    border-color: #ff0000
+    border: solid 2px #ff0000
     &:hover
         border-color: #ff4d4d
 
@@ -308,9 +386,9 @@ label[for="image"]:last-of-type
     display: flex
     justify-content: end
 
-//.justify-start
-//    display: flex
-//    justify-content: flex-start
+.justify-start
+    display: flex
+    justify-content: flex-start
 
 .justify-center
     display: flex
@@ -318,15 +396,31 @@ label[for="image"]:last-of-type
 
 .align-center
     display: flex
+    align-content: center
+
+.flex-wrap
+    display: flex
+    flex-wrap: wrap
+
+.align-items-center
+    display: flex
     align-items: center
 
-.align-end
+.align-items-end
     display: flex
     align-items: flex-end
 
-.align-start
+.align-items-start
     display: flex
     align-items: flex-start
+
+.align-end
+    display: flex
+    align-content: flex-end
+
+.align-start
+    display: flex
+    align-content: flex-start
 
 .text-center
     text-align: center
@@ -350,6 +444,12 @@ label[for="image"]:last-of-type
 .flex-column
     display: flex
     flex-direction: column
+
+.w-fit-content
+    width: fit-content
+
+.w-min-content
+    width: min-content
 
 @for $i from 1 through 100
     .w-#{$i}

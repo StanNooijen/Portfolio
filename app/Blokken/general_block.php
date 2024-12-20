@@ -73,27 +73,27 @@ class general_block
                     <input type="hidden" name="position" value="' . $position . '">
                     <input type="hidden" name="type" value="' . $block_name . '">
                     ' . csrf_field() . '
-                    <div class="col">
-                        <div class="row">
-                            <div class="col gap-0 w-100">
+                    <div class="flex-column gap-3">
+                        <div class="flex-row flex-wrap gap-1">
+                            <div class="flex-column gap-0 w-100">
                                 <label for="title" class="form-label ">Titel</label>
                                 <input type="text" class="form-control" id="title" name="title" value="' . ($data->title ?? 'title') . '">
                             </div>
-                            <div class="col gap-0 w-100">
+                            <div class="flex-column gap-0 w-100">
                                 <label for="place_name" class="form-label ">Plaatsnaam</label>
                                 <input type="text" class="form-control" id="place_name" name="place_name" value="' . ($data->place_name ?? 'place name') . '">
                             </div>
                         </div>
-                            <div class="col gap-0 w-100">
+                            <div class="flex-column gap-0 w-100">
                                 <label for="place_name" class="form-label ">Tekst vak</label>
                                 <textarea id="summernote" name="editordata">' . ($data->text ?? 'text') . '</textarea>
                             </div>
-                        <div class="row align-end">
-                            <div class="col gap-0 w-100">
+                        <div class="flex-row flex-wrap w-100 gap-1">
+                            <div class="flex-column gap-0 w-100">
                                 <label for="button_text" class="form-label ">Button tekst</label>
                                 <input type="text" class="form-control" id="button_text" name="button_text" value="' . ($data->button_text ?? 'button_text') . '">
                             </div>
-                            <div class="col gap-1 w-100  ">
+                            <div class="flex-column gap-0 w-100">
                                 <label for="image" class="form-label justify-center">'. ($data->image ?? 'nog geen afbeelding').'</label>
                                 <input type="file" class="form-control" id="image" name="image">
                                 <label for="image" class="form-label CustomInput">Afbeelding</label>

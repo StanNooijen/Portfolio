@@ -66,4 +66,7 @@ class Kernel extends HttpKernel
         'locale' => Middleware\SetLocale::class,
     ];
 
+    protected $commands = [
+        \App\Console\Commands\MakeView::class,
+    ];
 }

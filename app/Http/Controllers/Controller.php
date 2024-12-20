@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Blocks;
 use App\Models\Navbars;
 use App\Models\Popups;
+use App\Models\Popups_details;
+use App\Models\Skills;
 use Illuminate\Support\Facades\Cache;
 
 class Controller
@@ -113,5 +115,11 @@ class Controller
             }
         }
         return view('block', ['block' => $block, 'popups' => $popups, 'html' => $html]);
+    }
+
+    public function skill($skill_id) {
+        $skill = Skills::where('skills_id',$skill_id)->get();
+        $popups = Popups::where('block_id',$skill_id)->where('exclude', '!=', $skill_id)->get();
+        return view('skill', ['skill' => $skill, 'popups' => $popups]);
     }
 }

@@ -117,13 +117,13 @@ class skills_block
 
         foreach ($softskills as $softskill) {
             $soft .= '
-                <form class="w-100" action="/updatenBlok" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="block_id" value="' . $block_id . '">
-                    ' . csrf_field() . '
-                    <div class="col justify-center">
-                        <div>'. $softskill->title .'</div>
+                <form class="flex-column flex-row flex-wrap bg-darkGray p-1" action="'. route('skill', $softskill->skills_id) .'">
+                    ' .csrf_field(). '
+                    <div class="h-100 flex-column align-items-center justify-center flex-wrap gap-1 align-items-center">
+                        <div class="text-center w-min-content">'. $softskill->title .'</div>
+                        <img class="ball" src="' . asset('images/softSkills/' . $softskill->logo . '.png') .'" alt="'. $softskill->title .'">
                         <div class="skill-block">
-                            <button class="button" type="submit">opslaan</button>
+                            <button class="button" type="submit">bewerken</button>
                         </div>
                     </div>
                 </form>
@@ -132,12 +132,13 @@ class skills_block
 
         foreach ($hardskills as $hardskill) {
             $hard .= '
-                <form class="w-100" action="/updatenBlok" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="block_id" value="' . $block_id . '">
-                    ' . csrf_field() . '
-                    <div class="col">
+                <form class="flex-column flex-row flex-wrap bg-darkGray p-1" action="'. route('skill', $hardskill->skills_id) .'">
+                    ' .csrf_field(). '
+                    <div class="h-100 flex-column align-items-center justify-center flex-wrap gap-1 align-items-center">
+                        <div class="text-center w-min-content">'. $hardskill->title .'</div>
+                        <img class="ball" src="' . asset('images/hardSkills/' . $hardskill->logo . '.png') .'" alt="'. $hardskill->title .'">
                         <div class="skill-block">
-                            <button class="button" type="submit">opslaan</button>
+                            <button class="button" type="submit">bewerken</button>
                         </div>
                     </div>
                 </form>
@@ -146,15 +147,31 @@ class skills_block
 
 
         $html = '
-            <div class="col">
-                <div class="row">
-                    '. $hard .'
-                </div>
-                <div class="row">
-                    '. $soft .'
+        <div class="flex-column gap-1">
+            <div class="align-center flex-wrap gap-1 justify-center w-100">
+                <button type="button" class="collapsible flex-row align-center space-between w-100">
+                    <h4>hardskills</h4>
+                    <svg height="50" width="50" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5 7.5a1 1 0 011.5 0l3.5 3.5 3.5-3.5a1 1 0 011.5 0 1 1 0 010 1.5l-4 4a1 1 0 01-1.5 0l-4-4a1 1 0 010-1.5z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="flex-row space-between flex-wrap gap-1 content" >
+                    ' . $hard . '
                 </div>
             </div>
-        ';
+            <div class="flex-column gap-1 justify-center w-100">
+                <button type="button" class="collapsible flex-row align-center space-between w-100">
+                    <h4>softkills</h4>
+                    <svg height="50" width="50" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5 7.5a1 1 0 011.5 0l3.5 3.5 3.5-3.5a1 1 0 011.5 0 1 1 0 010 1.5l-4 4a1 1 0 01-1.5 0l-4-4a1 1 0 010-1.5z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="flex-row space-between flex-wrap gap-1 content" >
+                    ' . $soft . '
+                </div>
+            </div>
+        </div>
+    ';
         return $html;
     }
 }
