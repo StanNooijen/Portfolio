@@ -132,12 +132,15 @@ class popup_block
             $dropdown .= '<option value="' . $skill->title . '">' . $skill->title . '</option>';
         }
 
+        foreach ($details as $detail) {
+
+        }
+
         if ($popup_id == '1') {
             $labels = '';
             $inputs = '';
             foreach ($details as $detail) {
                 $inputs .= '
-
                     <input type="hidden" name="labels_input_' . $detail->detail_id . '" value="' . ($detail->value ?? '') . '">
                     <input type="hidden" name="label_' . $detail->detail_id . '" value="' . ($detail->label ?? 'title') . '">
                 ';
@@ -193,6 +196,13 @@ class popup_block
             ';
         }
         else {
+            $buttons = '';
+            $values = explode(',', $detail->value);
+            foreach ($values as $value) {
+                $buttons .= '
+                    <div class="button gap-1 align-items-center">' . $value . '<i class="fa-solid fa-xmark"></i></div>
+                ';
+            }
             $html = '
             <div class="row display-block w-100">
                 <form class="flex-column gap-1 w-100" action="/skillPopup" method="post" enctype="multipart/form-data">
@@ -208,7 +218,7 @@ class popup_block
                                     </div>
                                     <div class="flex-column bg-content rounded p-2 w-100">
                                         <label for="label" class="form-label ">label</label>
-                                        <input type="text" class="form-control" id="label" name="label" value="' . ($details->label ?? 'label') . '">
+                                        <input type="text" class="form-control" id="label" name="label" value="' . ($details->first()->label ?? 'label') . '">
                                     </div>
                                     <div class="flex-row gap-1 align-items-center space-between bg-content rounded p-2 w-100">
                                         <div id="languages" class="flex-row gap-1 align-items-center">
@@ -222,7 +232,7 @@ class popup_block
                                     </div>
                                     <div class="flex-column bg-content rounded p-2 w-100">
                                         <label for="title" class="form-label ">Github url</label>
-                                        <input type="text" class="form-control" id="url" name="url" value="' . ($details->button_link ?? 'github url') . '">
+                                        <input type="text" class="form-control" id="url" name="url" value="' . ($details->first()->button_link ?? 'github url') . '">
                                     </div>
                                     <div class="flex-column bg-content rounded p-2 w-100">
                                         <label for="short-description" class="form-label ">short-description</label>
@@ -230,16 +240,16 @@ class popup_block
                                     </div>
                                     <div class="flex-row gap-1 align-items-center space-between bg-content rounded p-2 w-100">
                                         <div class="flex-column gap-1 w-100">
-                                            <label for="image1" class="form-label justify-center">' . ($details->image_1 ?? 'No image 1') . '</label>
-                                            <input type="file" class="form-control" id="image1" name="image1" value="' . ($details->image_1) . '">
+                                            <label for="image1" class="form-label justify-center">' . ($details->first()->image_1 ?? 'No image 1') . '</label>
+                                            <input type="file" class="form-control" id="image1" name="image1" value="' . ($details->first()->image_1) . '">
                                             <div class="flex-row gap-1">
                                                 <label for="image1" class="form-label CustomInput">Image</label>
                                                 <label for="image1" class="form-label CustomInput danger">Delete</label>
                                             </div>
                                         </div>
                                         <div class="flex-column gap-1 w-100">
-                                            <label for="image2" class="form-label justify-center">' . ($details->image_2 ?? 'No image 2') . '</label>
-                                            <input type="file" class="form-control" id="image2" name="image2" value="' . ($details->image_2) . '">
+                                            <label for="image2" class="form-label justify-center">' . ($details->first()->image_2 ?? 'No image 2') . '</label>
+                                            <input type="file" class="form-control" id="image2" name="image2" value="' . ($details->first()->image_2) . '">
                                             <div class="flex-row gap-1">
                                                 <label for="image2" class="form-label CustomInput">Image</label>
                                                 <label for="image2" class="form-label CustomInput danger">Delete</label>
