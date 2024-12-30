@@ -72,6 +72,19 @@ class ApiController extends Controller
         $text = $data['editordata'];
         $skills = $data['languages'];
         $button_url = $data['url'];
+        $details_ids = $data['details_ids'];
+
+        $detail_ids = explode(',', $details_ids);
+        foreach ($detail_ids as $id) {
+            $label = $data['label_' . $id];
+            $labels_input = $data['labels_input_' . $id];
+
+            Popups_details::updateOrInsert(
+                ['popup_id' => $popup_id, 'detail_id' => $id],
+                ['label' => $label, 'value' => $labels_input]
+            );
+        }
+
 
         // Save title and text in the popups table
         Popups::updateOrInsert(

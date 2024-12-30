@@ -132,11 +132,11 @@ class popup_block
             $dropdown .= '<option value="' . $skill->title . '">' . $skill->title . '</option>';
         }
 
-        foreach ($details as $detail) {
-
-        }
-
         if ($popup_id == '1') {
+
+            $detailIds = $details->pluck('detail_id')->toArray();
+            $detailIdsJson = json_encode($detailIds);
+
             $labels = '';
             $inputs = '';
             foreach ($details as $detail) {
@@ -163,9 +163,7 @@ class popup_block
                                                 ' . $buttons . '
                                             </div>
                                             <button class="AddButton"></button>
-                                            <select id="languageDropdown" class="form-control" style="display: none;">
-                                                ' . $dropdown . '
-                                            </select>
+                                            <input type="text" id="languageInput" class="form-control" placeholder="Enter language and press Enter">
                                         </div>
                                     </div>
                                     ';
@@ -175,6 +173,7 @@ class popup_block
                 <form class="flex-column gap-1 w-100" action="/skillPopup" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="popup_id" value="' . $popup_id . '">
                     <input type="hidden" name="type" value="' . $block_name . '">
+                    <input type="hidden" name="detail_ids" value=\'' . $detailIdsJson . '\'>
                     ' . $inputs . '
                     ' . csrf_field() . '
                             <div class="flex-row gap-1">
@@ -197,7 +196,7 @@ class popup_block
         }
         else {
             $buttons = '';
-            $values = explode(',', $detail->value);
+            $values = explode(',', $details->first()->value);
             foreach ($values as $value) {
                 $buttons .= '
                     <div class="button gap-1 align-items-center">' . $value . '<i class="fa-solid fa-xmark"></i></div>
