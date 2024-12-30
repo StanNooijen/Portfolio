@@ -16,8 +16,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/block/{block}', [Controller::class, 'block'])->name('block');
-    Route::post('/updatenBlok', [ApiController::class, 'updatenBlok']);
+    Route::get('/popup/{popup_id}/{title}', [Controller::class, 'popup'])->name('popup');
     Route::get('/skill/{skill_id}', [Controller::class, 'skill'])->name('skill');
+
+    Route::post('/updatenBlok', [ApiController::class, 'updatenBlok']);
+    Route::post('/setActive/{popup_id}}', [ApiController::class, 'setActive'])->name('setActive');
+    Route::post('/skillPopup', [ApiController::class, 'skillPopup'])->name('skillPopup');
 });
 
 //Route::get('/switch-language/{locale}', function ($locale) {

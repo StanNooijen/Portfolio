@@ -3,6 +3,8 @@
 namespace App\Blokken;
 
 use App\Models\Blocks;
+use App\Models\Popups;
+use App\Models\Popups_details;
 use App\Models\Projects;
 use App\Models\Skills;
 
@@ -59,6 +61,9 @@ class skills_block
                                                 </svg>
                                             </div>
                                             <div class="languages">'. $languages .'</div>
+                                            <div class="description">
+                                                <p>' . $project->text . '</p>
+                                            </div>
                                         </div>';
                 }
             }
@@ -67,7 +72,7 @@ class skills_block
                                             <h1>' . $ball->title . '</h1>
                                             <p>'. $ball->years_experience .' : Jaar ervaring</p>
                                         </div>
-                                        <div class="skill-flex">
+                                        <div class="skill-flex space-between">
                                             ' . $projectDetails . '
                                         </div>
                                     </div>';
@@ -105,73 +110,86 @@ class skills_block
         return $html;
     }
 
-    public function render_cms_block($block_id, $block_name, $position){
-        $data = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
-        $skills = Skills::where('block_id', $block_id)->get();
-        $softskills = (clone $skills)->where('type', 'soft');
-        $hardskills = (clone $skills)->where('type', 'hard');
+    public function render_cms_block($popup_id, $block_name){
+        $data = popups::where('popup_id', $popup_id)->first();
+        $details = Popups_details::where('popup_id', $popup_id)->first();
+        $skills = Skills::where('type', 'hard')->get();
 
-
-        $soft = '';
-        $hard = '';
-
-        foreach ($softskills as $softskill) {
-            $soft .= '
-                <form class="flex-column flex-row flex-wrap bg-darkGray p-1" action="'. route('skill', $softskill->skills_id) .'">
-                    ' .csrf_field(). '
-                    <div class="h-100 flex-column align-items-center justify-center flex-wrap gap-1 align-items-center">
-                        <div class="text-center w-min-content">'. $softskill->title .'</div>
-                        <img class="ball" src="' . asset('images/softSkills/' . $softskill->logo . '.png') .'" alt="'. $softskill->title .'">
-                        <div class="skill-block">
-                            <button class="button" type="submit">bewerken</button>
-                        </div>
-                    </div>
-                </form>
-            ';
-        }
-
-        foreach ($hardskills as $hardskill) {
-            $hard .= '
-                <form class="flex-column flex-row flex-wrap bg-darkGray p-1" action="'. route('skill', $hardskill->skills_id) .'">
-                    ' .csrf_field(). '
-                    <div class="h-100 flex-column align-items-center justify-center flex-wrap gap-1 align-items-center">
-                        <div class="text-center w-min-content">'. $hardskill->title .'</div>
-                        <img class="ball" src="' . asset('images/hardSkills/' . $hardskill->logo . '.png') .'" alt="'. $hardskill->title .'">
-                        <div class="skill-block">
-                            <button class="button" type="submit">bewerken</button>
-                        </div>
-                    </div>
-                </form>
-            ';
+        $dropdown = '';
+        foreach ($skills as $skill) {
+            $dropdown .= '<option value="' . $skill->title . '">' . $skill->title . '</option>';
         }
 
 
-        $html = '
-        <div class="flex-column gap-1">
-            <div class="align-center flex-wrap gap-1 justify-center w-100">
-                <button type="button" class="collapsible flex-row align-center space-between w-100">
-                    <h4>hardskills</h4>
-                    <svg height="50" width="50" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5 7.5a1 1 0 011.5 0l3.5 3.5 3.5-3.5a1 1 0 011.5 0 1 1 0 010 1.5l-4 4a1 1 0 01-1.5 0l-4-4a1 1 0 010-1.5z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="flex-row space-between flex-wrap gap-1 content" >
-                    ' . $hard . '
-                </div>
+
+        $buttons = '';
+        $values = explode(',', $details->value);
+        foreach ($values as $value) {
+            $buttons .= '
+                <div class="button gap-1 align-items-center">' . $value . '<i class="fa-solid fa-xmark"></i></div>
+            ';
+        }
+        if ($popup_id == '1') {
+            $html = '';
+        }
+        else {
+            $html = '
+            <div class="row display-block w-100">
+                <form class="flex-column gap-1 w-100" action="/skillPopup" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="popup_id" value="' . $popup_id . '">
+                    <input type="hidden" name="type" value="' . $block_name . '">
+                    <input type="hidden" name="languages" value="'. $details->value .'">
+                    ' . csrf_field() . '
+                            <div class="flex-row gap-1">
+                                <div class="flex-column gap-1 w-100">
+                                    <div class="flex-column bg-content rounded p-2 w-100">
+                                        <label for="title" class="form-label ">Titel</label>
+                                        <input type="text" class="form-control" id="title" name="title" value="' . ($data->title ?? 'title') . '">
+                                    </div>
+                                    <div class="flex-row gap-1 align-items-center space-between bg-content rounded p-2 w-100">
+                                        <div id="languages" class="flex-row gap-1 align-items-center">
+                                            <label for="title" class="form-label ">Languages</label>
+                                            '. $buttons .'
+                                        </div>
+                                        <button class="AddButton"></button>
+                                        <select id="languageDropdown" class="form-control" style="display: none;">
+                                            ' . $dropdown . '
+                                        </select>
+                                    </div>
+                                    <div class="flex-row gap-1 align-items-center space-between bg-content rounded p-2 w-100">
+                                        <div class="flex-column gap-1 w-100">
+                                            <label for="image1" class="form-label justify-center">' . ($details->image_1 ?? 'No image 1') . '</label>
+                                            <input type="file" class="form-control" id="image1" name="image1" value="' . ($details->image_1) . '">
+                                            <div class="flex-row gap-1">
+                                                <label for="image1" class="form-label CustomInput">Image</label>
+                                                <label for="image1" class="form-label CustomInput danger">Delete</label>
+                                            </div>
+                                        </div>
+                                        <div class="flex-column gap-1 w-100">
+                                            <label for="image2" class="form-label justify-center">' . ($details->image_2 ?? 'No image 2') . '</label>
+                                            <input type="file" class="form-control" id="image2" name="image2" value="' . ($details->image_2) . '">
+                                            <div class="flex-row gap-1">
+                                                <label for="image2" class="form-label CustomInput">Image</label>
+                                                <label for="image2" class="form-label CustomInput danger">Delete</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-column bg-content rounded p-2 w-100">
+                                        <label for="title" class="form-label ">Github url</label>
+                                        <input type="text" class="form-control" id="url" name="url" value="' . ($details->button_link ?? 'url') . '">
+                                    </div>
+                                    <button class="button" type="submit">opslaan</button>
+                                </div>
+                                <div class="flex-column bg-content rounded p-2 w-60">
+                                    <label for="place_name" class="form-label ">Tekst vak</label>
+                                    <textarea id="summernote" name="editordata">' . ($data->text ?? 'text') . '</textarea>
+                                </div>
+                            </div>
+                </form>
             </div>
-            <div class="flex-column gap-1 justify-center w-100">
-                <button type="button" class="collapsible flex-row align-center space-between w-100">
-                    <h4>softkills</h4>
-                    <svg height="50" width="50" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5 7.5a1 1 0 011.5 0l3.5 3.5 3.5-3.5a1 1 0 011.5 0 1 1 0 010 1.5l-4 4a1 1 0 01-1.5 0l-4-4a1 1 0 010-1.5z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="flex-row space-between flex-wrap gap-1 content" >
-                    ' . $soft . '
-                </div>
-            </div>
-        </div>
-    ';
+        ';
+        }
+
         return $html;
     }
 }

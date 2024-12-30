@@ -193,13 +193,12 @@
 .languages {
   display: flex;
   flex-direction: row;
-  height: 55%;
   gap: var(--gap);
   flex-wrap: wrap;
 }
 .languages .language {
   display: flex;
-  padding: 0 1rem;
+  padding: 0.2rem 1rem;
   background-color: var(--darkGray);
   border-radius: 5px;
 }
@@ -227,9 +226,11 @@
 .project-details {
   height: 100%;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   flex: 1 1 auto;
-  max-width: 35%;
+  max-width: 30%;
   min-width: 15%;
   background-color: var(--middleGray);
   border-radius: 10px;

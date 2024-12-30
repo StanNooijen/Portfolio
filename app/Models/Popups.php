@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Popups extends Model
 {
     protected $table = 'popups_table';
+    public $timestamps = false;
 
     protected $casts = [
         'exclude' => 'array',

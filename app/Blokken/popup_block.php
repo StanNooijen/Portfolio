@@ -2,15 +2,19 @@
 
 namespace App\Blokken;
 
+use App\Models\Blocks;
 use App\Models\Popups;
 use App\Models\Popups_details;
+use App\Models\Projects;
+use App\Models\Skills;
 
 class popup_block
 {
     public function render_public_popup($popup_id, $popup_name, $position)
     {
         $popups = Popups::with('details')->where('title', $popup_name)->first();
-        $popup_details = $popups->details;
+
+        $popup_details = Popups_details::where('popup_id', $popups->popup_id)->get();
         $html = '';
         if ($popup_id == '1') {
             $abouts = '';
@@ -112,6 +116,146 @@ class popup_block
                 </div>
             </div>
             ';
+        }
+
+        return $html;
+    }
+
+    public function render_cms_block($popup_id, $block_name){
+        $data = popups::where('popup_id', $popup_id)->first();
+        $details = Popups_details::where('popup_id', $popup_id)->get();
+        $project = projects::where('title', $data->title)->first();
+        $skills = Skills::where('type', 'hard')->get();
+
+        $dropdown = '';
+        foreach ($skills as $skill) {
+            $dropdown .= '<option value="' . $skill->title . '">' . $skill->title . '</option>';
+        }
+
+        if ($popup_id == '1') {
+            $labels = '';
+            $inputs = '';
+            foreach ($details as $detail) {
+                $inputs .= '
+
+                    <input type="hidden" name="labels_input_' . $detail->detail_id . '" value="' . ($detail->value ?? '') . '">
+                    <input type="hidden" name="label_' . $detail->detail_id . '" value="' . ($detail->label ?? 'title') . '">
+                ';
+                $buttons = '';
+                    $values = explode(',', $detail->value);
+                    foreach ($values as $value) {
+                        $buttons .= '
+                    <div class="button gap-1 align-items-center">' . $value . '<i class="fa-solid fa-xmark"></i></div>
+                ';
+                }
+                $labels .= '
+                                    <div class="bg-content rounded p-2 gap-1 flex-column">
+                                        <div class="flex-column rounded w-100">
+                                            <label for="label" class="form-label ">label</label>
+                                            <input type="text" class="form-control" id="label" name="label" value="' . ($detail->label ?? 'label') . '">
+                                        </div>
+                                        <div class="flex-row gap-1 align-items-center space-between w-100">
+                                            <div id="languages" class="flex-row gap-1 align-items-center">
+                                                <label for="title" class="form-label ">Languages:</label>
+                                                ' . $buttons . '
+                                            </div>
+                                            <button class="AddButton"></button>
+                                            <select id="languageDropdown" class="form-control" style="display: none;">
+                                                ' . $dropdown . '
+                                            </select>
+                                        </div>
+                                    </div>
+                                    ';
+            }
+            $html = '
+            <div class="row display-block w-100">
+                <form class="flex-column gap-1 w-100" action="/skillPopup" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="popup_id" value="' . $popup_id . '">
+                    <input type="hidden" name="type" value="' . $block_name . '">
+                    ' . $inputs . '
+                    ' . csrf_field() . '
+                            <div class="flex-row gap-1">
+                                <div class="flex-column gap-1 w-100">
+                                    <div class="flex-column bg-content rounded p-2 w-100">
+                                        <label for="title" class="form-label ">Titel</label>
+                                        <input type="text" class="form-control" id="title" name="title" value="' . ($data->title ?? 'title') . '">
+                                    </div>
+                                    ' . $labels . '
+                                    <button class="button" type="submit">opslaan</button>
+                                </div>
+                                <div class="flex-column bg-content rounded p-2 w-60">
+                                    <label for="place_name" class="form-label ">Tekst vak</label>
+                                    <textarea id="summernote" name="editordata">' . ($data->text ?? 'text') . '</textarea>
+                                </div>
+                            </div>
+                </form>
+            </div>
+            ';
+        }
+        else {
+            $html = '
+            <div class="row display-block w-100">
+                <form class="flex-column gap-1 w-100" action="/skillPopup" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="popup_id" value="' . $popup_id . '">
+                    <input type="hidden" name="type" value="' . $block_name . '">
+                    <input type="hidden" name="project_id" value="' . $project->project_id . '">
+                    ' . csrf_field() . '
+                            <div class="flex-row gap-1">
+                                <div class="flex-column gap-1 w-100">
+                                    <div class="flex-column bg-content rounded p-2 w-100">
+                                        <label for="title" class="form-label ">Titel</label>
+                                        <input type="text" class="form-control" id="title" name="title" value="' . ($data->title ?? 'title') . '">
+                                    </div>
+                                    <div class="flex-column bg-content rounded p-2 w-100">
+                                        <label for="label" class="form-label ">label</label>
+                                        <input type="text" class="form-control" id="label" name="label" value="' . ($details->label ?? 'label') . '">
+                                    </div>
+                                    <div class="flex-row gap-1 align-items-center space-between bg-content rounded p-2 w-100">
+                                        <div id="languages" class="flex-row gap-1 align-items-center">
+                                            <label for="title" class="form-label ">Languages:</label>
+                                            '. $buttons .'
+                                        </div>
+                                        <button class="AddButton"></button>
+                                        <select id="languageDropdown" class="form-control" style="display: none;">
+                                            ' . $dropdown . '
+                                        </select>
+                                    </div>
+                                    <div class="flex-column bg-content rounded p-2 w-100">
+                                        <label for="title" class="form-label ">Github url</label>
+                                        <input type="text" class="form-control" id="url" name="url" value="' . ($details->button_link ?? 'github url') . '">
+                                    </div>
+                                    <div class="flex-column bg-content rounded p-2 w-100">
+                                        <label for="short-description" class="form-label ">short-description</label>
+                                        <input type="text" class="form-control" id="short-description" name="short-description" value="' . ($project->text ?? 'short-description') . '">
+                                    </div>
+                                    <div class="flex-row gap-1 align-items-center space-between bg-content rounded p-2 w-100">
+                                        <div class="flex-column gap-1 w-100">
+                                            <label for="image1" class="form-label justify-center">' . ($details->image_1 ?? 'No image 1') . '</label>
+                                            <input type="file" class="form-control" id="image1" name="image1" value="' . ($details->image_1) . '">
+                                            <div class="flex-row gap-1">
+                                                <label for="image1" class="form-label CustomInput">Image</label>
+                                                <label for="image1" class="form-label CustomInput danger">Delete</label>
+                                            </div>
+                                        </div>
+                                        <div class="flex-column gap-1 w-100">
+                                            <label for="image2" class="form-label justify-center">' . ($details->image_2 ?? 'No image 2') . '</label>
+                                            <input type="file" class="form-control" id="image2" name="image2" value="' . ($details->image_2) . '">
+                                            <div class="flex-row gap-1">
+                                                <label for="image2" class="form-label CustomInput">Image</label>
+                                                <label for="image2" class="form-label CustomInput danger">Delete</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="button" type="submit">opslaan</button>
+                                </div>
+                                <div class="flex-column bg-content rounded p-2 w-60">
+                                    <label for="place_name" class="form-label ">Tekst vak</label>
+                                    <textarea id="summernote" name="editordata">' . ($data->text ?? 'text') . '</textarea>
+                                </div>
+                            </div>
+                </form>
+            </div>
+        ';
         }
 
         return $html;

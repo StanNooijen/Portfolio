@@ -66,46 +66,43 @@ class general_block
         $data = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
 
         $html = '
-        <div class="container">
-            <div class="row">
-                <form class="w-100" action="/updatenBlok" method="post" enctype="multipart/form-data">
+            <div class="row w-100">
+                <form class="flex-column gap-1 w-100" action="/updatenBlok" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="block_id" value="' . $block_id . '">
                     <input type="hidden" name="position" value="' . $position . '">
                     <input type="hidden" name="type" value="' . $block_name . '">
                     ' . csrf_field() . '
-                    <div class="flex-column gap-3">
-                        <div class="flex-row flex-wrap gap-1">
-                            <div class="flex-column gap-0 w-100">
-                                <label for="title" class="form-label ">Titel</label>
-                                <input type="text" class="form-control" id="title" name="title" value="' . ($data->title ?? 'title') . '">
+                            <div class="flex-row gap-1">
+                                <div class="flex-column w-100">
+                                    <label for="title" class="form-label ">Titel</label>
+                                    <input type="text" class="form-control" id="title" name="title" value="' . ($data->title ?? 'title') . '">
+                                </div>
+                                <div class="flex-column w-100">
+                                    <label for="place_name" class="form-label ">Plaatsnaam</label>
+                                    <input type="text" class="form-control" id="place_name" name="place_name" value="' . ($data->place_name ?? 'place name') . '">
+                                </div>
                             </div>
-                            <div class="flex-column gap-0 w-100">
-                                <label for="place_name" class="form-label ">Plaatsnaam</label>
-                                <input type="text" class="form-control" id="place_name" name="place_name" value="' . ($data->place_name ?? 'place name') . '">
-                            </div>
-                        </div>
-                            <div class="flex-column gap-0 w-100">
+                            <div class="flex-column w-100">
                                 <label for="place_name" class="form-label ">Tekst vak</label>
                                 <textarea id="summernote" name="editordata">' . ($data->text ?? 'text') . '</textarea>
                             </div>
-                        <div class="flex-row flex-wrap w-100 gap-1">
-                            <div class="flex-column gap-0 w-100">
+
+                            <div class="flex-row gap-1">
+                                <div class="flex-column w-100">
                                 <label for="button_text" class="form-label ">Button tekst</label>
                                 <input type="text" class="form-control" id="button_text" name="button_text" value="' . ($data->button_text ?? 'button_text') . '">
+                                </div>
+                                <div class="flex-column w-100">
+                                    <label for="image" class="form-label justify-center">' . ($data->image ?? 'nog geen afbeelding') . '</label>
+                                    <input type="file" class="form-control" id="image" name="image">
+                                    <label for="image" class="form-label CustomInput">Afbeelding</label>
+                                </div>
                             </div>
-                            <div class="flex-column gap-0 w-100">
-                                <label for="image" class="form-label justify-center">'. ($data->image ?? 'nog geen afbeelding').'</label>
-                                <input type="file" class="form-control" id="image" name="image">
-                                <label for="image" class="form-label CustomInput">Afbeelding</label>
-                            </div>
-                        </div>
                         <div>
                             <button class="button" type="submit">opslaan</button>
                         </div>
-                    </div>
                 </form>
             </div>
-        </div>
         ';
         return $html;
     }

@@ -1,6 +1,6 @@
-<nav class="w-100 flex-row" x-data="{ open: false }">
+<nav class="w-100 nav flex-row" x-data="{ open: false }">
 
-    <div class="nav gap-1 p-1">
+    <div class="w-25 flex-row gap-1 p-1">
         <x-responsive-nav-link :href="route('dashboard')">
             {{ __('Dashboard') }}
         </x-responsive-nav-link>

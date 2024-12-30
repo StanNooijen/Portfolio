@@ -6,6 +6,7 @@ use App\Models\Blocks;
 use App\Models\Navbars;
 use App\Models\Popups;
 use App\Models\Popups_details;
+use App\Models\Projects;
 use App\Models\Skills;
 use Illuminate\Support\Facades\Cache;
 
@@ -115,6 +116,29 @@ class Controller
             }
         }
         return view('block', ['block' => $block, 'popups' => $popups, 'html' => $html]);
+    }
+
+    public function popup($popup_id, $title) {
+        $popup = Popups::where('popup_id',$popup_id)->where('active' , 1)->get();
+
+        $html = '';
+        foreach($popup as $popups) {
+            $blockName = $popups->type;
+
+            $className = 'App\\Blokken\\popup_block';
+
+            if (class_exists($className)) {
+                $instance = new $className();
+                if (method_exists($instance, 'render_cms_block')) {
+                    $html = $instance->render_cms_block($popups->popup_id, $blockName);
+                } else {
+                    echo 'Method render_cms_block does not exist in class ' . $className;
+                }
+            } else {
+                dd('Class ' . $className . ' does not exist');
+            }
+        }
+        return view('block', ['block' => $popup, 'html' => $html]);
     }
 
     public function skill($skill_id) {
