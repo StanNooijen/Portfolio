@@ -43,22 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const addButton = document.querySelector('.AddButton');
     const languageDropdown = document.getElementById('languageDropdown');
     const buttonsContainer = document.getElementById('languages');
-
-// Event delegation for dynamically added language divs
-    buttonsContainer.addEventListener('click', function (event) {
-        const clickedDiv = event.target.closest('.button');
-        if (clickedDiv) {
-            const language = clickedDiv.textContent.trim(); // Get the text content of the clicked div
-            console.log('Clicked div text:', language);
-            if (language) {
-                buttonsContainer.removeChild(clickedDiv);
-                removeDetailsValue(language);
-                console.log('Language removed:', language);
-            } else {
-                console.error('Language attribute is missing!');
-            }
-        }
-    });
+    const Input = document.getElementById('thingsInput');
 
     addButton.addEventListener('click', function (event) {
         event.preventDefault();
@@ -66,50 +51,94 @@ document.addEventListener("DOMContentLoaded", function() {
         languageDropdown.style.display = 'block';
     });
 
-    languageDropdown.addEventListener('change', function () {
-        const selectedLanguage = languageDropdown.value;
-        if (selectedLanguage && !isLanguageAdded(selectedLanguage)) {
-            const newDiv = document.createElement('div');
-            newDiv.className = 'button gap-1 align-items-center';
-            newDiv.dataset.language = selectedLanguage; // Properly set the data-language attribute
-            newDiv.innerHTML = `${selectedLanguage} <i class="fa-solid fa-xmark"></i>`;
-            buttonsContainer.appendChild(newDiv);
-            addButton.style.display = 'block';
-            languageDropdown.style.display = 'none';
-            updateDetailsValue(selectedLanguage);
-            console.log('New language added:', selectedLanguage);
+// Event delegation for dynamically added language divs
+    buttonsContainer.addEventListener('click', function (event) {
+        const inputName = Input.closest('.flex-row').querySelector('input[type="hidden"]').name;
+        const clickedDiv = event.target.closest('.button');
+        if (clickedDiv) {
+            const language = clickedDiv.textContent.trim(); // Get the text content of the clicked div
+            console.log('Clicked div text:', language);
+            if (language) {
+                buttonsContainer.removeChild(clickedDiv);
+                removeDetailsValue(language, inputName);
+                console.log('Language removed:', language);
+            } else {
+                console.error('Language attribute is missing!');
+            }
         }
     });
 
-    function updateDetailsValue(language) {
-        const hiddenInput = document.querySelector('input[name="languages"]');
-        hiddenInput.value += `,${language}`;
-        checkHiddenInputValue();
+
+
+    if (languageDropdown) {
+        languageDropdown.addEventListener('change', function () {
+            const selectedLanguage = languageDropdown.value;
+            const inputName = languageDropdown.closest('.flex-row').querySelector('input[type="hidden"]').name;
+            if (selectedLanguage && !isLanguageAdded(selectedLanguage, inputName)) {
+                const newDiv = document.createElement('div');
+                newDiv.className = 'button gap-1 align-items-center';
+                newDiv.dataset.language = selectedLanguage; // Properly set the data-language attribute
+                newDiv.innerHTML = `${selectedLanguage} <i class="fa-solid fa-xmark"></i>`;
+                buttonsContainer.appendChild(newDiv);
+                addButton.style.display = 'block';
+                languageDropdown.style.display = 'none';
+                updateDetailsValue(selectedLanguage, inputName);
+                console.log('New language added:', selectedLanguage);
+            }
+        });
     }
 
-    function removeDetailsValue(language) {
-        console.log('Removing language:', language);
-        const hiddenInput = document.querySelector('input[name="languages"]');
+    if (Input) {
+        Input.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const selectedLanguage = Input.value.trim();
+                const inputName = Input.closest('.flex-row').querySelector('input[type="hidden"]').name;
+                if (selectedLanguage && !isLanguageAdded(selectedLanguage, inputName)) {
+                    const newDiv = document.createElement('div');
+                    newDiv.className = 'button gap-1 align-items-center';
+                    newDiv.dataset.language = selectedLanguage;
+                    newDiv.innerHTML = `${selectedLanguage} <i class="fa-solid fa-xmark"></i>`;
+                    buttonsContainer.appendChild(newDiv);
+                    updateDetailsValue(selectedLanguage, inputName);
+                }
+                Input.value = '';
+            }
+        });
+    }
+
+
+
+
+    function updateDetailsValue(language, inputName) {
+        const hiddenInput = document.querySelector(`input[name="${inputName}"]`);
+        hiddenInput.value += `,${language}`;
+        checkHiddenInputValue(inputName);
+    }
+
+    function removeDetailsValue(language, inputName) {
+        console.log('removeDetailsValue:', inputName);
+        const hiddenInput = document.querySelector(`input[name="${inputName}"]`);
         const languages = hiddenInput.value.split(',');
         const index = languages.indexOf(language);
         if (index !== -1) {
-            languages.splice(index, 1); // Remove only the first occurrence
+            languages.splice(index, 1);
         }
         hiddenInput.value = languages.join(',');
-        checkHiddenInputValue();
+        checkHiddenInputValue(inputName);
     }
 
-    function isLanguageAdded(language) {
-        const hiddenInput = document.querySelector('input[name="languages"]');
+    function isLanguageAdded(language, inputName) {
+        const hiddenInput = document.querySelector(`input[name="${inputName}"]`);
         const languages = hiddenInput.value.split(',');
-        console.log('Current languages:', languages);
         return languages.includes(language);
     }
 
-    function checkHiddenInputValue() {
-        const hiddenInput = document.querySelector('input[name="languages"]');
-        console.log('Hidden input value:', hiddenInput.value);
+    function checkHiddenInputValue(inputName) {
+        const hiddenInput = document.querySelector(`input[name="${inputName}"]`);
+        console.log(`Hidden input value for ${inputName}:`, hiddenInput.value);
     }
+
 });
 
 $(document).ready(function() {

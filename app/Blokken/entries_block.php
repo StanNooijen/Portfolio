@@ -9,11 +9,6 @@ class entries_block
 {
     public function render_public_block($block_id, $block_name, $position)
     {
-        $block_content = Blocks::where('block_id', $block_id)
-            ->where('position', $position)
-            ->where('type', $block_name)
-            ->first();
-
         $entries = Entries::where('block_id', $block_id)
             ->whereIn('type', ['career', 'education'])
             ->get()
@@ -22,66 +17,16 @@ class entries_block
         $careers = $entries->get('career', collect());
         $education = $entries->get('education', collect());
 
-        $html = '';
-        $html_career = '';
-        foreach ($careers as $career) {
-            $logo = $career->logo ?? asset('images/Rectangle.png');
-            $date = $career->date ?? 'Heden';
-            $html_career .= '
-                <div class="col card">
-                    <div class="flex-row gap-1">
-                        <img src="' . $logo . '" alt="'. $career->title .'">
-                        <div class="w-100">
-                            <div class="space-between">
-                                <h2>' . $career->title . '</h2>
-                                <h3>' . $date . '</h3>
-                            </div>
-                            <p class="place">' . $career->place . '</p>
-                        </div>
-                    </div>
-                    <div class="info">
-                        <p class="">
-                            ' . $career->text . '
-                        </p>
-                    </div>
-                </div>';
-        }
-
-        $html_education = '';
-        foreach ($education as $edu) {
-            $logo = $edu->logo ?? asset('images/Rectangle.png');
-            $date = $edu->date ?? 'Heden';
-            $html_education .= '
-                <div class="col card">
-                    <div class="flex-row gap-1">
-                        <img src="' . $logo . '" alt="'. $edu->title .'">
-                        <div class="w-100">
-                            <div class="space-between">
-                                <h2>' . $edu->title . '</h2>
-                                <h3>' . $date . '</h3>
-                            </div>
-                            <p class="place">' . $edu->place . '</p>
-                        </div>
-                    </div>
-                    <div class="">
-                        <p class="">
-                            ' . $edu->text . '
-                        </p>
-                    </div>
-                </div>';
-        }
+        $html_career = $this->generateHtml($careers);
+        $html_education = $this->generateHtml($education);
 
         $career_count = $careers->count();
         $education_count = $education->count();
         $max_count = max($career_count, $education_count);
 
-        $circles_html = '';
-        for ($i = 0; $i < $max_count; $i++) {
-            $circle_position = ($i * 275) + -20;
-            $circles_html .= '<div class="circle" style="top: ' . $circle_position . 'px;"></div>';
-        }
+        $circles_html = $this->generateCirclesHtml($max_count);
 
-        $html .= '
+        $html = '
             <div class="container" id="carriere">
                 <div class="row align-start">
                     <div class="vertical-line"></div>
@@ -102,44 +47,91 @@ class entries_block
         return $html;
     }
 
-    public function render_cms_block($block_id, $block_name, $position){
-        $data = blocks::where('block_id', $block_id)->where('position', $position)->where('type', $block_name)->first();
-        $html = '
-        <div class="row w-100">
-                <form class="flex-column gap-1 w-100" action="/updatenBlok" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="block_id" value="' . $block_id . '">
-                    <input type="hidden" name="position" value="' . $position . '">
-                    <input type="hidden" name="type" value="' . $block_name . '">
-                    ' . csrf_field() . '
-                            <div class="flex-row gap-1">
-                                <div class="flex-column w-100">
-                                    <label for="title" class="form-label ">Titel</label>
-                                    <input type="text" class="form-control" id="title" name="title" value="' . ($data->title ?? 'title') . '">
-                                </div>
-                                <div class="flex-column w-100">
-                                    <label for="place_name" class="form-label ">Plaatsnaam</label>
-                                    <input type="text" class="form-control" id="place_name" name="place_name" value="' . ($data->place_name ?? 'place name') . '">
-                                </div>
+    private function generateHtml($entries)
+    {
+        $html = '';
+        foreach ($entries as $entry) {
+            $logo = $entry->logo ?? asset('images/Rectangle.png');
+            $date = $entry->date ?? 'Heden';
+            $html .= '
+                <div class="col card">
+                    <div class="flex-row gap-1">
+                        <img src="' . $logo . '" alt="'. $entry->title .'">
+                        <div class="w-100">
+                            <div class="space-between">
+                                <h2>' . $entry->title . '</h2>
+                                <h3>' . $date . '</h3>
                             </div>
-                            <div class="flex-column w-100">
-                                <label for="place_name" class="form-label ">Tekst vak</label>
-                                <textarea id="summernote" name="editordata">' . ($data->text ?? 'text') . '</textarea>
-                            </div>
-
-                            <div class="flex-row gap-1">
-                                <div class="flex-column w-100">
-                                <label for="button_text" class="form-label ">Button tekst</label>
-                                <input type="text" class="form-control" id="button_text" name="button_text" value="' . ($data->button_text ?? 'button_text') . '">
-                                </div>
-                                <div class="flex-column w-100">
-                                    <label for="image" class="form-label justify-center">' . ($data->image ?? 'nog geen afbeelding') . '</label>
-                                    <input type="file" class="form-control" id="image" name="image">
-                                    <label for="image" class="form-label CustomInput">Afbeelding</label>
-                                </div>
-                            </div>
-                        <div>
-                            <button class="button" type="submit">opslaan</button>
+                            <p class="place">' . $entry->place . '</p>
                         </div>
+                    </div>
+                    <div class="info">
+                        <p class="">
+                            ' . $entry->text . '
+                        </p>
+                    </div>
+                </div>';
+        }
+        return $html;
+    }
+
+    private function generateCirclesHtml($count)
+    {
+        $circles_html = '';
+        for ($i = 0; $i < $count; $i++) {
+            $circle_position = ($i * 275) + -20;
+            $circles_html .= '<div class="circle" style="top: ' . $circle_position . 'px;"></div>';
+        }
+        return $circles_html;
+    }
+
+    public function render_cms_block($entries_id, $type)
+    {
+        $data = Entries::where('entry_id', $entries_id)->where('type', $type)->first();
+        $html = '
+        <div class="row display-block w-100 h-100">
+                <form class="flex-column gap-1 w-100 h-100 h-100" action="/entrieSave" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="entry_id" value="' . $entries_id . '">
+                    ' . csrf_field() . '
+                            <div class="flex-row gap-1 h-100">
+                                <div class="flex-column gap-1 h-100 w-100">
+                                    <div class="flex-row gap-1 space-between">
+                                        <div class="flex-column bg-content rounded p-2 w-100">
+                                            <label for="title" class="form-label ">Titel</label>
+                                            <input type="text" class="form-control" id="title" name="title" value="' . ($data->title ?? 'title') . '">
+                                        </div>
+                                        <div class="bg-content rounded p-2 gap-1 flex-column w-100">
+                                            <div class="flex-column rounded w-100">
+                                                <label for="place" class="form-label">Place</label>
+                                                <input type="text" class="form-control" id="place" name="place" value="' . ($data->place ?? 'place' ).' ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-row gap-1 w-100 justify-center">
+                                        <div class="flex-column justify-center rounded gap-1 bg-content p-1 w-100">
+                                            <label for="start_date" class="form-label ">Start Date</label>
+                                            <input type="date" class="form-control" id="start_date" name="start_date" value="' . ($data->start_date ?? 'start_date') . '">
+                                        </div>
+                                        <div class="flex-column rounded justify-center gap-1 bg-content p-1 w-100">
+                                            <label for="end_date" class="form-label ">End Date</label>
+                                            <input type="date" class="form-control" id="end_date" name="end_date" value="' . ($data->end_date ?? 'end_date') . '">
+                                        </div>
+                                    </div>
+                                    <div class="flex-column rounded bg-content p-1 gap-1 w-100 justify-center">
+                                        <label for="image1" class="form-label justify-center">' . ($data->logo?? 'No logo') . '</label>
+                                        <input type="file" class="form-control" id="image1" name="image1" value="' . ($data->logo) . '">
+                                        <div class="flex-row gap-1">
+                                            <label for="image1" class="form-label CustomInput">logo</label>
+                                            <label for="image1" class="form-label CustomInput danger">Delete</label>
+                                        </div>
+                                    </div>
+                                    <button class="button" type="submit">opslaan</button>
+                                </div>
+                                <div class="flex-column bg-content rounded p-2 w-60">
+                                    <label for="editordata" class="form-label ">Tekst vak</label>
+                                    <textarea id="summernote" name="editordata">' . ($data->text ?? 'text') . '</textarea>
+                                </div>
+                            </div>
                 </form>
             </div>
         ';

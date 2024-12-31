@@ -105,7 +105,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3s;
+  animation-delay: 1.2s;
 }
 
 .line:nth-child(2) {
@@ -128,7 +128,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3s;
+  animation-delay: 0.2s;
 }
 
 .line:nth-child(3) {
@@ -151,7 +151,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 1s;
+  animation-delay: 1.1s;
 }
 
 .line:nth-child(4) {
@@ -174,7 +174,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 4s;
+  animation-delay: 3.4s;
 }
 
 .line:nth-child(5) {
@@ -197,7 +197,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 5.3s;
+  animation-delay: 4.3s;
 }
 
 .line:nth-child(6) {
@@ -220,7 +220,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 2.4s;
+  animation-delay: 3.5s;
 }
 
 .line:nth-child(7) {
@@ -243,7 +243,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3.1s;
+  animation-delay: 0.1s;
 }
 
 .line:nth-child(8) {
@@ -266,7 +266,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 4.1s;
+  animation-delay: 4.2s;
 }
 
 .line:nth-child(9) {
@@ -289,7 +289,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3.1s;
+  animation-delay: 0.3s;
 }
 
 .line:nth-child(10) {
@@ -335,7 +335,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 5.3s;
+  animation-delay: 1.3s;
 }
 
 .line:nth-child(12) {
@@ -358,7 +358,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 3.2s;
+  animation-delay: 3.1s;
 }
 
 .line:nth-child(13) {
@@ -381,7 +381,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 1.3s;
+  animation-delay: 4s;
 }
 
 .line:nth-child(14) {
@@ -404,7 +404,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 2.1s;
+  animation-delay: 3.1s;
 }
 
 .line:nth-child(15) {
@@ -427,7 +427,7 @@ body {
   animation: drop 7s 0s infinite;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-  animation-delay: 1.5s;
+  animation-delay: 0.2s;
 }
 
 @keyframes drop {
@@ -658,7 +658,6 @@ label[for=image]:first-of-type {
   padding: 0.5rem;
   font-family: "Poppins", sans-serif;
   font-size: 1em;
-  height: 100%;
 }
 .form-control:focus {
   outline: none;
@@ -726,6 +725,7 @@ label[for=image]:first-of-type {
   cursor: pointer;
   font-family: "Poppins", sans-serif;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .button:hover {
   background-color: var(--middleGray);
