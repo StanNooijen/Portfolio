@@ -8,12 +8,12 @@
                         <h4>{{ $item->title }}</h4>
                     </div>
                     <div class="flex-row w-100 align-items-center gap-1">
-                        <form class="w-100">
+                        <form class="w-100" action="{{ route('entrie', $item->entry_id)}}">
                             @csrf
                             @method('PUT')
                             <button class="button w-100">{{__('Edit')}}</button>
                         </form>
-                        <form class="w-100">
+                        <form class="w-100" action="{{ route('deleteEntry' , $item->entry_id)}}">
                             @csrf
                             @method('DELETE')
                             <button class="button danger  w-100">{{__('Delete')}}</button>
@@ -23,5 +23,8 @@
             @endforeach
         </div>
     </div>
-    <button class="AddButton"></button>
+    <form action="/addEntry" method="POST">
+        @csrf
+        <button class="AddButton"></button>
+    </form>
 </div>
