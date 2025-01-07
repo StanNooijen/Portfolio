@@ -64,9 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.changeSkill = (index, skillsId, ballId) => {
-        document.querySelectorAll(`#${ballId} .ball`).forEach((ball, i) => {
-            ball.classList.toggle('active', i === index);
-        });
+        document.querySelectorAll(`#${ballId} .ball`).forEach(ball => ball.classList.remove('active'));
         document.querySelectorAll(`#${skillsId} .skill`).forEach((skill, i) => {
             skill.classList.toggle('active', i === index);
         });
@@ -79,4 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
             projectPopup.classList.add('active');
         }
     };
+
+    const initialBlob = document.querySelector(`#blobs .blob`);
+    if (initialBlob) {
+        const light = document.querySelector(`#blobs .blob-light`);
+        light.classList.add('grow', 'visible');
+        light.style.left = `${initialBlob.offsetLeft + initialBlob.offsetWidth / 2}px`;
+    }
 });

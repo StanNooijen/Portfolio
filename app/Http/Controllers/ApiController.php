@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Entries;
 use App\Models\Popups;
 use App\Models\Popups_details;
 use App\Models\Projects;
@@ -24,7 +23,14 @@ class ApiController extends Controller
         $button_tekst = $data['button_text'];
         $place_name = $data['place_name'];
 
-        $img = $this->handleImageUpload($request, 'image', $block_name, null);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = date('Y-m-d') . '_' . $block_name . '.' . $image->extension();
+            $image->move(public_path('images'), $imageName);
+            $img = '/images/' . $imageName;
+        } else {
+            $img = null;
+        }
 
         $updateData = [
             'title' => $title,
@@ -59,26 +65,28 @@ class ApiController extends Controller
     public function skillPopup(Request $request) {
         $data = $request->all();
         $popup_id = $data['popup_id'];
+        $project_id = $data['project_id'];
+        $description = $data['short-description'];
+        $label = $data['label'];
         $title = $data['title'];
         $text = $data['editordata'];
-        $skills = $data['languages'] ?? null;
-        $button_url = $data['url'] ?? null;
-        $description = $data['short-description'] ?? null;
-        $project_id = $data['project_id'] ?? null;
+        $skills = $data['languages'];
+        $button_url = $data['url'];
+        $details_ids = $data['details_ids'];
 
-        if (isset($data['detail_ids'])) {
-            $detail_ids = str_replace(['[', ']'], '', $data['detail_ids']);
-            $detail_ids = explode(',', $detail_ids);
-            foreach ($detail_ids as $id) {
-                $label = $data['label_' . $id];
-                $labels_input = $data['labels_input_' . $id];
-                Popups_details::updateOrInsert(
-                    ['detail_id' => $id, 'popup_id' => $popup_id],
-                    ['label' => $label, 'value' => $labels_input]
-                );
-            }
+        $detail_ids = explode(',', $details_ids);
+        foreach ($detail_ids as $id) {
+            $label = $data['label_' . $id];
+            $labels_input = $data['labels_input_' . $id];
+
+            Popups_details::updateOrInsert(
+                ['popup_id' => $popup_id, 'detail_id' => $id],
+                ['label' => $label, 'value' => $labels_input]
+            );
         }
 
+
+        // Save title and text in the popups table
         Popups::updateOrInsert(
             ['popup_id' => $popup_id],
             ['title' => $title, 'text' => $text]
@@ -89,68 +97,50 @@ class ApiController extends Controller
             ['title' => $title, 'programming_languages' => $skills, 'text' => $description]
         );
 
+        // Retrieve existing popup details
         $existingDetails = Popups_details::where('popup_id', $popup_id)->first();
-        $img1 = $this->handleImageUpload($request, 'image1', $popup_id, $existingDetails->image_1 ?? null);
-        $img2 = $this->handleImageUpload($request, 'image2', $popup_id, $existingDetails->image_2 ?? null);
 
+        // Handle image1
+        if ($request->hasFile('image1')) {
+            $image1 = $request->file('image1');
+            $imageName1 = date('Y-m-d') . '_image1_' . $popup_id . '.' . $image1->extension();
+            $image1->move(public_path('images'), $imageName1);
+            $img1 = '/images/' . $imageName1;
+        } else {
+            $img1 = $existingDetails ? $existingDetails->image_1 : null;
+        }
+
+        // Handle image2
+        if ($request->hasFile('image2')) {
+            $image2 = $request->file('image2');
+            $imageName2 = date('Y-m-d') . '_image2_' . $popup_id . '.' . $image2->extension();
+            $image2->move(public_path('images'), $imageName2);
+            $img2 = '/images/' . $imageName2;
+        } else {
+            $img2 = $existingDetails ? $existingDetails->image_2 : null;
+        }
+
+        // Save the rest of the data in the popup_details_table
         $updateDetails = [
             'popup_id' => $popup_id,
-            'value' => $skills ?? '',
+            'value' => $skills,
             'button_link' => $button_url,
-            'label' => $data['label'],
-            'image_1' => $img1,
-            'image_2' => $img2,
+            'label' => $label,
         ];
 
-        if (isset($data['detail_id'])){
-            Popups_details::updateOrInsert(
-                ['popup_id' => $popup_id, 'detail_id' => $data['detail_id']],
-                array_filter($updateDetails, fn($value) => !is_null($value))
-            );
+        if ($img1 !== null) {
+            $updateDetails['image_1'] = $img1;
         }
 
-        return redirect()->back();
-    }
-
-    public function entrieSave(Request $request)
-    {
-        $data = $request->all();
-        $entry_id = $data['entry_id'];
-        $title = $data['title'];
-        $place = $data['place'];
-        $start_date = $data['start_date'];
-        $end_date = $data['end_date'];
-        $text = $data['editordata'];
-
-        $img = $this->handleImageUpload($request, 'image1', $entry_id, null);
-
-        $updateData = [
-            'title' => $title,
-            'place' => $place,
-            'start_date' => $start_date,
-            'end_date' => $end_date,
-            'text' => $text,
-        ];
-
-        if ($img !== null) {
-            $updateData['logo'] = $img;
+        if ($img2 !== null) {
+            $updateDetails['image_2'] = $img2;
         }
 
-        Entries::updateOrInsert(
-            ['entry_id' => $entry_id],
-            $updateData
+        Popups_details::updateOrInsert(
+            ['popup_id' => $popup_id],
+            $updateDetails
         );
 
         return redirect()->back();
-    }
-
-    private function handleImageUpload($request, $imageField, $popup_id, $existingImage) {
-        if ($request->hasFile($imageField)) {
-            $image = $request->file($imageField);
-            $imageName = date('Y-m-d') . "_{$imageField}_{$popup_id}." . $image->extension();
-            $image->move(public_path('images'), $imageName);
-            return '/images/' . $imageName;
-        }
-        return $existingImage;
     }
 }

@@ -18,12 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/block/{block}', [Controller::class, 'block'])->name('block');
     Route::get('/popup/{popup_id}/{title}', [Controller::class, 'popup'])->name('popup');
     Route::get('/skill/{skill_id}', [Controller::class, 'skill'])->name('skill');
-    Route::get('/entrie/{entrie_id}', [Controller::class, 'entrie'])->name('entrie');
 
     Route::post('/updatenBlok', [ApiController::class, 'updatenBlok']);
     Route::post('/setActive/{popup_id}}', [ApiController::class, 'setActive'])->name('setActive');
     Route::post('/skillPopup', [ApiController::class, 'skillPopup'])->name('skillPopup');
-    Route::post('/entrieSave', [ApiController::class, 'entrieSave'])->name('entrieSave');
 });
 
 //Route::get('/switch-language/{locale}', function ($locale) {

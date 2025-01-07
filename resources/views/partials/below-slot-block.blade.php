@@ -8,7 +8,7 @@
                         <h4>{{ $item->title }}</h4>
                     </div>
                     <div class="flex-row w-100 align-items-center gap-1">
-                        <form class="w-100" action="{{ route('entrie', $item->entry_id)}}">
+                        <form class="w-100">
                             @csrf
                             @method('PUT')
                             <button class="button w-100">{{__('Edit')}}</button>
@@ -25,5 +25,3 @@
     </div>
     <button class="AddButton"></button>
 </div>
-
-<div></div>
