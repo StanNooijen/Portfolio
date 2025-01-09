@@ -8,22 +8,16 @@ class entries_block
 {
     public function render_public_block($block_id, $block_name, $position)
     {
-        $entries = Entries::where('block_id', $block_id)
-            ->whereIn('type', ['career', 'education'])
-            ->get()
+        $entries = Entries::get()
             ->groupBy('type');
 
         $careers = $entries->get('career', collect());
+        $careers = $careers->sortByDesc('start_date');
         $education = $entries->get('education', collect());
+        $education = $education->sortByDesc('start_date');
 
         $html_career = $this->generateHtml($careers);
         $html_education = $this->generateHtml($education);
-
-        $career_count = $careers->count();
-        $education_count = $education->count();
-        $max_count = max($career_count, $education_count);
-
-        $circles_html = $this->generateCirclesHtml($max_count);
 
         $html = '
             <div class="container" id="carriere">
@@ -34,7 +28,6 @@ class entries_block
                         '. $html_career .'
                     </div>
                     <div class="line-down">
-                        '. $circles_html .'
                     </div>
                     <div class="col align-center education">
                         <h1>Opleiding</h1>
@@ -51,7 +44,7 @@ class entries_block
         $html = '';
         foreach ($entries as $entry) {
             $logo = $entry->logo ?? asset('images/Rectangle.png');
-            $date = $entry->date ?? 'Heden';
+            $end_date = $entry->end_date ?? 'Heden';
             $html .= '
                 <div class="col card">
                     <div class="flex-row gap-1">
@@ -60,7 +53,11 @@ class entries_block
                         <div class="w-100">
                             <div class="space-between">
                                 <h2>' . $entry->title . '</h2>
-                                <h3>' . $date . '</h3>
+                                <div class="flex-row gap-1 h-100 align-items-center">
+                                    <h4>' . $entry->start_date . '</h4>
+                                    <div class="timeStamp"></div>
+                                    <h4>' . $end_date . '</h4>
+                                </div>
                             </div>
                             <p class="place">' . $entry->place . '</p>
                         </div>
@@ -118,11 +115,11 @@ class entries_block
                                     <div class="flex-row gap-1 w-100 justify-center">
                                         <div class="flex-column justify-center rounded gap-1 bg-content p-2 w-100">
                                             <label for="start_date" class="form-label ">Start Date</label>
-                                            <input type="date" class="form-control" id="start_date" name="start_date" value="' . ($data->start_date ?? 'start_date') . '">
+                                            <input type="month" class="form-control" id="start_date" name="start_date" value="' . ($data->start_date ?? 'start_date') . '">
                                         </div>
                                         <div class="flex-column rounded justify-center gap-1 bg-content p-2 w-100">
                                             <label for="end_date" class="form-label ">End Date</label>
-                                            <input type="date" class="form-control" id="end_date" name="end_date" value="' . ($data->end_date ?? 'end_date') . '">
+                                            <input type="month" class="form-control" id="end_date" name="end_date" value="' . ($data->end_date ?? 'end_date') . '">
                                         </div>
                                     </div>
                                     <div class="flex-column rounded justify-center gap-1 bg-content p-2 w-100">

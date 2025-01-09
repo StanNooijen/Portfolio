@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/setActive/{popup_id}}', [ApiController::class, 'setActive'])->name('setActive');
     Route::post('/skillPopup', [ApiController::class, 'skillPopup'])->name('skillPopup');
     Route::post('/addPopup', [ApiController::class, 'addPopup'])->name('addPopup');
-    Route::delete('/deletePopup/{popup_id}', [ApiController::class, 'deletePopup'])->name('deletePopup');
+    Route::delete('/deletePopup/{popup_id}/{type}', [ApiController::class, 'deletePopup'])->name('deletePopup');
 
     Route::post('/entrieSave', [ApiController::class, 'entrieSave'])->name('entrieSave');
     Route::post('/addEntry', [ApiController::class, 'addEntry'])->name('addEntry');

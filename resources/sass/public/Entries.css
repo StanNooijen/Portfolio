@@ -67,4 +67,11 @@
   background-position: center;
 }
 
+.timeStamp {
+  content: "";
+  width: 10px;
+  height: 3px;
+  background-color: var(--white);
+}
+
 /*# sourceMappingURL=Entries.css.map */

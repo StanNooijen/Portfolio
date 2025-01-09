@@ -8,6 +8,7 @@ use App\Models\Popups;
 use App\Models\Popups_details;
 use App\Models\Projects;
 use App\Models\Skills;
+use function Webmozart\Assert\Tests\StaticAnalysis\null;
 
 class popup_block
 {
@@ -17,7 +18,7 @@ class popup_block
 
         $popup_details = Popups_details::where('popup_id', $popups->popup_id)->get();
         $html = '';
-        if ($popup_id == '1') {
+        if ($popups->type == 'about_me' && $popups->active == 1) {
             $abouts = '';
             foreach ($popup_details as $popup_detail) {
                 $int = 1;
@@ -125,7 +126,7 @@ class popup_block
     public function render_cms_block($popup_id, $block_name){
         $data = popups::where('popup_id', $popup_id)->first();
         $details = Popups_details::where('popup_id', $popup_id)->get();
-        $project = projects::where('title', $data->title)->first();
+        $project = projects::where('project_id', $data->project_id)->first();
         $skills = Skills::where('type', 'hard')->get();
 
         $popup_types = popups::distinct()->pluck('type');
@@ -148,8 +149,7 @@ class popup_block
             $dropdown .= '<option value="' . $skill->title . '">' . $skill->title . '</option>';
         }
 
-
-        if ($popup_id == '1') {
+        if ($data->type == 'about_me') {
 
             $detailIds = $details->pluck('detail_id')->toArray();
             $detailIdsJson = json_encode($detailIds);
@@ -218,7 +218,7 @@ class popup_block
                 <form class="flex-column gap-1 w-100" action="/skillPopup" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="popup_id" value="' . $popup_id . '">
                     <input type="hidden" name="type" value="' . $block_name . '">
-                    <input type="hidden" name="project_id" value="' . $project->project_id . '">
+                    <input type="hidden" name="project_id" value="' . ($project->project_id ?? '') .  '">
                     <input type="hidden" name="detail_id" value="' . $details->first()->detail_id . '">
                     ' . csrf_field() . '
                             <div class="flex-row gap-1">

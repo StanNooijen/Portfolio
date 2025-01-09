@@ -1,5 +1,5 @@
 <div class="side-block">
-    <div class="flex-column gap-3">
+    <div class="flex-column h-100 gap-3">
         <div class="flex-column gap-1">
             <div class="flex-row align-items-center flex-wrap space-between ">
                 <h4>Projecten and Popups</h4>
@@ -10,7 +10,7 @@
             </div>
             <input type="text" class="form-control p-4" placeholder="Search...">
         </div>
-        <div id="vertical-scroll" class="vertical-scroll">
+        <div id="vertical-scroll" class="vertical-scroll flex-column gap-1">
             <div class="flex-column gap-1">
                 <h4>General popups</h4>
                 @foreach($data as $item)
@@ -43,11 +43,9 @@
                                             @method('PUT')
                                             <button class="button w-100">{{__('Edit')}}</button>
                                         </form>
-                                        <form class="w-100"
-                                              action="{{ route('deletePopup', $item->popup_id) }}">
+                                        <form class="w-100" action="{{ route('deletePopup', [$item->popup_id, $item->type]) }}" method="POST">
                                             @csrf
-                                            @method('DELETE')
-                                            <button class="button danger  w-100">{{__('Delete')}}</button>
+                                            <button class="button danger w-100">{{ __('Delete') }}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -88,7 +86,7 @@
                                             @method('PUT')
                                             <button class="button w-100">{{__('Edit')}}</button>
                                         </form>
-                                        <form class="w-100" action="{{ route('deletePopup', $item->popup_id) }}">
+                                        <form class="w-100" action="{{ route('deletePopup', [$item->popup_id, $item->type]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="button danger  w-100">{{__('Delete')}}</button>

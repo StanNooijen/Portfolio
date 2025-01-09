@@ -13,7 +13,7 @@
                             @method('PUT')
                             <button class="button w-100">{{__('Edit')}}</button>
                         </form>
-                        <form class="w-100" action="{{ route('deleteEntry' , $item->entry_id)}}">
+                        <form class="w-100" action="{{ route('deleteEntry' , [$item->entry_id])}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="button danger  w-100">{{__('Delete')}}</button>

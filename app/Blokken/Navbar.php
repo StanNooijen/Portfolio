@@ -57,8 +57,8 @@ class Navbar
                     </div>
                     <div class="links">
                         <h2>Talen</h2>
-                        <a class="nav-button" href="#">NLD<img src="'. asset('images/netherlands.png') .'" alt="NL"></a>
-                        <a class="nav-button" href="#">ENG<img src="'. asset('images/united-kingdom.png') .'" alt="UK"></a>
+                        <a class="nav-button" id="nld-button">NLD<img src="'. asset('images/netherlands.png') .'" alt="NL"></a>
+                        <a class="nav-button" id="eng-button">ENG<img src="'. asset('images/united-kingdom.png') .'" alt="UK"></a>
                     </div>
                 </div>
             </div>

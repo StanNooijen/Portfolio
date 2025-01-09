@@ -114,7 +114,7 @@ class Controller
     }
 
     public function popup($popup_id, $title) {
-        $popup = Popups::where('popup_id',$popup_id)->where('active' , 1)->get();
+        $popup = Popups::where('popup_id',$popup_id)->get();
 
         $html = '';
         foreach($popup as $popups) {

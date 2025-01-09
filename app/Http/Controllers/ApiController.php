@@ -126,6 +126,8 @@ class ApiController extends Controller
                     'type' => $detail_type,
                 ]);
             }
+            Popups::where('project_id', $project_id)->update(['project_id' => null]);
+            Projects::where('project_id', $project_id)->delete();
         }
 
         return redirect()->back();
@@ -172,13 +174,19 @@ class ApiController extends Controller
     }
 
     public function addPopup(){
+        $projects = new Projects();
+        $projects->title = 'New Project';
+        $projects->save();
 
         $popup = new Popups();
+        $popup->project_id = $projects->id;
         $popup->save();
+
 
         $details = new Popups_details();
         $details->popup_id = $popup->id;
         $details->save();
+
 
         return redirect()->back();
     }
@@ -186,8 +194,8 @@ class ApiController extends Controller
     public function deletePopup($popup_id, $type){
 
         if ($type === 'projects') {
-            $title = Popups::where('popup_id', $popup_id)->first()->title;
-            Projects::where('Title', $title)->delete();
+            $project_id = Popups::where('popup_id', $popup_id)->first()->project_id;
+            Projects::where('project_id', $project_id)->delete();
         }
 
         Popups::where('popup_id', $popup_id)->delete();
