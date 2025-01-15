@@ -16,6 +16,14 @@ h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
+p {
+  font-size: clamp(14px, 1dvw, 25px);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: clamp(20px, 1vw, 30px);
+}
+
 body, html {
   font-size: 16px;
   margin: 0;
@@ -240,11 +248,16 @@ p {
 .line-down {
   position: absolute;
   top: 0;
-  left: 47dvw;
+  left: 50%;
   width: 2px;
   height: 100%;
   background-color: var(--lightGray);
   z-index: -1;
+}
+
+.intro {
+  position: absolute;
+  left: 47%;
 }
 
 .title {
@@ -326,9 +339,9 @@ p {
 .meerOverMijButton::before {
   content: "";
   position: absolute;
-  width: 45.99dvw;
-  left: 47.1dvw;
-  top: 74.4%;
+  width: 49.75dvw;
+  left: 5.65%;
+  top: 94%;
   height: 2px;
   background-color: var(--lightGray);
   z-index: -1;
@@ -394,6 +407,14 @@ p {
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
 }
 
 .popup {
@@ -464,6 +485,18 @@ p {
 .contact-about {
   border-top: 2px solid var(--lightGray);
   padding-top: 1rem;
+}
+
+.h-fit-content {
+  height: fit-content;
+}
+
+.w-fit-content {
+  width: fit-content;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .w-1 {

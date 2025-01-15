@@ -39,8 +39,8 @@
 .ball {
   position: relative;
   cursor: pointer;
-  width: clamp(45px, 10vw, 90px);
-  height: clamp(45px, 10vw, 90px);
+  width: clamp(50px, 5vw, 200px);
+  height: clamp(50px, 5vw, 200px);
   border-radius: 50%;
   background-color: var(--white);
   border: 2px solid var(--black);
@@ -87,7 +87,7 @@
 }
 
 #ball1 .ball.active::before {
-  top: 90.5px;
+  top: clamp(50px, 5vw, 220px);
 }
 
 #ball2 .ball::before {
@@ -160,18 +160,6 @@
   background-color: var(--lightGray);
   z-index: -1;
 }
-#Skill::after {
-  content: "";
-  position: absolute;
-  width: 40px;
-  left: 53.04%;
-  top: 21%;
-  background-color: var(--black);
-  height: 40px;
-  border: 2px solid var(--lightGray);
-  border-radius: 50%;
-  z-index: -1;
-}
 
 @keyframes blobBackgroundTransition {
   0% {
@@ -230,7 +218,7 @@
   flex-direction: column;
   gap: 0.5rem;
   flex: 1 1 auto;
-  max-width: 30%;
+  max-width: 50%;
   min-width: 15%;
   background-color: var(--middleGray);
   border-radius: 10px;

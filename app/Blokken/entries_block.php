@@ -21,7 +21,7 @@ class entries_block
 
         $html = '
             <div class="container" id="carriere">
-                <div class="row align-start">
+                <div class="row gap-2 align-start">
                     <div class="vertical-line"></div>
                     <div class="col align-center career">
                         <h1>Carrière</h1>
@@ -43,13 +43,28 @@ class entries_block
     {
         $html = '';
         foreach ($entries as $entry) {
-            $logo = $entry->logo ?? asset('images/Rectangle.png');
+            $entryText = '';
+            $logo = '';
+            if ($entry->text) {
+                $entryText = '
+                <div class="info">
+                    <p class="">
+                        ' . $entry->text . '
+                    </p>
+                </div>';
+            }
+
+            if ($entry->logo){
+                $logo = '<div class="logo" style="background-image: url(' . $entry->logo . ');"></div>';
+            } else {
+                $logo = '';
+            }
+
             $end_date = $entry->end_date ?? 'Heden';
             $html .= '
-                <div class="col card">
+                <div class="col w-100 card">
                     <div class="flex-row gap-1">
-                       <div class="logo" style="background-image: url(' . $logo . '); " >
-                        </div>
+                       ' . $logo . '
                         <div class="w-100">
                             <div class="space-between">
                                 <h2>' . $entry->title . '</h2>
@@ -62,24 +77,10 @@ class entries_block
                             <p class="place">' . $entry->place . '</p>
                         </div>
                     </div>
-                    <div class="info">
-                        <p class="">
-                            ' . $entry->text . '
-                        </p>
-                    </div>
+                    ' . $entryText . '
                 </div>';
         }
         return $html;
-    }
-
-    private function generateCirclesHtml($count)
-    {
-        $circles_html = '';
-        for ($i = 0; $i < $count; $i++) {
-            $circle_position = ($i * 275) - 20;
-            $circles_html .= '<div class="circle" style="top: ' . $circle_position . 'px;"></div>';
-        }
-        return $circles_html;
     }
 
     public function render_cms_block($entries_id, $type)

@@ -73,7 +73,7 @@ class popup_block
                 $img2 = $popup_detail->image_2 ?: asset('images/Rectangle.png');
 
                 $images = '
-                                <div class="row h-100">
+                                <div class="row h-100" style="height: 300px">
                                     <img class="h-100" src="' . $img1 . '" alt="' . $img1 . '">
                                     <img class="h-100" src="' . $img2 . '" alt="' . $img2 . '">
                                 </div>
@@ -98,7 +98,10 @@ class popup_block
                     <div class="row justify-start w-100% flex-column">
                         <div class="col w-100 text-center flex-row space-between">
                             <h1>' . $popups->title . '</h1>
-                            <div class="kruis"></div>
+                            <div class="flex-row justify-end h-fit-content w-100 gap-2">
+                                <a href="'. $popup_detail->button_link .'" class="button h-auto w-fit-content" target="_blank">Github</a>
+                                <div class="kruis"></div>
+                            </div>
                         </div>
                         <div class="row h-100">
                             <div class="col flex-column h-100 w-50 gap-1">
@@ -172,6 +175,7 @@ class popup_block
                                         </div>
                                         <div class="flex-row flex-wrap gap-1 align-items-center space-between w-100">
                                             <div id="languages" class="flex-row flex-wrap gap-1 align-items-center">
+
                                                 ' . $buttons . '
                                             </div>
                                             <input type="text" id="thingsInput" class="form-control" placeholder="Enter language and press Enter">
@@ -241,6 +245,7 @@ class popup_block
                                             </div>
                                             <button id="languageAddButton" class="AddButton"></button>
                                             <select id="languageDropdown" class="form-control" style="display: none;">
+                                                <option value="">Select a language</option>
                                                 ' . $dropdown . '
                                             </select>
                                         </div>
