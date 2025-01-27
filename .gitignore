@@ -20,3 +20,13 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
+*.log
+.env.local
+.env.testing
+*.sublime-workspace
+*.sublime-project
+/composer.lock
+/composer.json
+/vendor/
+
+
