@@ -8,6 +8,20 @@
     --gray: #62626280
     --gap: 1.2rem
 
+h1,h2,h3,h4,h5,h6,p
+    color: var(--white)
+    font-weight: revert
+    line-height: normal
+    margin: 0
+
+p
+    font-size: clamp(14px, 1dvw, 25px)
+
+h1,h2,h3,h4,h5,h6
+    font-size: clamp(20px, 1vw, 30px)
+
+a
+
 body, html
     font-size: 16px
     margin: 0
@@ -208,21 +222,15 @@ p
 .line-down
     position: absolute
     top: 0
-    left: 47dvw
+    left: 50%
     width: 2px
     height: 100%
     background-color: var(--lightGray)
     z-index: -1
 
-//.intro
-//    display: flex
-//    flex-direction: column
-//    color: var(--white)
-//    z-index: 2
-//    width: 50%
-//    justify-content: center
-//    position: relative
-//    left: 20%
+.intro
+    position: absolute
+    left: 47%
 
 .title
     margin-left: 0.5rem
@@ -295,9 +303,9 @@ p
     &::before
         content: ''
         position: absolute
-        width: 45.99dvw
-        left: 47.1dvw
-        top: 74.4%
+        width: 49.75dvw
+        left: 5.65%
+        top: 94%
         height: 2px
         background-color: var(--lightGray)
         z-index: -1
@@ -350,6 +358,18 @@ p
     display: flex
     align-items: flex-start
 
+.align-items-center
+    display: flex
+    align-items: center
+
+.align-items-end
+    display: flex
+    align-items: flex-end
+
+.align-items-start
+    display: flex
+    align-items: flex-start
+
 .text-center
     text-align: center
 
@@ -372,6 +392,12 @@ p
 .flex-column
     display: flex
     flex-direction: column
+
+.position-relative
+    position: relative
+
+.position-absolute
+    position: absolute
 
 .popup
     position: fixed
@@ -431,6 +457,15 @@ p
 .contact-about
     border-top: 2px solid var(--lightGray)
     padding-top: 1rem
+
+.h-fit-content
+    height: fit-content
+
+.w-fit-content
+    width: fit-content
+
+.h-auto
+    height: auto
 
 @for $i from 1 through 100
     .w-#{$i}

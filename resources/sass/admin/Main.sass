@@ -1,13 +1,39 @@
 :root
     --black: #0b0b0b
+    --light-black: #1a1a1a
     --white: #ffffff
     --lightGray: #A6A6A6
+    --content-bg: #383838
     --darkGray: #323232
     --grayText: #9E9E9E
     --middleGray: #4F4F4F
     --gray: #62626280
+    --active: #28A745
     --gap: 1.2rem
 
+.bg-black
+    background-color: var(--black)
+    color: var(--white)
+
+.bg-light-black
+    background-color: var(--light-black)
+    color: var(--white)
+
+.bg-white
+    background-color: var(--white)
+    color: var(--black)
+
+.bg-content
+    background-color: var(--content-bg)
+    color: var(--white)
+
+.bg-lightGray
+    background-color: var(--lightGray)
+    color: var(--black)
+
+.bg-darkGray
+    background-color: var(--darkGray)
+    color: var(--white)
 
 body::-webkit-scrollbar
     width: 10px
@@ -24,10 +50,12 @@ body::-webkit-scrollbar
 
 body
     display: flex
-    flex-direction: column
-    font-family: "Poppins" , sans-serif
-    font-size: 16px
-    font-weight: 400
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: center
+    font-family: "Poppins" , sans-serif !important
+    font-size: 16px !important
+    font-weight: 400 !important
     margin: 0
     padding: 0
     background-color: var(--black)
@@ -54,7 +82,7 @@ body
         width: 1px
         height: 100%
         top: 0
-        left: calc((#{$i} - 1) * (100% / 15)) // Adjust spacing based on the number of lines
+        left: calc((#{$i}) * (100% / 15)) // Adjust spacing based on the number of lines
         overflow: hidden
 
         &::after
@@ -110,8 +138,7 @@ body
     display: flex
     justify-content: end
     width: 100%
-    border-bottom: 1px solid var(--middleGray)
-    background-color: var(--darkGray)
+    background-color: var(--light-black)
     form
         display: contents
 
@@ -129,8 +156,8 @@ body
     flex-direction: column
     gap: 1rem
     padding: 1rem
-    height: 100%
-    width: 85dvw
+    height: 85dvh
+    width: 90%
     color: var(--white)
     justify-content: center
     position: relative
@@ -142,6 +169,14 @@ body
     align-items: center
     gap: var(--gap)
     z-index: 2
+
+.block
+    display: flex
+    flex-direction: row
+    gap: var(--gap)
+    z-index: 2
+    background-color: var(--darkGray)
+    padding: 1rem
 
 .rounded
     border-radius: 5px
@@ -164,72 +199,250 @@ body
     gap: var(--gap)
     grid-template-columns: 1fr
 
+.display-block
+    display: block
+
+button
+    font-family: "Poppins", sans-serif
+    font-size: 1em
+    cursor: pointer
+
+.note-editable
+    color: var(--black)
+
 h1
-    color: var(--white)
     font-size: 3em
     margin: 0
 
 h2
-    color: var(--white)
     font-size: 2em
     margin: 0
 
 h3
-    color: var(--white)
     font-size: 1.5em
     margin: 0
 
 p
     margin: 0
 
+h1,h2,h3,h4,h5,h6,p
+    color: var(--white)
+    font-weight: revert
+    line-height: normal
+    margin: 0
 
-//.line-down
-//    position: absolute
-//    top: 0
-//    left: 47dvw
-//    width: 2px
-//    height: 100%
-//    background-color: var(--lightGray)
-//    z-index: -1
+.collapsible
+    background-color: var(--darkGray)
+    color: var(--white)
+    cursor: pointer
+    width: 100%
+    border: none
+    text-align: left
+    outline: none
 
-//.title
-//    margin-left: 0.5rem
-//    font-size: 8em
-//    line-height: 0.90em
-//    color: var(--white)
-//    width: 80%
-//    margin-bottom: 0
+.collapsible svg
+    transition: transform 0.3s ease
 
-//
-//.subtitle
-//    font-size: 3.5em
-//    position: relative
+.collapsible.active svg
+    transform: rotate(180deg)
+
+.content
+    display: none
+    overflow: hidden
+    max-height: 0
+    transition: max-height 0.2s ease-out
+    gap: var(--gap)
+    flex-direction: column
+
+.note-dropdown-menu
+    h1,h2,h3,h4,h5,h6,p
+        color: var(--black)
+        font-family: "Poppins", sans-serif !important
+        font-size: 1em
+
+
+input[type="file"]
+    display: none
+
+label[for="image"]:first-of-type
+    pointer-events: none
+
+
+.CustomInput
+    text-align: center
+    width: 100%
+    border: 2px solid
+    display: inline-block
+    padding: 6px 12px
+    cursor: pointer
+    background-color: var(--darkGray)
+    margin: 0
+    font-size: 16px
+
+.dot
+    height: 10px
+    width: 10px
+    border-radius: 50%
+    display: inline-block
+
+
+.form-control
+    background-color: var(--darkGray)
+    color: var(--white)
+    border: 2px solid var(--darkGray)
+    display: flex
+    align-items: center
+    border-radius: 5px
+    padding: 0.5rem
+    font-family: "Poppins", sans-serif
+    font-size: 1em
+    &:focus
+        outline: none
+        border: 1px solid var(--white)
+
+.side-block
+    height: 100%
+    display: flex
+    flex-direction: column
+    gap: var(--gap)
+    padding: 1.5rem
+    width: clamp(10dvw, 15dvw, 20dvw)
+    background-color: var(--light-black)
+    border-radius: 5px
+
+.below-slot-block
+    display: flex
+    flex-direction: row
+    gap: var(--gap)
+    padding: 1.5rem
+    width: clamp(10dvw, 15dvw, 20dvw)
+    background-color: var(--light-black)
+    border-radius: 5px
+
+.close
+    background: transparent
+    color: white
+    scale: 2.5
+    opacity: 0.5
+    text-shadow: none
+    width: 20px
+
+.note-editor
+    border: 2px solid var(--white)
+
+.panel-heading
+    background-color: var(--darkGray)!important
+
+.note-status-output
+    display: none!important
+
+.note-editable
+    color: var(--white)
+    background-color: var(--darkGray)
+
+.ball
+    width: clamp(45px, 10vw, 90px)
+    height: clamp(45px, 10vw, 90px)
+    border-radius: 50%
+    background-color: var(--white)
+    border: 2px solid var(--black)
+    z-index: 1
+    transition: all 1s
+    padding: 0
 
 .button
     color: var(--white)
     background-color: var(--darkGray)
-    padding: 0.5% 1%
+    border: 2px solid var(--white)
     display: flex
     justify-content: center
-    align-items: center
+    height: auto
+    width: fit-content
+    padding: 0.5rem 1.5rem
+    cursor: pointer
+    font-family: "Poppins", sans-serif
+    border-radius: 5px
+    white-space: nowrap
+    &:hover
+        background-color: var(--middleGray)
+        color: var(--white)
+
+label
+    margin: 0
+
+.delete
+    position: relative
+    &::before,
+    &::after
+        content: ''
+        position: absolute
+        right: 0
+        top: 45%
+        width: 15px
+        height: 2px
+        background-color: var(--white)
+    &::before
+        transform: rotate(45deg)
+    &::after
+        transform: rotate(-45deg)
+
+
+
+.AddButton
+    color: var(--white)
+    background-color: var(--darkGray)
     font-size: 1em
     cursor: pointer
     font-family: "Poppins", sans-serif
     border-radius: 5px
-    border: 2px solid var(--darkGray)
+    border: none
+    width: clamp(20px, 30px, 40px)
+    height: clamp(20px, 30px, 40px)
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    &::before
+        content: "+"
+        font-size: 1em
+        color: var(--white)
+        padding-top: 3px
     &:hover
         background-color: var(--middleGray)
+        color: var(--white)
+
+.horizontal-scroll
+    overflow-x: hidden
+
+#horizontal-scroll
+    position: relative
+    &::after
+        content: ""
+        width: 20%
+        height: 100%
+        position: absolute
+        top: 0
+        right: 0
+        pointer-events: none
+        z-index: 1
+        background: linear-gradient(to right, rgba(0, 0, 0, 0), var(--light-black) 100%)
 
 
+.vertical-scroll
+    overflow-y: hidden
 
-//.subText
-//    color: var(--grayText)
-//
-//.info
-//    display: flex
-//    justify-content: end
-//    text-align: end
-//
+.danger
+    border: solid 2px #ff0000
+    &:hover
+        border-color: #ff4d4d
+
+span.danger
+    background-color: #ff4d4d
+    border: none
+
+span.active
+    background-color: var(--active)
+
 .space-between
     display: flex
     justify-content: space-between
@@ -242,9 +455,9 @@ p
     display: flex
     justify-content: end
 
-//.justify-start
-//    display: flex
-//    justify-content: flex-start
+.justify-start
+    display: flex
+    justify-content: flex-start
 
 .justify-center
     display: flex
@@ -252,15 +465,31 @@ p
 
 .align-center
     display: flex
+    align-content: center
+
+.flex-wrap
+    display: flex
+    flex-wrap: wrap
+
+.align-items-center
+    display: flex
     align-items: center
 
-.align-end
+.align-items-end
     display: flex
     align-items: flex-end
 
-.align-start
+.align-items-start
     display: flex
     align-items: flex-start
+
+.align-end
+    display: flex
+    align-content: flex-end
+
+.align-start
+    display: flex
+    align-content: flex-start
 
 .text-center
     text-align: center
@@ -285,6 +514,15 @@ p
     display: flex
     flex-direction: column
 
+.w-fit-content
+    width: fit-content
+
+.w-max-content
+    width: max-content
+
+.w-min-content
+    width: min-content
+
 @for $i from 1 through 100
     .w-#{$i}
         width: calc(#{$i} * 1%)
@@ -293,7 +531,7 @@ p
     .h-#{$i}
         height: calc(#{$i} * 1%)
 
-@for $i from 1 through 5
+@for $i from 0 through 5
     .gap-#{$i}
         gap: calc(#{$i} * var(--gap))
 

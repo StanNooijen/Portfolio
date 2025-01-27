@@ -14,12 +14,11 @@
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
-        <div class="line"></div>
     </div>
     <!-- Session Status -->
     <x-auth-session-status class="" :status="session('status')" />
 
-    <div class="justify-center login align-center">
+    <div class="justify-center flex-wrap login align-center">
         <form class="login-block" method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -55,7 +54,7 @@
                 @endif
             </div>
 
-            <div class="">
+            <div class="w-100 justify-center">
                 <x-primary-button>
                     {{ __('Log in') }}
                 </x-primary-button>
